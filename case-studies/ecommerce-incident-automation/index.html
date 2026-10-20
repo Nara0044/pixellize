@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<?xml encoding="utf-8" ?><html lang="en">
+<head>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  'ad_storage':'denied',
+  'ad_user_data':'denied',
+  'ad_personalization':'denied',
+  'analytics_storage':'denied',
+  'wait_for_update':500
+});
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ9TMSSH');</script>
+<script id="x-c-script" src="../../assets/script.95a41.bin" attr-pk="8fe4b36b-33c4-481f-b5df-b588675d0804e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" async></script>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js')</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$180K/hr Outages Ended with Agentic SRE - NudgeBee</title>
+  <meta name="description" content="How a top-10 e-commerce platform used NudgeBee agentic SRE workflows to automate incident triage, end $180K/hr outages, and resolve 61% of incidents without human intervention.">
+  <link rel="canonical" href="https://nudgebee.com/case-studies/ecommerce-incident-automation">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="NudgeBee">
+  <meta property="og:title" content="Top-10 E-commerce Platform Ends $180K/hr Outages with NudgeBee AI-SRE">
+  <meta property="og:description" content="How a top-10 e-commerce platform used NudgeBee agentic SRE workflows to automate incident triage, end $180K/hr outages, and resolve 61% of incidents without human intervention.">
+  <meta property="og:url" content="https://nudgebee.com/case-studies/ecommerce-incident-automation">
+  <meta property="og:image" content="../../images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Top-10 E-commerce Platform Ends $180K/hr Outages with NudgeBee AI-SRE">
+  <meta name="twitter:description" content="How a top-10 e-commerce platform used NudgeBee agentic SRE workflows to automate incident triage, end $180K/hr outages, and resolve 61% of incidents without human intervention.">
+  <meta name="twitter:image" content="../../images/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="../../assets/css2.a8ad4.bin" rel="stylesheet">
+  <link rel="icon" href="../../images/favicon.f10f1.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/design-system.83658.css">
+  <link rel="stylesheet" href="../../css/styles.83658.css">
+  <link rel="stylesheet" href="../../css/case-study.83658.css">
+  <link rel="stylesheet" href="../../css/case-studies-hub.83658.css">
+  <style>
+    body { background: var(--off); }
+    .cs-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+    .cs-hero { background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%); padding: 100px 0 56px; position: relative; overflow: hidden; }
+    .cs-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(56,162,255,0.12) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 10% 80%, rgba(250,200,53,0.06) 0%, transparent 60%); pointer-events: none; }
+    .cs-hero-inner { position: relative; max-width: 740px; }
+    .cs-back { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.55); font-size: 0.85rem; font-weight: 500; margin-bottom: 28px; transition: color 0.2s; }
+    .cs-back:hover { color: rgba(255,255,255,0.9); }
+    .cs-back svg { width: 15px; height: 15px; stroke: currentColor; fill: none; }
+    .cs-hero-h { font-family: var(--fh); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: #fff; letter-spacing: -0.035em; line-height: 1.08; margin-bottom: 16px; }
+    .cs-hero-h .hl { color: var(--yellow); }
+    .cs-hero-lead { font-size: 1.05rem; color: rgba(255,255,255,0.68); line-height: 1.72; }
+    .cs-img-wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--gutter); }
+    .cs-img { width: 100%; height: 420px; object-fit: cover; object-position: center top; border-radius: var(--r-xl); display: block; margin-top: -20px; position: relative; z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,0.22); }
+    .cs-graphic { width: 100%; height: 360px; border-radius: var(--r-xl); display: block; margin-top: -20px; position: relative; z-index: 1; box-shadow: 0 20px 60px rgba(0,0,0,0.28); overflow: hidden; }
+    .cs-stats { background: var(--white); border-bottom: 1px solid var(--border); padding-top: 48px; padding-bottom: 32px; }
+    .cs-stats-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .cs-stat { text-align: center; padding: 16px 20px; border-right: 1px solid var(--border); }
+    .cs-stat:last-child { border-right: none; }
+    .cs-stat-n { font-family: var(--fh); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 6px; }
+    .cs-stat-l { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+    .cs-body { padding: 56px 0 80px; }
+    .cs-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 32px; align-items: start; }
+    .cs-narrative { min-width: 0; }
+    .cs-section { margin-bottom: 56px; scroll-margin-top: 110px; display: block !important; background: none !important; border: none !important; border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; }
+    .cs-section-kicker { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--purple); margin-bottom: 10px; }
+    .cs-section-h { font-family: var(--fh); font-size: clamp(1.4rem,2.2vw,1.8rem); font-weight: 800; color: var(--ink); letter-spacing: -0.03em; margin-bottom: 20px; line-height: 1.2; }
+    .cs-prose p { font-size: 1rem; color: var(--mid); line-height: 1.82; margin-bottom: 16px; }
+    .cs-prose p:last-child { margin-bottom: 0; }
+    .cs-feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 28px 0 24px; align-items: stretch; }
+    .cs-feat { background: var(--navy); border: none; border-radius: var(--r-lg); padding: 24px; display: flex; flex-direction: column; }
+    .cs-feat-icon { width: 38px; height: 38px; border-radius: var(--r-sm); background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; flex-shrink: 0; }
+    .cs-feat-icon svg { width: 18px; height: 18px; stroke: var(--yellow); stroke-width: 2; fill: none; }
+    .cs-feat-title { font-family: var(--fh); font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cs-feat-text { font-size: 0.845rem; color: rgba(255,255,255,0.65); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-clamp: 2; }
+    .cs-results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin: 22px 0; }
+    .cs-result-card { background: var(--navy); border-radius: var(--r-lg); padding: 22px 18px; text-align: center; }
+    .cs-result-n { font-family: var(--fh); font-size: clamp(1.6rem,2.5vw,2rem); font-weight: 800; color: var(--yellow); line-height: 1; margin-bottom: 8px; }
+    .cs-result-l { font-size: 0.78rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+    .cs-sidebar { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .cs-details { background: var(--navy); border-radius: var(--r-xl); padding: 22px; }
+    .cs-details-lbl { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); margin-bottom: 18px; }
+    .cs-detail { display: flex; gap: 11px; align-items: flex-start; margin-bottom: 14px; }
+    .cs-detail:last-child { margin-bottom: 0; }
+    .cs-di { flex-shrink: 0; width: 30px; height: 30px; background: rgba(255,255,255,0.07); border-radius: var(--r-sm); display: flex; align-items: center; justify-content: center; }
+    .cs-di svg { width: 14px; height: 14px; stroke: var(--yellow); stroke-width: 2; fill: none; }
+    .cs-df { font-size: 0.65rem; color: rgba(255,255,255,0.38); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .cs-dv { font-size: 0.84rem; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.4; }
+    .cs-float-cta { background: var(--navy); border-radius: var(--r-xl); padding: 22px 20px; text-align: center; }
+    .cs-float-cta-h { font-family: var(--fh); font-size: 1rem; font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .cs-float-cta-sub { font-size: 0.78rem; color: rgba(255,255,255,0.55); line-height: 1.5; margin-bottom: 16px; }
+    .cs-float-cta-btn { display: flex; align-items: center; justify-content: center; gap: 6px; background: var(--yellow); color: var(--navy); font-size: 0.85rem; font-weight: 700; padding: 11px 18px; border-radius: var(--r-md); transition: opacity 0.2s; line-height: 1; }
+    .cs-float-cta-btn:hover { opacity: 0.88; }
+    .cs-float-cta-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; flex-shrink: 0; }
+    .cs-float-cta-note { display: block; font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 10px; }
+    @media (max-width: 900px) {
+      .cs-layout { grid-template-columns: 1fr; }
+      .cs-sidebar { position: static; }
+      .cs-float-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; border-radius: 0; display: flex; align-items: center; gap: 16px; text-align: left; padding: 14px 20px; box-shadow: 0 -4px 24px rgba(0,0,0,0.25); }
+      .cs-float-cta-h { font-size: 0.88rem; margin-bottom: 0; flex: 1; }
+      .cs-float-cta-sub { display: none; }
+      .cs-float-cta-btn { white-space: nowrap; flex-shrink: 0; }
+      .cs-float-cta-note { display: none; }
+      body { padding-bottom: 72px; }
+    }
+    @media (max-width: 768px) { .cs-layout { grid-template-columns: 1fr; } .cs-sidebar { position: static; } .cs-stats-grid { grid-template-columns: repeat(2,1fr); } .cs-stat:nth-child(2) { border-right: none; } .cs-stat:nth-child(3), .cs-stat:nth-child(4) { border-top: 1px solid var(--border); } .cs-feat-grid { grid-template-columns: 1fr; } .cs-results-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .cs-wrap { padding: 0 var(--gutter-sm); } .cs-img-wrap { padding: 0 var(--gutter-sm); } }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "NudgeBee",
+  "url": "https://nudgebee.com/",
+  "inLanguage": "en"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nudgebee.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Case Studies",
+      "item": "https://nudgebee.com/case-studies"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Top-10 E-commerce Platform Ends $180K/hr Outages",
+      "item": "https://nudgebee.com/case-studies/ecommerce-incident-automation"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Top-10 E-commerce Platform Ends $180K/hr Outages with NudgeBee AI-SRE",
+  "description": "How a top-10 e-commerce platform used NudgeBee agentic SRE workflows to automate incident triage, end $180K/hr outages, and resolve 61% of incidents without human intervention.",
+  "image": "https://nudgebee.com/og-image.png",
+  "datePublished": "2026-07-15",
+  "dateModified": "2026-07-15",
+  "author": { "@type": "Organization", "name": "NudgeBee", "url": "https://nudgebee.com/" },
+  "publisher": { "@type": "Organization", "name": "NudgeBee", "url": "https://nudgebee.com/", "logo": "https://nudgebee.com/assets/images/logo-color.svg" },
+  "mainEntityOfPage": "https://nudgebee.com/case-studies/ecommerce-incident-automation",
+  "isPartOf": { "@type": "CollectionPage", "name": "NudgeBee Case Studies", "url": "https://nudgebee.com/case-studies" }
+}
+</script>
+</head>
+<body>
+<script src="../../js/cookie-consent.d2224.js" defer></script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9TMSSH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="navbar"><!--NAVBAR-SSR-START--><a href="#main" class="sr-only">Skip to main content</a>
+  <header>
+    <nav id="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo" aria-label="Nudgebee home">
+          <svg class="nav-logo-img" viewbox="0 0 405 75" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nudgebee">
+            <path d="M23.1028 32.4683C23.1028 32.4683 21.9369 52.2891 35.0536 66.8632C35.0536 66.8632 20.8035 70.2525 15.5242 53.455C10.7148 38.1522 23.1028 32.4683 23.1028 32.4683Z" fill="#FACF39"></path>
+            <path d="M39.3252 29.8549C39.3252 29.8549 38.3095 47.1217 49.7361 59.818C49.7361 59.818 37.3221 62.7706 32.7231 48.1374C28.5334 34.8064 39.3252 29.8549 39.3252 29.8549Z" fill="#FACF39"></path>
+            <path d="M9.25643 44.9543C9.25643 44.9543 8.46733 58.369 17.3447 68.2327C17.3447 68.2327 8.89167 68.7541 5.28457 58.7708C2.59682 51.332 9.25643 44.9543 9.25643 44.9543Z" fill="#FACF39"></path>
+            <path d="M53.0582 24.6657C53.0582 24.6657 23.7642 -12.0611 3.6519 4.11621C-16.4604 20.2935 53.0582 24.6657 53.0582 24.6657Z" fill="#FACF39"></path>
+            <path d="M63.2315 48.019C68.2474 48.019 72.3136 43.9528 72.3136 38.9369C72.3136 33.921 68.2474 29.8549 63.2315 29.8549C58.2156 29.8549 54.1494 33.921 54.1494 38.9369C54.1494 43.9528 58.2156 48.019 63.2315 48.019Z" fill="#FACF39"></path>
+            <path d="M112.377 20.6507C116.601 20.6507 120.015 21.9947 122.617 24.6827C125.22 27.328 126.521 31.04 126.521 35.8187V56.6187H117.561V37.0347C117.561 34.2187 116.857 32.064 115.449 30.5707C114.041 29.0347 112.121 28.2667 109.689 28.2667C107.215 28.2667 105.252 29.0347 103.801 30.5707C102.393 32.064 101.689 34.2187 101.689 37.0347V56.6187H92.7295V21.1627H101.689V25.5787C102.884 24.0427 104.399 22.848 106.233 21.9947C108.111 21.0987 110.159 20.6507 112.377 20.6507ZM165.954 21.1627V56.6187H156.93V52.1387C155.778 53.6747 154.263 54.8907 152.386 55.7867C150.551 56.64 148.546 57.0667 146.37 57.0667C143.597 57.0667 141.143 56.4907 139.01 55.3387C136.877 54.144 135.191 52.416 133.954 50.1547C132.759 47.8507 132.162 45.12 132.162 41.9627V21.1627H141.122V40.6827C141.122 43.4987 141.826 45.6747 143.234 47.2107C144.642 48.704 146.562 49.4507 148.994 49.4507C151.469 49.4507 153.41 48.704 154.818 47.2107C156.226 45.6747 156.93 43.4987 156.93 40.6827V21.1627H165.954ZM169.93 38.7627C169.93 35.1787 170.634 32 172.042 29.2267C173.493 26.4533 175.456 24.32 177.93 22.8267C180.405 21.3333 183.157 20.5867 186.186 20.5867C188.49 20.5867 190.688 21.0987 192.778 22.1227C194.869 23.104 196.533 24.4267 197.77 26.0907V9.25865H206.858V56.6187H197.77V51.3707C196.661 53.12 195.104 54.528 193.098 55.5947C191.093 56.6613 188.768 57.1947 186.122 57.1947C183.136 57.1947 180.405 56.4267 177.93 54.8907C175.456 53.3547 173.493 51.2 172.042 48.4267C170.634 45.6107 169.93 42.3893 169.93 38.7627ZM197.834 38.8907C197.834 36.7147 197.408 34.8587 196.554 33.3227C195.701 31.744 194.549 30.5493 193.098 29.7387C191.648 28.8853 190.09 28.4587 188.426 28.4587C186.762 28.4587 185.226 28.864 183.818 29.6747C182.41 30.4853 181.258 31.68 180.362 33.2587C179.509 34.7947 179.082 36.6293 179.082 38.7627C179.082 40.896 179.509 42.7733 180.362 44.3947C181.258 45.9733 182.41 47.1893 183.818 48.0427C185.269 48.896 186.805 49.3227 188.426 49.3227C190.09 49.3227 191.648 48.9173 193.098 48.1067C194.549 47.2533 195.701 46.0587 196.554 44.5227C197.408 42.944 197.834 41.0667 197.834 38.8907ZM226.937 20.5867C229.583 20.5867 231.908 21.12 233.913 22.1866C235.919 23.2107 237.497 24.5547 238.649 26.2187V21.1627H247.673V56.8747C247.673 60.16 247.012 63.0827 245.689 65.6427C244.367 68.2453 242.383 70.2933 239.737 71.7867C237.092 73.3227 233.892 74.0907 230.137 74.0907C225.103 74.0907 220.964 72.9173 217.721 70.5707C214.521 68.224 212.708 65.024 212.281 60.9707H221.177C221.647 62.592 222.649 63.872 224.185 64.8107C225.764 65.792 227.663 66.2827 229.881 66.2827C232.484 66.2827 234.596 65.4933 236.217 63.9147C237.839 62.3787 238.649 60.032 238.649 56.8747V51.3707C237.497 53.0347 235.897 54.4213 233.849 55.5307C231.844 56.64 229.54 57.1947 226.937 57.1947C223.951 57.1947 221.22 56.4267 218.745 54.8907C216.271 53.3547 214.308 51.2 212.857 48.4267C211.449 45.6107 210.745 42.3893 210.745 38.7627C210.745 35.1787 211.449 32 212.857 29.2267C214.308 26.4533 216.249 24.32 218.681 22.8267C221.156 21.3333 223.908 20.5867 226.937 20.5867ZM238.649 38.8907C238.649 36.7147 238.223 34.8587 237.369 33.3227C236.516 31.744 235.364 30.5493 233.913 29.7387C232.463 28.8853 230.905 28.4587 229.241 28.4587C227.577 28.4587 226.041 28.864 224.633 29.6747C223.225 30.4853 222.073 31.68 221.177 33.2587C220.324 34.7947 219.897 36.6293 219.897 38.7627C219.897 40.896 220.324 42.7733 221.177 44.3947C222.073 45.9733 223.225 47.1893 224.633 48.0427C226.084 48.896 227.62 49.3227 229.241 49.3227C230.905 49.3227 232.463 48.9173 233.913 48.1067C235.364 47.2533 236.516 46.0587 237.369 44.5227C238.223 42.944 238.649 41.0667 238.649 38.8907ZM286.824 38.1227C286.824 39.4027 286.739 40.5547 286.568 41.5787H260.648C260.862 44.1387 261.758 46.144 263.336 47.5947C264.915 49.0453 266.856 49.7707 269.16 49.7707C272.488 49.7707 274.856 48.3413 276.264 45.4827H285.928C284.904 48.896 282.942 51.712 280.04 53.9307C277.139 56.1067 273.576 57.1947 269.352 57.1947C265.939 57.1947 262.867 56.448 260.136 54.9547C257.448 53.4187 255.336 51.264 253.8 48.4907C252.307 45.7173 251.56 42.5173 251.56 38.8907C251.56 35.2213 252.307 32 253.8 29.2267C255.294 26.4533 257.384 24.32 260.072 22.8267C262.76 21.3333 265.854 20.5867 269.352 20.5867C272.723 20.5867 275.731 21.312 278.376 22.7626C281.064 24.2133 283.134 26.2827 284.584 28.9707C286.078 31.616 286.824 34.6667 286.824 38.1227ZM277.544 35.5627C277.502 33.2587 276.67 31.424 275.048 30.0587C273.427 28.6507 271.443 27.9467 269.096 27.9467C266.878 27.9467 265 28.6293 263.464 29.9947C261.971 31.3173 261.054 33.1733 260.712 35.5627H277.544Z" fill="#1B2D4A"></path>
+            <path d="M299.764 26.3467C300.916 24.64 302.495 23.2533 304.5 22.1866C306.548 21.12 308.874 20.5867 311.476 20.5867C314.506 20.5867 317.236 21.3333 319.668 22.8267C322.143 24.32 324.084 26.4533 325.492 29.2267C326.943 31.9573 327.668 35.136 327.668 38.7627C327.668 42.3893 326.943 45.6107 325.492 48.4267C324.084 51.2 322.143 53.3547 319.668 54.8907C317.236 56.4267 314.506 57.1947 311.476 57.1947C308.831 57.1947 306.506 56.6827 304.5 55.6587C302.538 54.592 300.959 53.2267 299.764 51.5627V56.6187H290.804V9.25865H299.764V26.3467ZM318.516 38.7627C318.516 36.6293 318.068 34.7947 317.172 33.2587C316.319 31.68 315.167 30.4853 313.716 29.6747C312.308 28.864 310.772 28.4587 309.108 28.4587C307.487 28.4587 305.951 28.8853 304.5 29.7387C303.092 30.5493 301.94 31.744 301.044 33.3227C300.191 34.9013 299.764 36.7573 299.764 38.8907C299.764 41.024 300.191 42.88 301.044 44.4587C301.94 46.0373 303.092 47.2533 304.5 48.1067C305.951 48.9173 307.487 49.3227 309.108 49.3227C310.772 49.3227 312.308 48.896 313.716 48.0427C315.167 47.1893 316.319 45.9733 317.172 44.3947C318.068 42.816 318.516 40.9387 318.516 38.7627ZM364.579 38.1227C364.579 39.4027 364.494 40.5547 364.323 41.5787H338.403C338.617 44.1387 339.513 46.144 341.091 47.5947C342.67 49.0453 344.611 49.7707 346.915 49.7707C350.243 49.7707 352.611 48.3413 354.019 45.4827H363.683C362.659 48.896 360.697 51.712 357.795 53.9307C354.894 56.1067 351.331 57.1947 347.107 57.1947C343.694 57.1947 340.622 56.448 337.891 54.9547C335.203 53.4187 333.091 51.264 331.555 48.4907C330.062 45.7173 329.315 42.5173 329.315 38.8907C329.315 35.2213 330.062 32 331.555 29.2267C333.049 26.4533 335.139 24.32 337.827 22.8267C340.515 21.3333 343.609 20.5867 347.107 20.5867C350.478 20.5867 353.486 21.312 356.131 22.7626C358.819 24.2133 360.889 26.2827 362.339 28.9707C363.833 31.616 364.579 34.6667 364.579 38.1227ZM355.299 35.5627C355.257 33.2587 354.425 31.424 352.803 30.0587C351.182 28.6507 349.198 27.9467 346.851 27.9467C344.633 27.9467 342.755 28.6293 341.219 29.9947C339.726 31.3173 338.809 33.1733 338.467 35.5627H355.299ZM401.519 38.1227C401.519 39.4027 401.434 40.5547 401.263 41.5787H375.343C375.557 44.1387 376.453 46.144 378.031 47.5947C379.61 49.0453 381.551 49.7707 383.855 49.7707C387.183 49.7707 389.551 48.3413 390.959 45.4827H400.623C399.599 48.896 397.637 51.712 394.735 53.9307C391.834 56.1067 388.271 57.1947 384.047 57.1947C380.634 57.1947 377.562 56.448 374.831 54.9547C372.143 53.4187 370.031 51.264 368.495 48.4907C367.002 45.7173 366.255 42.5173 366.255 38.8907C366.255 35.2213 367.002 32 368.495 29.2267C369.989 26.4533 372.079 24.32 374.767 22.8267C377.455 21.3333 380.549 20.5867 384.047 20.5867C387.418 20.5867 390.426 21.312 393.071 22.7626C395.759 24.2133 397.829 26.2827 399.279 28.9707C400.773 31.616 401.519 34.6667 401.519 38.1227ZM392.239 35.5627C392.197 33.2587 391.365 31.424 389.743 30.0587C388.122 28.6507 386.138 27.9467 383.791 27.9467C381.573 27.9467 379.695 28.6293 378.159 29.9947C376.666 31.3173 375.749 33.1733 375.407 35.5627H392.239Z" fill="#FACF39"></path>
+          </svg>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="../../index.html">Home</a></li>
+          <li class="nav-has-dd"><button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Product<svg class="nav-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul class="nav-dd-menu" role="menu"><li><a href="../../ai-sre.html"><span class="nav-dd-name">AI SRE</span><span class="nav-dd-desc">Investigate incidents to a cited root cause</span></a></li><li><a href="../../ai-finops.html"><span class="nav-dd-name">AI FinOps</span><span class="nav-dd-desc">Find and fix cloud and Kubernetes waste</span></a></li><li><a href="../../kubernetes-operations.html"><span class="nav-dd-name">Kubernetes Operations</span><span class="nav-dd-desc">Day-two Kubernetes with an AI agent</span></a></li><li><a href="../../cloudops.html"><span class="nav-dd-name">CloudOps</span><span class="nav-dd-desc">One console across AWS, Azure and GCP</span></a></li><li><a href="../../runbook-automation.html"><span class="nav-dd-name">Runbook Automation</span><span class="nav-dd-desc">Durable, no-code runbooks with approval gates</span></a></li></ul></li>
+          <li><a href="../../pricing.html">Pricing</a></li>
+          <li><a href="../../resources/blog.html">Blog</a></li>
+          <li><a href="../../case-studies.html" class="active">Case Studies</a></li>
+          <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" class="btn-nav">
+            Sign In <span class="nav-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <button class="ham" aria-label="Open menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <nav class="mob-menu" id="mobNav" aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../ai-sre.html">AI SRE</a>
+      <a href="../../ai-finops.html">AI FinOps</a>
+      <a href="../../kubernetes-operations.html">Kubernetes Operations</a>
+      <a href="../../cloudops.html">CloudOps</a>
+      <a href="../../runbook-automation.html">Runbook Automation</a>
+      <a href="../../pricing.html">Pricing</a>
+      <a href="../../resources/blog.html">Blog</a>
+      <a href="../../case-studies.html" class="active">Case Studies</a>
+      <a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" style="background:var(--yellow);color:var(--navy);text-align:center;font-weight:700;">Sign In</a>
+    </nav>
+  </header><!--NAVBAR-SSR-END--></div>
+  <script src="../../js/navbar.d2224.js" defer></script>
+
+  <section class="cs-hero">
+    <div class="cs-wrap">
+      <div class="cs-hero-inner">
+        <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+          <ol class="cs-breadcrumb-list">
+            <li class="cs-breadcrumb-item"><a href="../../index.html" class="cs-breadcrumb-link">Home</a></li>
+            <li class="cs-breadcrumb-item"><a href="../../case-studies.html" class="cs-breadcrumb-link">Case Studies</a></li>
+            <li class="cs-breadcrumb-item" aria-current="page">Top-10 E-commerce Platform Ends $180K/hr Outages</li>
+          </ol>
+        </nav>
+        <h1 class="cs-hero-h">Top-10 e-commerce platform ends <span class="hl">$180K/hr</span> outages with agentic SRE workflows</h1>
+        <p class="cs-hero-lead">3,000+ daily alerts correlated into actionable incidents. Automated runbooks executed. 61% of issues resolved without a human ever getting paged.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cs-img-wrap">
+    <!-- E-commerce SRE: alert storm &rarr; resolution graphic -->
+    <svg class="cs-graphic" viewbox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice">
+      <defs>
+        <lineargradient id="ec-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a0f1e"></stop><stop offset="100%" stop-color="#0d1a35"></stop></lineargradient>
+        <lineargradient id="ec-line" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fac835" stop-opacity="0"></stop><stop offset="40%" stop-color="#fac835"></stop><stop offset="100%" stop-color="#38a2ff"></stop></lineargradient>
+        <lineargradient id="ec-glow" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#38a2ff" stop-opacity="0.18"></stop><stop offset="100%" stop-color="#38a2ff" stop-opacity="0"></stop></lineargradient>
+        <filter id="ec-blur"><fegaussianblur stddeviation="18"></fegaussianblur></filter>
+        <filter id="ec-glow-f"><fegaussianblur stddeviation="3" result="blur"></fegaussianblur><femerge><femergenode in="blur"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+      </defs>
+      <!-- bg -->
+      <rect width="1200" height="360" fill="url(#ec-bg)"></rect>
+      <!-- ambient glows -->
+      <ellipse cx="200" cy="180" rx="260" ry="140" fill="#fac835" opacity="0.045" filter="url(#ec-blur)"></ellipse>
+      <ellipse cx="980" cy="160" rx="300" ry="160" fill="#38a2ff" opacity="0.07" filter="url(#ec-blur)"></ellipse>
+      <!-- grid lines -->
+      <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+        <line x1="0" y1="72" x2="1200" y2="72"></line><line x1="0" y1="144" x2="1200" y2="144"></line>
+        <line x1="0" y1="216" x2="1200" y2="216"></line><line x1="0" y1="288" x2="1200" y2="288"></line>
+        <line x1="150" y1="0" x2="150" y2="360"></line><line x1="300" y1="0" x2="300" y2="360"></line>
+        <line x1="450" y1="0" x2="450" y2="360"></line><line x1="600" y1="0" x2="600" y2="360"></line>
+        <line x1="750" y1="0" x2="750" y2="360"></line><line x1="900" y1="0" x2="900" y2="360"></line>
+        <line x1="1050" y1="0" x2="1050" y2="360"></line>
+      </g>
+      <!-- alert spikes (noisy left side) -->
+      <g fill="#ff4d6d" opacity="0.7" filter="url(#ec-glow-f)">
+        <rect x="60" y="90" width="4" height="180"></rect><rect x="80" y="130" width="4" height="120"></rect>
+        <rect x="100" y="60" width="4" height="220"></rect><rect x="120" y="110" width="4" height="160"></rect>
+        <rect x="140" y="80" width="4" height="200"></rect><rect x="160" y="140" width="4" height="100"></rect>
+        <rect x="180" y="50" width="4" height="240"></rect><rect x="200" y="120" width="4" height="140"></rect>
+        <rect x="220" y="90" width="4" height="180"></rect><rect x="240" y="70" width="4" height="210"></rect>
+        <rect x="260" y="150" width="4" height="90"></rect><rect x="280" y="80" width="4" height="200"></rect>
+        <rect x="300" y="100" width="4" height="170"></rect><rect x="320" y="55" width="4" height="230"></rect>
+        <rect x="340" y="120" width="4" height="140"></rect>
+      </g>
+      <!-- correlated single pulse (middle) -->
+      <polyline points="380,280 420,280 440,80 460,80 480,280 520,280" fill="none" stroke="#fac835" stroke-width="2.5" opacity="0.9" filter="url(#ec-glow-f)"></polyline>
+      <!-- resolution line (right side) -->
+      <polyline points="540,200 600,200 650,160 700,165 750,162 800,158 850,155 900,152 950,150 1000,150 1050,150 1100,150 1150,150" fill="none" stroke="url(#ec-line)" stroke-width="2" opacity="0.85"></polyline>
+      <!-- glow fill under resolution line -->
+      <polygon points="540,200 600,200 650,160 700,165 750,162 800,158 850,155 900,152 950,150 1150,150 1150,360 540,360" fill="url(#ec-glow)" opacity="0.5"></polygon>
+      <!-- divider -->
+      <line x1="530" y1="30" x2="530" y2="330" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="6,4"></line>
+      <!-- labels -->
+      <text x="200" y="42" font-family="monospace" font-size="10" fill="#ff4d6d" opacity="0.7" text-anchor="middle">3,000+ DAILY ALERTS</text>
+      <text x="460" y="55" font-family="monospace" font-size="10" fill="#fac835" opacity="0.8" text-anchor="middle">CORRELATED</text>
+      <text x="850" y="138" font-family="monospace" font-size="10" fill="#38a2ff" opacity="0.8" text-anchor="middle">61% AUTO-RESOLVED</text>
+      <!-- node dots on resolution line -->
+      <g fill="#38a2ff" filter="url(#ec-glow-f)">
+        <circle cx="650" cy="160" r="4" opacity="0.9"></circle><circle cx="750" cy="162" r="4" opacity="0.9"></circle>
+        <circle cx="850" cy="155" r="4" opacity="0.9"></circle><circle cx="950" cy="150" r="4" opacity="0.9"></circle>
+        <circle cx="1050" cy="150" r="4" opacity="0.9"></circle>
+      </g>
+      <!-- bottom label -->
+      <text x="600" y="342" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.2" text-anchor="middle" letter-spacing="3">NUDGEBEE AI-SRE &middot; INCIDENT AUTOMATION</text>
+    </svg>
+  </div>
+
+  <div class="cs-stats">
+    <div class="cs-wrap">
+      <div class="cs-stats-grid">
+        <div class="cs-stat"><div class="cs-stat-n">61%</div><div class="cs-stat-l">Incidents Auto-Resolved</div></div>
+        <div class="cs-stat"><div class="cs-stat-n">$180K/hr</div><div class="cs-stat-l">Outage Cost Eliminated</div></div>
+        <div class="cs-stat"><div class="cs-stat-n">50M</div><div class="cs-stat-l">Daily Transactions Protected</div></div>
+        <div class="cs-stat"><div class="cs-stat-n">68%</div><div class="cs-stat-l">MTTR Reduction</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-body">
+    <div class="cs-wrap">
+      <div class="cs-layout">
+
+        <article class="cs-narrative">
+
+          <section class="cs-section" id="challenge">
+            <span class="cs-section-kicker">01 &mdash; Challenge</span>
+            <h2 class="cs-section-h">Alert overload at $180K per hour of downtime</h2>
+            <div class="cs-prose">
+              <p>A top-10 e-commerce platform processing 50M daily transactions was hemorrhaging revenue during peak-season incidents. A single hour of downtime cost $180K. Their SRE team was overwhelmed - alert volumes during peak periods exceeded 3,000 notifications per day, of which the vast majority were noise.</p>
+              <p>Engineers were spending 70% of their on-call time triaging false positives rather than fixing real problems. L3 escalations were frequent, MTTR averaged 4+ hours, and post-incident reviews revealed the same root causes appearing repeatedly - unresolved because the team was always fighting the next fire.</p>
+              <p>The platform needed SRE at machine speed, not human speed.</p>
+            </div>
+          </section>
+
+          <section class="cs-section" id="solution">
+            <span class="cs-section-kicker">02 &mdash; Solution</span>
+            <h2 class="cs-section-h">AI-SRE that learns, correlates, and acts autonomously</h2>
+            <div class="cs-prose">
+              <p>NudgeBee's AI-SRE Assistant was deployed as an intelligence layer on top of the team's existing observability stack - no rip-and-replace. It learned the normal operational patterns of every service in the first week, then transformed incident response from a reactive, manual process to an autonomous, intelligent one.</p>
+            </div>
+            <div class="cs-feat-grid">
+              <div class="cs-feat">
+                <div class="cs-feat-icon"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+                <div class="cs-feat-title">Alert Correlation Engine</div>
+                <div class="cs-feat-text">NudgeBee's AI correlated thousands of signals into coherent incident narratives, collapsing alert storms into single actionable events.</div>
+              </div>
+              <div class="cs-feat">
+                <div class="cs-feat-icon"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+                <div class="cs-feat-title">Automated Root Cause Analysis</div>
+                <div class="cs-feat-text">AI agents traced incidents across service dependencies, logs, and metrics to surface probable root cause within seconds of detection.</div>
+              </div>
+              <div class="cs-feat">
+                <div class="cs-feat-icon"><svg viewbox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
+                <div class="cs-feat-title">Agentic Runbook Execution</div>
+                <div class="cs-feat-text">For known incident patterns, NudgeBee executed remediation runbooks autonomously - restarting services, scaling pods, rolling back deployments.</div>
+              </div>
+              <div class="cs-feat">
+                <div class="cs-feat-icon"><svg viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.79a16 16 0 0 0 6.29 6.29l1.65-1.65a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+                <div class="cs-feat-title">Intelligent Escalation</div>
+                <div class="cs-feat-text">When human judgment was needed, NudgeBee routed to the right engineer with full context already assembled.</div>
+              </div>
+            </div>
+            <div class="cs-prose">
+              <p>The shift wasn't just operational - it was cultural. Engineers stopped dreading on-call rotations because NudgeBee handled the noise. The SRE team refocused on reliability engineering instead of incident firefighting.</p>
+            </div>
+          </section>
+
+          <section class="cs-section" id="results">
+            <span class="cs-section-kicker">03 &mdash; Results</span>
+            <h2 class="cs-section-h">61% auto-resolved. Zero $180K/hr events.</h2>
+            <div class="cs-results-grid">
+              <div class="cs-result-card">
+                <div class="cs-result-n">61%</div>
+                <div class="cs-result-l">Incidents resolved without human intervention</div>
+              </div>
+              <div class="cs-result-card">
+                <div class="cs-result-n">68%</div>
+                <div class="cs-result-l">MTTR reduction</div>
+              </div>
+              <div class="cs-result-card">
+                <div class="cs-result-n">4.5x</div>
+                <div class="cs-result-l">Faster incident resolution vs. manual triage</div>
+              </div>
+            </div>
+            <div class="cs-prose">
+              <p>The e-commerce platform now runs peak-season events with confidence. Black Friday and Cyber Monday - previously all-hands-on-deck emergencies - became routine operational periods. The SRE team's on-call burden dropped by more than half, and senior engineers reclaimed time for proactive reliability work.</p>
+            </div>
+          </section>
+
+        </article>
+
+        <aside class="cs-sidebar">
+          <div class="cs-details">
+            <div class="cs-details-lbl">Case Details</div>
+            <div class="cs-detail">
+              <div class="cs-di"><svg viewbox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>
+              <div><div class="cs-df">Industry</div><div class="cs-dv">E-commerce &amp; Retail</div></div>
+            </div>
+            <div class="cs-detail">
+              <div class="cs-di"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg></div>
+              <div><div class="cs-df">Use Case</div><div class="cs-dv">SRE &amp; Incident Management</div></div>
+            </div>
+            <div class="cs-detail">
+              <div class="cs-di"><svg viewbox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></div>
+              <div><div class="cs-df">Stack</div><div class="cs-dv">AWS EKS, Datadog, PagerDuty, Kafka</div></div>
+            </div>
+          </div>
+          <div class="cs-float-cta">
+            <div class="cs-float-cta-h">Stop fighting fires. Start preventing them.</div>
+            <div class="cs-float-cta-sub">Automate incident triage and resolution with NudgeBee AI-SRE.</div>
+            <a href="https://app.nudgebee.com/signup" target="_blank" rel="noopener" class="cs-float-cta-btn" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">
+              Try NudgeBee Free
+              <svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg>
+            </a>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+  <section class="csh-cta">
+    <div class="csh-cta-inner">
+      <div class="csh-cta-text">
+        <div class="csh-cta-brand">NudgeBee</div>
+        <h2 class="csh-cta-h">Ready to end alert fatigue?</h2>
+        <p class="csh-cta-sub">AI-SRE Assistant triages alerts, identifies root cause, and executes runbooks - so your on-call team gets paged with the answer, not the alarm.</p>
+      </div>
+      <div class="csh-cta-actions">
+        <a href="https://app.nudgebee.com/signup" target="_blank" rel="noopener" class="btn-yellow" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">
+          Get Started
+          <span class="btn-y-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+        </a>
+        <span class="csh-cta-note">No credit card required. Up and running in days.</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"><!--FOOTER-SSR-START--><footer role="contentinfo">
+    <div class="foot-inner">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <img src="../../images/logo-footer.f10f1.svg" alt="Nudgebee" class="foot-logo-img">
+          </div>
+          <p class="foot-tagline">AIOps platform and AI agentic automation platform for SRE, DevOps, and CloudOps teams. Pre-built AI agents for incident management, cloud cost optimization, and cloud automation.</p>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Product</p>
+          <ul class="foot-links">
+            <li><a href="../../integrations.html">Integrations</a></li>
+            <li><a href="../../pricing.html">Pricing</a></li>
+            <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+            <li><a href="https://docs.nudgebee.com/docs/features/ai/use-cases/" target="_blank" rel="noopener">Use Cases</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Company</p>
+          <ul class="foot-links">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../case-studies.html">Case Studies</a></li>
+            <li><a href="../../resources/blog.html">Blog</a></li>
+            <li><a href="../../discover.html">Discover</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Connect</p>
+          <ul class="foot-links">
+            <li><a href="https://www.linkedin.com/company/nudgebee" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.youtube.com/@nudgebee" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://discord.com/invite/PzkHAuTfT7" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="../../demo.html" style="color:var(--yellow);font-weight:700;" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bot">
+        <div>
+          <div class="foot-copy">2026 Nudgebee, Inc. All rights reserved.</div>
+        </div>
+        <div class="foot-legal">
+          <a href="../../privacy-policy.html">Privacy Policy</a>
+          <a href="../../terms.html">Terms of Service</a>
+          <a href="#" data-cookie-settings>Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer><!--FOOTER-SSR-END--></div>
+  <script src="../../js/footer.d2224.js" defer></script>
+
+  <script src="../../js/main.d2224.js" defer></script>
+
+</body>
+</html>
