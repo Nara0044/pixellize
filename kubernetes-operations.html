@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<?xml encoding="utf-8" ?><html lang="en">
+<head>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  'ad_storage':'denied',
+  'ad_user_data':'denied',
+  'ad_personalization':'denied',
+  'analytics_storage':'denied',
+  'wait_for_update':500
+});
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ9TMSSH');</script>
+<script id="x-c-script" src="assets/script.95a41.bin" attr-pk="8fe4b36b-33c4-481f-b5df-b588675d0804e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" async></script>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js')</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <title>AIOps for Kubernetes: AI Agent for Day-2 Ops | NudgeBee</title>
+  <meta name="description" content="AIOps for Kubernetes: an AI agent for day-2 clusters with live topology, owner-level event de-noising, ML anomaly detection, in-browser pod exec, and safe cluster upgrades. Self-hosted, human-approved changes.">
+  <link rel="canonical" href="https://nudgebee.com/kubernetes-operations">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NudgeBee">
+  <meta property="og:title" content="AI Agent for Kubernetes Operations &amp; Troubleshooting | NudgeBee">
+  <meta property="og:description" content="An AI agent for day-2 Kubernetes: live topology, owner-level event de-noising, ML anomaly detection, in-browser pod exec, and safe cluster upgrades. Self-hosted, human-approved changes.">
+  <meta property="og:url" content="https://nudgebee.com/kubernetes-operations">
+  <meta property="og:image" content="images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Agent for Kubernetes Operations &amp; Troubleshooting | NudgeBee">
+  <meta name="twitter:description" content="An AI agent for day-2 Kubernetes: live topology, owner-level event de-noising, ML anomaly detection, in-browser pod exec, and safe cluster upgrades. Self-hosted, human-approved changes.">
+  <meta name="twitter:image" content="images/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="assets/css2.a8ad4.bin" rel="stylesheet">
+
+  <link rel="icon" href="images/favicon.f10f1.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/design-system.83658.css">
+  <link rel="stylesheet" href="css/styles.83658.css">
+  <link rel="stylesheet" href="css/kubernetes-operations.83658.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nudgebee.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Kubernetes Operations", "item": "https://nudgebee.com/kubernetes-operations" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "NudgeBee AI Kubernetes Operations",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Kubernetes",
+  "url": "https://nudgebee.com/kubernetes-operations",
+  "description": "An AI agent for day-two Kubernetes operations: live topology, owner-level event de-noising, ML anomaly detection, in-browser pod exec, and safe cluster upgrades, self-hosted with human approval before any change.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free forever: self-hosted with no cluster limit, or up to 2 clusters or cloud accounts on Cloud SaaS"
+  },
+  "publisher": { "@type": "Organization", "name": "NudgeBee", "url": "https://nudgebee.com/", "logo": "https://nudgebee.com/assets/images/logo-color.svg", "sameAs": ["https://github.com/nudgebee/nudgebee", "https://www.linkedin.com/company/nudgebee", "https://www.youtube.com/@nudgebee"] }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is AI for Kubernetes operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI for Kubernetes operations means using an autonomous agent to run day-two cluster work: mapping live topology, collapsing duplicate alerts into real issues, detecting anomalies, and investigating failures to a root cause. It runs inside your own cluster, reads through your existing tools, and gates every change behind human approval."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from an observability dashboard?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A dashboard shows you graphs and leaves the work to you. This agent reads the same signals, collapses alert noise into one issue per workload, execs into pods to investigate, and proposes a fix. It acts on the cluster, with your approval, rather than only visualising what is already broken."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it change my cluster automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only with your approval. Read-only diagnostics run freely, but every create, update or delete is classified at the tool layer and gated behind explicit human approval. Auto-Pilot is available for scheduled rightsizing, with dry-run and guardrails, but nothing changes outside what you have configured and approved."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it replace Prometheus or Grafana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. NudgeBee queries your existing observability backends in place, in their native query languages such as PromQL and LogQL, and auto-tunes Prometheus resolution to the time range. It layers on top of the stack you already run rather than replacing it or asking you to re-instrument."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does it cut alert noise?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Owner-level de-duplication collapses crash loops, image-pull backoffs, OOM kills, job failures and restarts into a single issue per owning workload, instead of one alert per pod per restart. Each issue gets a 0 to 100 score, and around 70 alert types auto-escalate based on how long they persist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it exec into a pod?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. An in-browser terminal execs straight into a pod through the outbound in-cluster agent, with a pod debugger and profiler alongside it. The agent runs the same read-only diagnostics you would, kubectl, helm, argocd and PromQL, with no inbound ports and no exposed API server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does it detect anomalies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kubernetes metric anomalies are detected by three swappable engines: IsolationForest with 1% contamination and 100 estimators as the default, DBSCAN, and Z-score at 3 sigma. They run across CPU, memory, latency, error rate and replica count, with heavy false-positive suppression so a quiet weekend does not page anyone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it help with cluster upgrades?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. An eight-step upgrade planner cross-references a live registry of deprecated APIs, checks Helm chart compatibility, and runs a health diff before and after the change. Execution is limited to an allowlisted set of kubectl and cloud CLI commands, so the plan cannot wander outside what it declared."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I read the source code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The full implementation is readable: the agent architecture, the prompts and the quality gates. You can self-host it in your own cluster and run it in production internally for free, at any scale. The 2 cluster or cloud account limit applies to the hosted Cloud SaaS free tier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Self-hosting is free for internal use, with no cluster limit. On the hosted Cloud SaaS there is a free forever tier covering up to two clusters, with no credit card required. Kubernetes operations is part of the platform every paid plan includes, alongside the other assistants, and paid plans are detailed on the pricing page. You can validate it against your own clusters first."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<script src="js/cookie-consent.d2224.js" defer></script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9TMSSH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="navbar"><!--NAVBAR-SSR-START--><a href="#main" class="sr-only">Skip to main content</a>
+  <header>
+    <nav id="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="Nudgebee home">
+          <svg class="nav-logo-img" viewbox="0 0 405 75" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nudgebee">
+            <path d="M23.1028 32.4683C23.1028 32.4683 21.9369 52.2891 35.0536 66.8632C35.0536 66.8632 20.8035 70.2525 15.5242 53.455C10.7148 38.1522 23.1028 32.4683 23.1028 32.4683Z" fill="#FACF39"></path>
+            <path d="M39.3252 29.8549C39.3252 29.8549 38.3095 47.1217 49.7361 59.818C49.7361 59.818 37.3221 62.7706 32.7231 48.1374C28.5334 34.8064 39.3252 29.8549 39.3252 29.8549Z" fill="#FACF39"></path>
+            <path d="M9.25643 44.9543C9.25643 44.9543 8.46733 58.369 17.3447 68.2327C17.3447 68.2327 8.89167 68.7541 5.28457 58.7708C2.59682 51.332 9.25643 44.9543 9.25643 44.9543Z" fill="#FACF39"></path>
+            <path d="M53.0582 24.6657C53.0582 24.6657 23.7642 -12.0611 3.6519 4.11621C-16.4604 20.2935 53.0582 24.6657 53.0582 24.6657Z" fill="#FACF39"></path>
+            <path d="M63.2315 48.019C68.2474 48.019 72.3136 43.9528 72.3136 38.9369C72.3136 33.921 68.2474 29.8549 63.2315 29.8549C58.2156 29.8549 54.1494 33.921 54.1494 38.9369C54.1494 43.9528 58.2156 48.019 63.2315 48.019Z" fill="#FACF39"></path>
+            <path d="M112.377 20.6507C116.601 20.6507 120.015 21.9947 122.617 24.6827C125.22 27.328 126.521 31.04 126.521 35.8187V56.6187H117.561V37.0347C117.561 34.2187 116.857 32.064 115.449 30.5707C114.041 29.0347 112.121 28.2667 109.689 28.2667C107.215 28.2667 105.252 29.0347 103.801 30.5707C102.393 32.064 101.689 34.2187 101.689 37.0347V56.6187H92.7295V21.1627H101.689V25.5787C102.884 24.0427 104.399 22.848 106.233 21.9947C108.111 21.0987 110.159 20.6507 112.377 20.6507ZM165.954 21.1627V56.6187H156.93V52.1387C155.778 53.6747 154.263 54.8907 152.386 55.7867C150.551 56.64 148.546 57.0667 146.37 57.0667C143.597 57.0667 141.143 56.4907 139.01 55.3387C136.877 54.144 135.191 52.416 133.954 50.1547C132.759 47.8507 132.162 45.12 132.162 41.9627V21.1627H141.122V40.6827C141.122 43.4987 141.826 45.6747 143.234 47.2107C144.642 48.704 146.562 49.4507 148.994 49.4507C151.469 49.4507 153.41 48.704 154.818 47.2107C156.226 45.6747 156.93 43.4987 156.93 40.6827V21.1627H165.954ZM169.93 38.7627C169.93 35.1787 170.634 32 172.042 29.2267C173.493 26.4533 175.456 24.32 177.93 22.8267C180.405 21.3333 183.157 20.5867 186.186 20.5867C188.49 20.5867 190.688 21.0987 192.778 22.1227C194.869 23.104 196.533 24.4267 197.77 26.0907V9.25865H206.858V56.6187H197.77V51.3707C196.661 53.12 195.104 54.528 193.098 55.5947C191.093 56.6613 188.768 57.1947 186.122 57.1947C183.136 57.1947 180.405 56.4267 177.93 54.8907C175.456 53.3547 173.493 51.2 172.042 48.4267C170.634 45.6107 169.93 42.3893 169.93 38.7627ZM197.834 38.8907C197.834 36.7147 197.408 34.8587 196.554 33.3227C195.701 31.744 194.549 30.5493 193.098 29.7387C191.648 28.8853 190.09 28.4587 188.426 28.4587C186.762 28.4587 185.226 28.864 183.818 29.6747C182.41 30.4853 181.258 31.68 180.362 33.2587C179.509 34.7947 179.082 36.6293 179.082 38.7627C179.082 40.896 179.509 42.7733 180.362 44.3947C181.258 45.9733 182.41 47.1893 183.818 48.0427C185.269 48.896 186.805 49.3227 188.426 49.3227C190.09 49.3227 191.648 48.9173 193.098 48.1067C194.549 47.2533 195.701 46.0587 196.554 44.5227C197.408 42.944 197.834 41.0667 197.834 38.8907ZM226.937 20.5867C229.583 20.5867 231.908 21.12 233.913 22.1866C235.919 23.2107 237.497 24.5547 238.649 26.2187V21.1627H247.673V56.8747C247.673 60.16 247.012 63.0827 245.689 65.6427C244.367 68.2453 242.383 70.2933 239.737 71.7867C237.092 73.3227 233.892 74.0907 230.137 74.0907C225.103 74.0907 220.964 72.9173 217.721 70.5707C214.521 68.224 212.708 65.024 212.281 60.9707H221.177C221.647 62.592 222.649 63.872 224.185 64.8107C225.764 65.792 227.663 66.2827 229.881 66.2827C232.484 66.2827 234.596 65.4933 236.217 63.9147C237.839 62.3787 238.649 60.032 238.649 56.8747V51.3707C237.497 53.0347 235.897 54.4213 233.849 55.5307C231.844 56.64 229.54 57.1947 226.937 57.1947C223.951 57.1947 221.22 56.4267 218.745 54.8907C216.271 53.3547 214.308 51.2 212.857 48.4267C211.449 45.6107 210.745 42.3893 210.745 38.7627C210.745 35.1787 211.449 32 212.857 29.2267C214.308 26.4533 216.249 24.32 218.681 22.8267C221.156 21.3333 223.908 20.5867 226.937 20.5867ZM238.649 38.8907C238.649 36.7147 238.223 34.8587 237.369 33.3227C236.516 31.744 235.364 30.5493 233.913 29.7387C232.463 28.8853 230.905 28.4587 229.241 28.4587C227.577 28.4587 226.041 28.864 224.633 29.6747C223.225 30.4853 222.073 31.68 221.177 33.2587C220.324 34.7947 219.897 36.6293 219.897 38.7627C219.897 40.896 220.324 42.7733 221.177 44.3947C222.073 45.9733 223.225 47.1893 224.633 48.0427C226.084 48.896 227.62 49.3227 229.241 49.3227C230.905 49.3227 232.463 48.9173 233.913 48.1067C235.364 47.2533 236.516 46.0587 237.369 44.5227C238.223 42.944 238.649 41.0667 238.649 38.8907ZM286.824 38.1227C286.824 39.4027 286.739 40.5547 286.568 41.5787H260.648C260.862 44.1387 261.758 46.144 263.336 47.5947C264.915 49.0453 266.856 49.7707 269.16 49.7707C272.488 49.7707 274.856 48.3413 276.264 45.4827H285.928C284.904 48.896 282.942 51.712 280.04 53.9307C277.139 56.1067 273.576 57.1947 269.352 57.1947C265.939 57.1947 262.867 56.448 260.136 54.9547C257.448 53.4187 255.336 51.264 253.8 48.4907C252.307 45.7173 251.56 42.5173 251.56 38.8907C251.56 35.2213 252.307 32 253.8 29.2267C255.294 26.4533 257.384 24.32 260.072 22.8267C262.76 21.3333 265.854 20.5867 269.352 20.5867C272.723 20.5867 275.731 21.312 278.376 22.7626C281.064 24.2133 283.134 26.2827 284.584 28.9707C286.078 31.616 286.824 34.6667 286.824 38.1227ZM277.544 35.5627C277.502 33.2587 276.67 31.424 275.048 30.0587C273.427 28.6507 271.443 27.9467 269.096 27.9467C266.878 27.9467 265 28.6293 263.464 29.9947C261.971 31.3173 261.054 33.1733 260.712 35.5627H277.544Z" fill="#1B2D4A"></path>
+            <path d="M299.764 26.3467C300.916 24.64 302.495 23.2533 304.5 22.1866C306.548 21.12 308.874 20.5867 311.476 20.5867C314.506 20.5867 317.236 21.3333 319.668 22.8267C322.143 24.32 324.084 26.4533 325.492 29.2267C326.943 31.9573 327.668 35.136 327.668 38.7627C327.668 42.3893 326.943 45.6107 325.492 48.4267C324.084 51.2 322.143 53.3547 319.668 54.8907C317.236 56.4267 314.506 57.1947 311.476 57.1947C308.831 57.1947 306.506 56.6827 304.5 55.6587C302.538 54.592 300.959 53.2267 299.764 51.5627V56.6187H290.804V9.25865H299.764V26.3467ZM318.516 38.7627C318.516 36.6293 318.068 34.7947 317.172 33.2587C316.319 31.68 315.167 30.4853 313.716 29.6747C312.308 28.864 310.772 28.4587 309.108 28.4587C307.487 28.4587 305.951 28.8853 304.5 29.7387C303.092 30.5493 301.94 31.744 301.044 33.3227C300.191 34.9013 299.764 36.7573 299.764 38.8907C299.764 41.024 300.191 42.88 301.044 44.4587C301.94 46.0373 303.092 47.2533 304.5 48.1067C305.951 48.9173 307.487 49.3227 309.108 49.3227C310.772 49.3227 312.308 48.896 313.716 48.0427C315.167 47.1893 316.319 45.9733 317.172 44.3947C318.068 42.816 318.516 40.9387 318.516 38.7627ZM364.579 38.1227C364.579 39.4027 364.494 40.5547 364.323 41.5787H338.403C338.617 44.1387 339.513 46.144 341.091 47.5947C342.67 49.0453 344.611 49.7707 346.915 49.7707C350.243 49.7707 352.611 48.3413 354.019 45.4827H363.683C362.659 48.896 360.697 51.712 357.795 53.9307C354.894 56.1067 351.331 57.1947 347.107 57.1947C343.694 57.1947 340.622 56.448 337.891 54.9547C335.203 53.4187 333.091 51.264 331.555 48.4907C330.062 45.7173 329.315 42.5173 329.315 38.8907C329.315 35.2213 330.062 32 331.555 29.2267C333.049 26.4533 335.139 24.32 337.827 22.8267C340.515 21.3333 343.609 20.5867 347.107 20.5867C350.478 20.5867 353.486 21.312 356.131 22.7626C358.819 24.2133 360.889 26.2827 362.339 28.9707C363.833 31.616 364.579 34.6667 364.579 38.1227ZM355.299 35.5627C355.257 33.2587 354.425 31.424 352.803 30.0587C351.182 28.6507 349.198 27.9467 346.851 27.9467C344.633 27.9467 342.755 28.6293 341.219 29.9947C339.726 31.3173 338.809 33.1733 338.467 35.5627H355.299ZM401.519 38.1227C401.519 39.4027 401.434 40.5547 401.263 41.5787H375.343C375.557 44.1387 376.453 46.144 378.031 47.5947C379.61 49.0453 381.551 49.7707 383.855 49.7707C387.183 49.7707 389.551 48.3413 390.959 45.4827H400.623C399.599 48.896 397.637 51.712 394.735 53.9307C391.834 56.1067 388.271 57.1947 384.047 57.1947C380.634 57.1947 377.562 56.448 374.831 54.9547C372.143 53.4187 370.031 51.264 368.495 48.4907C367.002 45.7173 366.255 42.5173 366.255 38.8907C366.255 35.2213 367.002 32 368.495 29.2267C369.989 26.4533 372.079 24.32 374.767 22.8267C377.455 21.3333 380.549 20.5867 384.047 20.5867C387.418 20.5867 390.426 21.312 393.071 22.7626C395.759 24.2133 397.829 26.2827 399.279 28.9707C400.773 31.616 401.519 34.6667 401.519 38.1227ZM392.239 35.5627C392.197 33.2587 391.365 31.424 389.743 30.0587C388.122 28.6507 386.138 27.9467 383.791 27.9467C381.573 27.9467 379.695 28.6293 378.159 29.9947C376.666 31.3173 375.749 33.1733 375.407 35.5627H392.239Z" fill="#FACF39"></path>
+          </svg>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li class="nav-has-dd"><button type="button" class="nav-dd-toggle active" aria-haspopup="true" aria-expanded="false">Product<svg class="nav-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul class="nav-dd-menu" role="menu"><li><a href="ai-sre.html"><span class="nav-dd-name">AI SRE</span><span class="nav-dd-desc">Investigate incidents to a cited root cause</span></a></li><li><a href="ai-finops.html"><span class="nav-dd-name">AI FinOps</span><span class="nav-dd-desc">Find and fix cloud and Kubernetes waste</span></a></li><li><a href="kubernetes-operations.html" class="active"><span class="nav-dd-name">Kubernetes Operations</span><span class="nav-dd-desc">Day-two Kubernetes with an AI agent</span></a></li><li><a href="cloudops.html"><span class="nav-dd-name">CloudOps</span><span class="nav-dd-desc">One console across AWS, Azure and GCP</span></a></li><li><a href="runbook-automation.html"><span class="nav-dd-name">Runbook Automation</span><span class="nav-dd-desc">Durable, no-code runbooks with approval gates</span></a></li></ul></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="resources/blog.html">Blog</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" class="btn-nav">
+            Sign In <span class="nav-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <button class="ham" aria-label="Open menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <nav class="mob-menu" id="mobNav" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="ai-sre.html">AI SRE</a>
+      <a href="ai-finops.html">AI FinOps</a>
+      <a href="kubernetes-operations.html" class="active">Kubernetes Operations</a>
+      <a href="cloudops.html">CloudOps</a>
+      <a href="runbook-automation.html">Runbook Automation</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="resources/blog.html">Blog</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" style="background:var(--yellow);color:var(--navy);text-align:center;font-weight:700;">Sign In</a>
+    </nav>
+  </header><!--NAVBAR-SSR-END--></div>
+  <script src="js/navbar.d2224.js" defer></script>
+
+  <main id="main">
+
+    <!-- &#9552;&#9552;&#9552; HERO &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-hero">
+      <div class="ko-hero-inner">
+        <span class="hero-eyebrow ko-hero-eyebrow reveal"><span class="pulse" aria-hidden="true"></span>AIOps for Kubernetes &middot; Runs in your cluster</span>
+        <h1 class="ko-hero-h reveal">The AI agent that runs Kubernetes <span class="ko-hl">day two</span></h1>
+        <p class="ko-hero-lead reveal d1">Live cluster topology, alert noise collapsed to real issues, and an agent that can exec into a pod, find the fault and propose the fix. Self-hosted, and it changes nothing without your say-so.</p>
+        <div class="ko-hero-ctas reveal d2">
+          <a href="demo.html" class="btn-primary" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo <span class="btn-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span></a>
+          <a href="pricing.html" class="btn-outline">Start free</a>
+        </div>
+        <p class="ko-hero-trust reveal d2">Self-hosted in your cluster &middot; Zero telemetry &middot; Reads freely, writes on approval &middot; Free forever tier</p>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; DIRECT ANSWER &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-answer-band" aria-labelledby="ko-answer-h">
+      <div class="ko-answer-inner">
+        <h2 class="ko-answer-h" id="ko-answer-h">What is AIOps for Kubernetes?</h2>
+        <p class="ko-answer">AI for Kubernetes operations, or AIOps for Kubernetes, puts an AI agent for Kubernetes day-two work in the loop: live topology, cluster health, alert de-noising, anomaly detection, and Kubernetes troubleshooting to a root cause with auto remediation on approval. NudgeBee runs inside your own cluster, reads freely, and gates every change behind human approval.</p>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; STAT BAND &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-statband" aria-label="Live topology, de-noised alerts, self-hosted">
+      <div class="ko-statband-inner">
+        <span class="ko-statband-eyebrow"><svg viewbox="0 0 24 24" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>Live, de-noised, in your cluster</span>
+        <div class="ko-statband-grid">
+          <div class="ko-stat-cell"><span class="ko-stat-n">Live map</span><span class="ko-stat-l">Every workload, pod, node and namespace is tracked with version-aware updates, so the topology reflects the cluster as it is now, not a nightly snapshot.</span></div>
+          <div class="ko-stat-cell"><span class="ko-stat-n">One issue</span><span class="ko-stat-l">Crash loops, image-pull backoffs, OOM kills and restarts collapse to a single issue per owning workload, instead of one alert per pod per restart.</span></div>
+          <div class="ko-stat-cell"><span class="ko-stat-n">In your cluster</span><span class="ko-stat-l">The agent dials out over one WebSocket. No inbound ports, no exposed API server, no VPN.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; AIOPS KUBERNETES LOOP &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section" aria-labelledby="ko-loop-h">
+      <div class="ko-section-inner ko-section-inner--narrow">
+        <header class="ko-section-header">
+          <h2 class="ko-section-h" id="ko-loop-h">AIOps Kubernetes operations, from event to fix</h2>
+          <p class="ko-section-sub">One agent covers the whole day-two loop, and every stage of it is readable rather than hidden behind a score.</p>
+        </header>
+        <ul class="ko-check-list reveal" role="list">
+          <li class="ko-check"><strong>Collapse the noise.</strong> Crash loops, image-pull backoffs, OOM kills, job failures and restarts group into one issue per owning workload, each with a 0 to 100 triage score.</li>
+          <li class="ko-check"><strong>Catch what has not paged yet.</strong> Three anomaly engines watch CPU, memory, latency, error rate and replica count, with heavy false-positive suppression.</li>
+          <li class="ko-check"><strong>Investigate it properly.</strong> The agent execs into pods, runs <code>kubectl</code>, <code>helm</code>, <code>argocd</code> and PromQL, and works the fault back to a root cause.</li>
+          <li class="ko-check"><strong>Kubernetes auto remediation, on your say-so.</strong> On your approval, NudgeBee applies the fix as a live patch or a pull request, and Auto-Pilot can rightsize the routine workloads on a schedule with dry-run and guardrails. It all runs as durable <a href="runbook-automation.html">runbook automation</a>.</li>
+        </ul>
+        <p class="ko-note reveal d1">See the <a href="resources/blog/ai-tools-for-root-cause-analysis.html">root cause analysis tools</a> that work for Kubernetes incidents.</p>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; LIVE TOPOLOGY (split) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section" aria-labelledby="ko-topology-h">
+      <div class="ko-section-inner">
+        <div class="ko-split ko-split--reverse">
+          <figure class="ko-split-media reveal">
+            <img src="images/ai-sre-topology.f10f1.png" alt="A live service map for a Kubernetes cluster, showing workloads and the real dependency edges between them, with a failing service traced to its root cause." width="1280" height="1142" loading="lazy" decoding="async" class="ko-figure-img">
+          </figure>
+          <div class="ko-split-text reveal d1">
+            <h2 class="ko-section-h" id="ko-topology-h">A cluster map that is always current</h2>
+            <p class="ko-lead">NudgeBee maps the entire Kubernetes estate live into its own store: workloads, pods, nodes and namespaces, with resource-version-aware updates and reliable removal of things that no longer exist.</p>
+            <p class="ko-p">Node hardware, capacity and placement are read directly, including spot-versus-on-demand detection across Karpenter, EKS, AKS, GKE and Spotinst.</p>
+            <p class="ko-p">Dependency mapping runs on the same live store, so a failing workload is traced along its real edges to what it actually depends on, not to whatever happened to alert in the same minute. That map is also the basis for Kubernetes cluster health: what is running, what is degraded, and which node it is sitting on.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; NOISE REDUCTION &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section ko-section--tinted" aria-labelledby="ko-noise-h">
+      <div class="ko-section-inner">
+        <div class="ko-split">
+          <div class="ko-split-text reveal">
+            <h2 class="ko-section-h" id="ko-noise-h">One issue per workload, not one alert per pod</h2>
+            <p class="ko-section-sub">Owner-level de-duplication collapses the usual flood into something a human can act on, instead of one alert per pod per restart.</p>
+            <ul class="ko-check-list" role="list">
+              <li class="ko-check">Crash loops, image-pull backoffs, job failures, CPU throttling and pod-not-ready all group under the workload that owns them.</li>
+              <li class="ko-check">OOM detection triggers at 92% container and 95% node memory.</li>
+              <li class="ko-check">Around 70 named alert types auto-escalate based on how long they have persisted.</li>
+              <li class="ko-check">Every issue gets a 0 to 100 score covering severity, whether it is production, duplicate history, SLO impact, restart count and config changes, mapping to P0 at 80, P1 at 60, P2 at 40.</li>
+            </ul>
+          </div>
+          <figure class="ko-split-media reveal d1">
+            <img src="images/ko-issues.f10f1.png" alt="NudgeBee Issues view grouping 193 raw Kubernetes events into four ranked issues per workload, each with a P1, P2 or P3 severity, an event count and a triage score." width="1500" height="1000" loading="lazy" decoding="async" class="ko-figure-img">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; INVESTIGATE FROM THE BROWSER &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section" aria-labelledby="ko-browser-h">
+      <div class="ko-section-inner">
+        <div class="ko-split ko-split--reverse">
+          <figure class="ko-split-media reveal">
+            <img src="images/ko-terminal.f10f1.png" alt="An in-browser terminal execing into a running Kubernetes pod, with Terminal, Logs, Metrics and Traces tabs, and the session recorded for audit under prod RBAC." width="1300" height="1500" loading="lazy" decoding="async" class="ko-figure-img">
+          </figure>
+          <div class="ko-split-text reveal d1">
+            <h2 class="ko-section-h" id="ko-browser-h">Exec, logs, metrics and traces, without leaving the page</h2>
+            <p class="ko-section-sub">The agent works the cluster the way you would, from the browser, running only read-only diagnostics.</p>
+            <ul class="ko-check-list" role="list">
+              <li class="ko-check">An in-browser terminal execs straight into a pod, with a debugger and profiler alongside it.</li>
+              <li class="ko-check">Prometheus queries auto-tune their resolution to the time range you are looking at.</li>
+              <li class="ko-check">It runs the same read-only diagnostics you would: <code>kubectl</code>, <code>helm</code>, <code>argocd</code> and PromQL.</li>
+              <li class="ko-check">Log and trace queries run against your existing backends, in place.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; ML ANOMALY DETECTION &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section ko-section--tinted" aria-labelledby="ko-anomaly-h">
+      <div class="ko-section-inner">
+        <div class="ko-split">
+          <div class="ko-split-text reveal">
+            <h2 class="ko-section-h" id="ko-anomaly-h">It flags the metric that moved before it pages you</h2>
+            <p class="ko-section-sub">Three swappable engines run across CPU, memory, latency, error rate and replica count, with heavy false-positive suppression so a single quiet weekend does not trigger a page.</p>
+            <ul class="ko-check-list" role="list">
+              <li class="ko-check"><strong>IsolationForest</strong>, the default, at 1% contamination with 100 estimators.</li>
+              <li class="ko-check"><strong>DBSCAN</strong>, density-based detection for per-metric outliers.</li>
+              <li class="ko-check"><strong>Z-score</strong>, classic statistical detection at 3 sigma.</li>
+            </ul>
+          </div>
+          <figure class="ko-split-media reveal d1">
+            <img src="images/ko-anomaly.f10f1.png" alt="An anomaly detection chart for the orders-svc memory working set, with the IsolationForest engine flagging a rise above the normal baseline band at 12:40, before any alert fired." width="1500" height="1000" loading="lazy" decoding="async" class="ko-figure-img">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; CLUSTER UPGRADES &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section" aria-labelledby="ko-upgrades-h">
+      <div class="ko-section-inner">
+        <div class="ko-split ko-split--reverse">
+          <figure class="ko-split-media reveal">
+            <img src="images/ko-upgrades.f10f1.png" alt="An eight-step Kubernetes cluster upgrade planner moving from v1.28 to v1.29, with pre-flight checks running and three deprecated APIs found that block the apply until they are migrated." width="1300" height="1500" loading="lazy" decoding="async" class="ko-figure-img">
+          </figure>
+          <div class="ko-split-text reveal d1">
+            <h2 class="ko-section-h" id="ko-upgrades-h">Upgrade planning that checks before it moves</h2>
+            <p class="ko-section-sub">An eight-step upgrade planner checks before it moves, and executes only what it declared.</p>
+            <ul class="ko-check-list" role="list">
+              <li class="ko-check">Cross-references a live registry of deprecated APIs.</li>
+              <li class="ko-check">Checks Helm chart compatibility before the upgrade.</li>
+              <li class="ko-check">Runs a health diff before and after the change.</li>
+              <li class="ko-check">Execution uses an allowlisted set of <code>kubectl</code> and cloud CLI commands, so the plan cannot wander outside what it declared.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; SECURITY SCANNING &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section ko-section--tinted" aria-labelledby="ko-security-h">
+      <div class="ko-section-inner">
+        <div class="ko-split">
+          <div class="ko-split-text reveal">
+            <h2 class="ko-section-h" id="ko-security-h">Kubernetes security scanning: CIS, CVEs and misconfigurations</h2>
+            <p class="ko-section-sub">NudgeBee orchestrates scanners as jobs inside your cluster, and findings land in the same ranked queue as everything else, not a separate console.</p>
+            <div class="ko-chip-row">
+              <span class="ko-chip-label">Scanners run on a schedule:</span>
+              <ul class="ko-chips" role="list">
+                <li class="ko-chip">kube-bench (CIS)</li>
+                <li class="ko-chip">Trivy CIS</li>
+                <li class="ko-chip">Trivy image CVEs</li>
+                <li class="ko-chip">Popeye</li>
+                <li class="ko-chip">Certificate expiry</li>
+                <li class="ko-chip">Version skew</li>
+                <li class="ko-chip">Unused volumes</li>
+              </ul>
+            </div>
+          </div>
+          <figure class="ko-split-media reveal d1">
+            <img src="images/ko-security.f10f1.png" alt="A Kubernetes security scan queue on cluster prod-us-east-1, with Trivy, kube-bench, Popeye and certificate findings ranked by severity from Critical to Medium against specific workloads." width="1500" height="1000" loading="lazy" decoding="async" class="ko-figure-img">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; INVESTIGATE, DO NOT EXECUTE &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section" aria-labelledby="ko-gate-h">
+      <div class="ko-section-inner">
+        <header class="ko-section-header">
+          <h2 class="ko-section-h" id="ko-gate-h">It reads freely. It changes nothing without you.</h2>
+          <p class="ko-section-sub">Two modes, drawn at the tool layer, not left to the model's judgement.</p>
+        </header>
+
+        <div class="ko-contrast">
+          <div class="ko-cpanel ko-cpanel--read reveal">
+            <div class="ko-cpanel-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            <span class="ko-cpanel-eyebrow">Reads</span>
+            <h3 class="ko-cpanel-h">Diagnoses without asking</h3>
+            <p class="ko-cpanel-p">Read-only diagnostics run without asking, so finding the fault in a cluster is never slowed by a prompt.</p>
+          </div>
+          <div class="ko-cpanel ko-cpanel--gated reveal d1">
+            <div class="ko-cpanel-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+            <span class="ko-cpanel-eyebrow">Writes</span>
+            <h3 class="ko-cpanel-h">Gated behind your approval</h3>
+            <p class="ko-cpanel-p">Every create, update and delete is classified at the tool layer and gated behind explicit human approval. Before it applies a change, it scores the blast radius from the live dependency graph and auto-applies only what is safe. Everything else waits for your approval.</p>
+          </div>
+        </div>
+
+        <div class="ko-feature-grid ko-feature-grid--3">
+          <div class="ko-feature reveal">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+            <div>
+              <h3 class="ko-feature-h">No self-granted access</h3>
+              <p class="ko-feature-p">The agent is forbidden from modifying RBAC to grant itself access it lacks.</p>
+            </div>
+          </div>
+          <div class="ko-feature reveal d1">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></div>
+            <div>
+              <h3 class="ko-feature-h">It does the work, not you</h3>
+              <p class="ko-feature-p">It never asks you to go and run commands yourself.</p>
+            </div>
+          </div>
+          <div class="ko-feature reveal d2">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="16.5" x2="12.01" y2="16.5"></line></svg></div>
+            <div>
+              <h3 class="ko-feature-h">Untrusted by default</h3>
+              <p class="ko-feature-p">All tool output is treated as untrusted input, a deliberate prompt-injection defence.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ko-chip-row reveal d1">
+          <span class="ko-chip-label">Approvals arrive where the team already works:</span>
+          <ul class="ko-chips" role="list">
+            <li class="ko-chip"><img src="images/logo-slack.f10f1.svg" alt="" class="ko-chip-logo" loading="lazy" width="16" height="16">Slack</li>
+            <li class="ko-chip"><img src="images/logo-msteams.f10f1.svg" alt="" class="ko-chip-logo" loading="lazy" width="16" height="16">Microsoft Teams</li>
+            <li class="ko-chip"><img src="images/logo-gchat.f10f1.svg" alt="" class="ko-chip-logo" loading="lazy" width="16" height="16">Google Chat</li>
+            <li class="ko-chip"><svg viewbox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>Signed link</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; WORKS WITH YOUR STACK (integrations) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section ko-section--tinted" aria-labelledby="ko-int-h">
+      <div class="ko-section-inner">
+        <header class="ko-section-header">
+          <h2 class="ko-section-h" id="ko-int-h">It works with your observability, it does not replace it</h2>
+          <p class="ko-section-sub">NudgeBee queries your existing backends in place, in their own native query languages. Metrics, logs and traces are not shipped out to a third party.</p>
+        </header>
+        <ul class="ko-int-list reveal" role="list">
+          <li><a href="integrations.html"><img src="images/logo-prometheus.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Prometheus</a></li>
+          <li><a href="integrations.html"><img src="images/logo-grafana.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Grafana</a></li>
+          <li><a href="integrations.html"><img src="images/logo-victoriametrics.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">VictoriaMetrics</a></li>
+          <li><a href="integrations.html"><img src="images/logo-datadog.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Datadog</a></li>
+          <li><a href="integrations.html"><img src="images/logo-newrelic.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">New Relic</a></li>
+          <li><a href="integrations.html"><img src="images/logo-loki.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Loki</a></li>
+          <li><a href="integrations.html"><img src="images/logo-elasticsearch.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Elasticsearch</a></li>
+          <li><a href="integrations.html"><img src="images/logo-jaeger.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Jaeger</a></li>
+          <li><a href="integrations.html"><img src="images/logo-opentelemetry.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">OpenTelemetry</a></li>
+          <li><a href="integrations.html"><img src="images/logo-pagerduty.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">PagerDuty</a></li>
+          <li><a href="integrations.html"><img src="images/logo-jira.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Jira</a></li>
+          <li><a href="integrations.html"><img src="images/logo-servicenow.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">ServiceNow</a></li>
+          <li><a href="integrations.html"><img src="images/logo-github.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">GitHub</a></li>
+          <li><a href="integrations.html"><img src="images/logo-gitlab.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">GitLab</a></li>
+          <li><a href="integrations.html"><img src="images/logo-argocd.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Argo CD</a></li>
+          <li><a href="integrations.html"><img src="images/logo-slack.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Slack</a></li>
+          <li><a href="integrations.html"><img src="images/logo-msteams.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Microsoft Teams</a></li>
+          <li><a href="integrations.html"><img src="images/logo-gchat.f10f1.svg" alt="" class="ko-int-logo" loading="lazy" width="18" height="18">Google Chat</a></li>
+        </ul>
+        <div class="ko-int-cta reveal d1">
+          <p class="ko-int-cta-text">Queried in place, in native dialects including PromQL, LogQL, KQL, NRQL and Elasticsearch DSL.</p>
+          <a href="integrations.html" class="btn-primary ko-int-cta-btn">Browse all 78 integrations <span class="btn-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; WHERE IT RUNS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section" aria-labelledby="ko-runs-h">
+      <div class="ko-section-inner">
+        <header class="ko-section-header">
+          <h2 class="ko-section-h" id="ko-runs-h">Runs in your cluster. Nothing leaves.</h2>
+        </header>
+        <div class="ko-feature-grid">
+          <div class="ko-feature reveal">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="2" y="3" width="20" height="7" rx="2"></rect><rect x="2" y="14" width="20" height="7" rx="2"></rect><line x1="6" y1="6.5" x2="6.01" y2="6.5"></line><line x1="6" y1="17.5" x2="6.01" y2="17.5"></line></svg></div>
+            <div>
+              <h3 class="ko-feature-h">Self-hosted</h3>
+              <p class="ko-feature-p">Runs inside your own Kubernetes cluster.</p>
+            </div>
+          </div>
+          <div class="ko-feature reveal d1">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"></path><line x1="3" y1="3" x2="21" y2="21"></line></svg></div>
+            <div>
+              <h3 class="ko-feature-h">Zero telemetry</h3>
+              <p class="ko-feature-p">Nothing phones home.</p>
+            </div>
+          </div>
+          <div class="ko-feature reveal">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+            <div>
+              <h3 class="ko-feature-h">Outbound only</h3>
+              <p class="ko-feature-p">The in-cluster agent dials out over a single WebSocket. No inbound ports, no exposed Kubernetes API server, no VPN.</p>
+            </div>
+          </div>
+          <div class="ko-feature reveal d1">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+            <div>
+              <h3 class="ko-feature-h">Encrypted and signed</h3>
+              <p class="ko-feature-p">Credentials encrypted at rest with AES-256-GCM. Agent messages signed with Ed25519.</p>
+            </div>
+          </div>
+          <div class="ko-feature reveal">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></div>
+            <div>
+              <h3 class="ko-feature-h">Bring your own model</h3>
+              <p class="ko-feature-p">Eleven provider routes including AWS Bedrock, OpenAI, Azure OpenAI, Google AI, Vertex AI, SageMaker, HuggingFace, Anthropic, Ollama and vLLM. Embeddings can run on-device.</p>
+            </div>
+          </div>
+          <div class="ko-feature reveal d1">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+            <div>
+              <h3 class="ko-feature-h">Readable source</h3>
+              <p class="ko-feature-p"><a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">Read the implementation</a>, with a free Community edition.</p>
+            </div>
+          </div>
+          <div class="ko-feature ko-feature--wide reveal">
+            <div class="ko-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="9" y1="11" x2="15" y2="11"></line><line x1="12" y1="8" x2="12" y2="14"></line></svg></div>
+            <div>
+              <h3 class="ko-feature-h">Nothing leaks to the model</h3>
+              <p class="ko-feature-p">Outbound AI requests are scanned for secrets before they reach any model, and can be redacted or blocked.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; USE CASE (case study tile) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section ko-section--tinted" aria-labelledby="ko-usecase-h">
+      <div class="ko-section-inner">
+        <header class="ko-section-header">
+          <h2 class="ko-section-h" id="ko-usecase-h">See it on a real cluster fleet</h2>
+        </header>
+        <a class="ko-usecase" href="case-studies/saas-kubernetes-optimization/index.html">
+          <div class="ko-usecase-media">
+            <img src="images/casestudy-k8s.f10f1.jpg" alt="A data centre server aisle, standing in for a large Kubernetes cluster fleet" loading="lazy" width="1100" height="760">
+          </div>
+          <div class="ko-usecase-body">
+            <span class="ko-usecase-tag">Kubernetes case study</span>
+            <h3 class="ko-usecase-h">B2B SaaS rightsizes 200+ Kubernetes clusters and saves $1.2M a year</h3>
+            <p class="ko-usecase-p">Three engineer-days a month reduced to 15 minutes, with automated rightsizing, safety guardrails, auto-rollback and one-click approval workflows for production clusters.</p>
+            <span class="ko-usecase-link">Read the case study <svg viewbox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; FAQ &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section id="faq" class="ko-faq" aria-labelledby="ko-faq-h">
+      <div class="faq-inner">
+        <div class="faq-sticky reveal-left">
+          <span class="section-kicker">Kubernetes FAQ</span>
+          <h2 class="section-h" id="ko-faq-h">Frequently asked <span class="acc">questions</span></h2>
+          <p class="section-lead">For the engineer who lives in kubectl and distrusts magic.</p>
+          <a href="demo.html" class="btn-primary" style="margin-top: 28px;" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo
+            <span class="btn-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+        </div>
+        <div class="faq-list reveal d1">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa1" id="kofb1">What is AI for Kubernetes operations?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa1" role="region" aria-labelledby="kofb1">
+              <div class="faq-a-body">AI for Kubernetes operations means using an autonomous agent to run day-two cluster work: mapping live topology, collapsing duplicate alerts into real issues, detecting anomalies, and investigating failures to a root cause. It runs inside your own cluster, reads through your existing tools, and gates every change behind human approval.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa2" id="kofb2">How is this different from an observability dashboard?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa2" role="region" aria-labelledby="kofb2">
+              <div class="faq-a-body">A dashboard shows you graphs and leaves the work to you. This agent reads the same signals, collapses alert noise into one issue per workload, execs into pods to investigate, and proposes a fix. It acts on the cluster, with your approval, rather than only visualising what is already broken. For how this compares across the category, see our roundup of <a href="resources/blog/ai-tools-for-root-cause-analysis.html">AI root cause analysis tools</a>.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa3" id="kofb3">Will it change my cluster automatically?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa3" role="region" aria-labelledby="kofb3">
+              <div class="faq-a-body">Only with your approval. Read-only diagnostics run freely, but every create, update or delete is classified at the tool layer and gated behind explicit human approval. Auto-Pilot is available for scheduled rightsizing, with dry-run and guardrails, but nothing changes outside what you have configured and approved.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa4" id="kofb4">Does it replace Prometheus or Grafana?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa4" role="region" aria-labelledby="kofb4">
+              <div class="faq-a-body">No. NudgeBee queries your existing observability backends in place, in their native query languages such as PromQL and LogQL, and auto-tunes Prometheus resolution to the time range. It layers on top of the stack you already run rather than replacing it or asking you to re-instrument.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa5" id="kofb5">How does it cut alert noise?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa5" role="region" aria-labelledby="kofb5">
+              <div class="faq-a-body">Owner-level de-duplication collapses crash loops, image-pull backoffs, OOM kills, job failures and restarts into a single issue per owning workload, instead of one alert per pod per restart. Each issue gets a 0 to 100 score, and around 70 alert types auto-escalate based on how long they persist.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa6" id="kofb6">Can it exec into a pod?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa6" role="region" aria-labelledby="kofb6">
+              <div class="faq-a-body">Yes. An in-browser terminal execs straight into a pod through the outbound in-cluster agent, with a pod debugger and profiler alongside it. The agent runs the same read-only diagnostics you would, kubectl, helm, argocd and PromQL, with no inbound ports and no exposed API server.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa7" id="kofb7">How does it detect anomalies?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa7" role="region" aria-labelledby="kofb7">
+              <div class="faq-a-body">Kubernetes metric anomalies are detected by three swappable engines: IsolationForest with 1% contamination and 100 estimators as the default, DBSCAN, and Z-score at 3 sigma. They run across CPU, memory, latency, error rate and replica count, with heavy false-positive suppression so a quiet weekend does not page anyone.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa8" id="kofb8">Does it help with cluster upgrades?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa8" role="region" aria-labelledby="kofb8">
+              <div class="faq-a-body">Yes. An eight-step upgrade planner cross-references a live registry of deprecated APIs, checks Helm chart compatibility, and runs a health diff before and after the change. Execution is limited to an allowlisted set of kubectl and cloud CLI commands, so the plan cannot wander outside what it declared.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa9" id="kofb9">Can I read the source code?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa9" role="region" aria-labelledby="kofb9">
+              <div class="faq-a-body">Yes. The full implementation is readable: the agent architecture, the prompts and the quality gates. You can self-host it in your own cluster and run it in production internally for free, at any scale. The 2 cluster or cloud account limit applies to the hosted Cloud SaaS free tier.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="kofa10" id="kofb10">What does it cost?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="kofa10" role="region" aria-labelledby="kofb10">
+              <div class="faq-a-body">Self-hosting is free for internal use, with no cluster limit. On the hosted Cloud SaaS there is a free forever tier covering up to two clusters, with no credit card required. Kubernetes operations is part of the platform every paid plan includes, alongside the other assistants, and paid plans are detailed on the <a href="pricing.html">pricing page</a>. You can validate it against your own clusters first.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; RELATED ASSISTANTS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="ko-section ko-section--tinted" aria-labelledby="ko-related-h">
+      <div class="ko-section-inner">
+        <div class="rel-head reveal">
+          <h2 class="rel-h" id="ko-related-h">Kubernetes Operations is one of four assistants on the same platform</h2>
+          <p class="rel-sub">One platform, one knowledge graph. Add another assistant with no new install and no re-integration.</p>
+        </div>
+        <div class="rel-grid reveal d1">
+          <a class="rel-card" href="ai-sre.html">
+            <span class="rel-ico rel-ico--sre" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M3 12h4l2.5 7 5-14 2.5 7h4"></path></svg></span>
+            <span class="rel-name">AI SRE</span>
+            <span class="rel-desc">Investigates incidents to a cited root cause, then waits for your approval.</span>
+            <span class="rel-cta">Explore <svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <a class="rel-card" href="ai-finops.html">
+            <span class="rel-ico rel-ico--finops" aria-hidden="true"><svg viewbox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+            <span class="rel-name">AI FinOps</span>
+            <span class="rel-desc">Finds cloud and Kubernetes waste and attaches the exact fix.</span>
+            <span class="rel-cta">Explore <svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <a class="rel-card" href="cloudops.html">
+            <span class="rel-ico rel-ico--cloud" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg></span>
+            <span class="rel-name">CloudOps</span>
+            <span class="rel-desc">One AI console across AWS, Azure and GCP.</span>
+            <span class="rel-cta">Explore <svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; CLOSING CTA &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section id="cta" aria-labelledby="ko-cta-h">
+      <div class="cta-card reveal" style="position:relative;">
+        <div class="ko-cta-hc" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <defs>
+              <pattern id="ko-cta-honeycomb" x="0" y="0" width="56" height="97.98" patternunits="userSpaceOnUse">
+                <polygon points="28,1 55,15.5 55,44.5 28,59 1,44.5 1,15.5" fill="none" stroke="#FAC835" stroke-width="1.2"></polygon>
+                <polygon points="28,50 55,64.5 55,93.5 28,108 1,93.5 1,64.5" fill="none" stroke="#FAC835" stroke-width="1.2"></polygon>
+                <polygon points="0,25.5 -27,40 -27,69 0,83.5 27,69 27,40" fill="none" stroke="#FAC835" stroke-width="1.2"></polygon>
+                <polygon points="56,25.5 29,40 29,69 56,83.5 83,69 83,40" fill="none" stroke="#FAC835" stroke-width="1.2"></polygon>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#ko-cta-honeycomb)"></rect>
+          </svg>
+        </div>
+        <div class="bee-mascot bee-cta" aria-hidden="true"><img src="images/bee-laptop.0e376.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="cta-inner">
+          <span class="cta-tag"><span class="cta-tag-dot"></span>Free forever &middot; No credit card</span>
+          <h2 class="cta-h" id="ko-cta-h">Point it at your <em>own cluster.</em></h2>
+          <p class="cta-sub">Free forever. Self-host at any scale, or run 2 clusters or cloud accounts free on Cloud SaaS. Nothing leaves your environment. No credit card.</p>
+          <div class="cta-btns">
+            <a href="pricing.html" class="btn-yellow">Start free <span class="btn-y-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span></a>
+            <a href="demo.html" class="btn-inv-sm" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a demo</a>
+          </div>
+          <p class="cta-free-note"><a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">Read the source on GitHub</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- &#9552;&#9552;&#9552; FOOTER &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+  <div id="footer"><!--FOOTER-SSR-START--><footer role="contentinfo">
+    <div class="foot-inner">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <img src="images/logo-footer.f10f1.svg" alt="Nudgebee" class="foot-logo-img">
+          </div>
+          <p class="foot-tagline">AIOps platform and AI agentic automation platform for SRE, DevOps, and CloudOps teams. Pre-built AI agents for incident management, cloud cost optimization, and cloud automation.</p>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Product</p>
+          <ul class="foot-links">
+            <li><a href="integrations.html">Integrations</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+            <li><a href="https://docs.nudgebee.com/docs/features/ai/use-cases/" target="_blank" rel="noopener">Use Cases</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Company</p>
+          <ul class="foot-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="resources/blog.html">Blog</a></li>
+            <li><a href="discover.html">Discover</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Connect</p>
+          <ul class="foot-links">
+            <li><a href="https://www.linkedin.com/company/nudgebee" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.youtube.com/@nudgebee" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://discord.com/invite/PzkHAuTfT7" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="demo.html" style="color:var(--yellow);font-weight:700;" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bot">
+        <div>
+          <div class="foot-copy">2026 Nudgebee, Inc. All rights reserved.</div>
+        </div>
+        <div class="foot-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="#" data-cookie-settings>Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer><!--FOOTER-SSR-END--></div>
+  <script src="js/footer.d2224.js" defer></script>
+
+  <script src="js/main.d2224.js" defer></script>
+
+  <!-- Chatwoot Live Chat -->
+  <script>
+    (function (d, t) {
+      var BASE_URL = "https://app.chatwoot.com";
+      var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function () {
+        window.chatwootSDK.run({
+          websiteToken: "aEPrqyM6sRck2eeXYx6ofk6D",
+          baseUrl: BASE_URL,
+        });
+      };
+    })(document, "script");
+  </script>
+</body>
+</html>

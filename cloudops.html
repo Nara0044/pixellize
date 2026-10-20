@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<?xml encoding="utf-8" ?><html lang="en">
+<head>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  'ad_storage':'denied',
+  'ad_user_data':'denied',
+  'ad_personalization':'denied',
+  'analytics_storage':'denied',
+  'wait_for_update':500
+});
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ9TMSSH');</script>
+<script id="x-c-script" src="assets/script.95a41.bin" attr-pk="8fe4b36b-33c4-481f-b5df-b588675d0804e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" async></script>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js')</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <title>AI CloudOps: IT Operations on AWS, Azure &amp; GCP | NudgeBee</title>
+  <meta name="description" content="AI for IT operations across every cloud. One AI console for AWS, Azure and GCP: unified inventory, security findings and remediation with multi-cloud parity. Self-hosted, human-approved changes, bring your own model.">
+  <link rel="canonical" href="https://nudgebee.com/cloudops">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NudgeBee">
+  <meta property="og:title" content="AI CloudOps: One Console for AWS, Azure &amp; GCP | NudgeBee">
+  <meta property="og:description" content="One AI console across AWS, Azure and GCP: unified inventory, security findings and remediation with multi-cloud parity. Self-hosted, human-approved changes, bring your own model.">
+  <meta property="og:url" content="https://nudgebee.com/cloudops">
+  <meta property="og:image" content="images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI CloudOps: One Console for AWS, Azure &amp; GCP | NudgeBee">
+  <meta name="twitter:description" content="One AI console across AWS, Azure and GCP: unified inventory, security findings and remediation with multi-cloud parity. Self-hosted, human-approved changes, bring your own model.">
+  <meta name="twitter:image" content="images/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="assets/css2.a8ad4.bin" rel="stylesheet">
+
+  <link rel="icon" href="images/favicon.f10f1.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/design-system.83658.css">
+  <link rel="stylesheet" href="css/styles.83658.css">
+  <link rel="stylesheet" href="css/cloudops.83658.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nudgebee.com/" },
+    { "@type": "ListItem", "position": 2, "name": "CloudOps", "item": "https://nudgebee.com/cloudops" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "NudgeBee AI CloudOps",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "AWS, Azure, GCP",
+  "url": "https://nudgebee.com/cloudops",
+  "description": "One AI console for multi-cloud operations: unified inventory across AWS, Azure and GCP, normalised security findings, cross-account correlation and native remediation, self-hosted with human approval before any change.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free forever: self-hosted with no cluster limit, or up to 2 clusters or cloud accounts on Cloud SaaS"
+  },
+  "publisher": { "@type": "Organization", "name": "NudgeBee", "url": "https://nudgebee.com/", "logo": "https://nudgebee.com/assets/images/logo-color.svg", "sameAs": ["https://github.com/nudgebee/nudgebee", "https://www.linkedin.com/company/nudgebee", "https://www.youtube.com/@nudgebee"] }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is AI CloudOps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI CloudOps is the use of an autonomous agent to run multi-cloud operations from one console: a unified inventory across AWS, Azure and GCP, correlated security and cost findings, and remediation applied through each cloud's own APIs. It runs in your environment, reads freely, and applies every change only after human approval."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from a CSPM or cloud management tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A CSPM shows posture and a cloud management tool shows inventory, and both usually leave the fix to you, per cloud. NudgeBee unifies inventory, security and cost across AWS, Azure and GCP in one queue, correlates findings across accounts, and applies the remediation on approval through each cloud's native API."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are AIOps services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AIOps services apply AI to IT operations work: collecting the state of the estate, ranking what is wrong, and acting on it. NudgeBee delivers that across AWS, Azure and GCP from one console, with a unified inventory, native security findings normalised into one queue, and remediation applied through each cloud's own APIs after human approval."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which clouds does it cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AWS, Azure and GCP, plus Cloud Foundry, collected through one pipeline into one data model and one recommendation taxonomy. Instead of three consoles and three mental models, you get one. AWS has the deepest service coverage of the three, which the collector reflects honestly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is it different from AI SRE and AI FinOps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Same platform, different job. AI SRE goes deep on incidents and AI FinOps goes deep on cost. CloudOps is the breadth layer: one console across every cloud for inventory, security and remediation, with the depth of the other two assistants available in the same place when you need it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it change my cloud resources automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only with your approval. Read-only reads run freely, but every create, update or delete is classified at the tool layer and gated behind explicit human approval, delivered in Slack, Teams, Google Chat or a signed link. The agent cannot grant itself permissions it does not already have."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What security signals does it use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Native signals from each cloud, normalised into one queue: AWS GuardDuty, Inspector and Security Hub; Azure Defender and Sentinel; plus Kubernetes RBAC analysis and CIS benchmark scans. A critical exposure in a rarely-watched account is ranked alongside everything else, not left in a console nobody opens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it correlate across accounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A knowledge graph links resources and their real dependencies across accounts and clouds, using a set of default cross-account rules. A change or failure in a shared service can be traced to everything downstream of it, even when the downstream sits in a different account or a different cloud."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my cloud data leave my environment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. NudgeBee is self-hosted in your own environment with zero telemetry, and your inventory, security and cost data is read in place. AWS onboarding uses least-privilege STS AssumeRole with an External ID, so you are not handing over long-lived credentials."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I read the source code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The full implementation is readable: the agent architecture, the prompts and the quality gates. You can self-host it in your own cluster and run it in production internally for free, at any scale. The 2 cluster or cloud account limit applies to the hosted Cloud SaaS free tier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Self-hosted is free at any scale, and Cloud SaaS is free forever on up to two cloud accounts, with no credit card required. CloudOps is part of the platform every paid plan includes, alongside the other assistants, and paid plans are detailed on the pricing page. You can validate it against your own accounts first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is NudgeBee a multi-cloud management platform?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Partly. NudgeBee manages operations across AWS, Azure and GCP: a unified inventory, correlated security findings, cost and approval-gated remediation, all in one console. It complements provisioning and governance platforms like Terraform or CloudBolt rather than replacing them, so if what you need is infrastructure provisioning, NudgeBee is not that tool; if what you need is day-two operations across every cloud, it is."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<script src="js/cookie-consent.d2224.js" defer></script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9TMSSH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div id="navbar"><!--NAVBAR-SSR-START--><a href="#main" class="sr-only">Skip to main content</a>
+  <header>
+    <nav id="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="Nudgebee home">
+          <svg class="nav-logo-img" viewbox="0 0 405 75" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nudgebee">
+            <path d="M23.1028 32.4683C23.1028 32.4683 21.9369 52.2891 35.0536 66.8632C35.0536 66.8632 20.8035 70.2525 15.5242 53.455C10.7148 38.1522 23.1028 32.4683 23.1028 32.4683Z" fill="#FACF39"></path>
+            <path d="M39.3252 29.8549C39.3252 29.8549 38.3095 47.1217 49.7361 59.818C49.7361 59.818 37.3221 62.7706 32.7231 48.1374C28.5334 34.8064 39.3252 29.8549 39.3252 29.8549Z" fill="#FACF39"></path>
+            <path d="M9.25643 44.9543C9.25643 44.9543 8.46733 58.369 17.3447 68.2327C17.3447 68.2327 8.89167 68.7541 5.28457 58.7708C2.59682 51.332 9.25643 44.9543 9.25643 44.9543Z" fill="#FACF39"></path>
+            <path d="M53.0582 24.6657C53.0582 24.6657 23.7642 -12.0611 3.6519 4.11621C-16.4604 20.2935 53.0582 24.6657 53.0582 24.6657Z" fill="#FACF39"></path>
+            <path d="M63.2315 48.019C68.2474 48.019 72.3136 43.9528 72.3136 38.9369C72.3136 33.921 68.2474 29.8549 63.2315 29.8549C58.2156 29.8549 54.1494 33.921 54.1494 38.9369C54.1494 43.9528 58.2156 48.019 63.2315 48.019Z" fill="#FACF39"></path>
+            <path d="M112.377 20.6507C116.601 20.6507 120.015 21.9947 122.617 24.6827C125.22 27.328 126.521 31.04 126.521 35.8187V56.6187H117.561V37.0347C117.561 34.2187 116.857 32.064 115.449 30.5707C114.041 29.0347 112.121 28.2667 109.689 28.2667C107.215 28.2667 105.252 29.0347 103.801 30.5707C102.393 32.064 101.689 34.2187 101.689 37.0347V56.6187H92.7295V21.1627H101.689V25.5787C102.884 24.0427 104.399 22.848 106.233 21.9947C108.111 21.0987 110.159 20.6507 112.377 20.6507ZM165.954 21.1627V56.6187H156.93V52.1387C155.778 53.6747 154.263 54.8907 152.386 55.7867C150.551 56.64 148.546 57.0667 146.37 57.0667C143.597 57.0667 141.143 56.4907 139.01 55.3387C136.877 54.144 135.191 52.416 133.954 50.1547C132.759 47.8507 132.162 45.12 132.162 41.9627V21.1627H141.122V40.6827C141.122 43.4987 141.826 45.6747 143.234 47.2107C144.642 48.704 146.562 49.4507 148.994 49.4507C151.469 49.4507 153.41 48.704 154.818 47.2107C156.226 45.6747 156.93 43.4987 156.93 40.6827V21.1627H165.954ZM169.93 38.7627C169.93 35.1787 170.634 32 172.042 29.2267C173.493 26.4533 175.456 24.32 177.93 22.8267C180.405 21.3333 183.157 20.5867 186.186 20.5867C188.49 20.5867 190.688 21.0987 192.778 22.1227C194.869 23.104 196.533 24.4267 197.77 26.0907V9.25865H206.858V56.6187H197.77V51.3707C196.661 53.12 195.104 54.528 193.098 55.5947C191.093 56.6613 188.768 57.1947 186.122 57.1947C183.136 57.1947 180.405 56.4267 177.93 54.8907C175.456 53.3547 173.493 51.2 172.042 48.4267C170.634 45.6107 169.93 42.3893 169.93 38.7627ZM197.834 38.8907C197.834 36.7147 197.408 34.8587 196.554 33.3227C195.701 31.744 194.549 30.5493 193.098 29.7387C191.648 28.8853 190.09 28.4587 188.426 28.4587C186.762 28.4587 185.226 28.864 183.818 29.6747C182.41 30.4853 181.258 31.68 180.362 33.2587C179.509 34.7947 179.082 36.6293 179.082 38.7627C179.082 40.896 179.509 42.7733 180.362 44.3947C181.258 45.9733 182.41 47.1893 183.818 48.0427C185.269 48.896 186.805 49.3227 188.426 49.3227C190.09 49.3227 191.648 48.9173 193.098 48.1067C194.549 47.2533 195.701 46.0587 196.554 44.5227C197.408 42.944 197.834 41.0667 197.834 38.8907ZM226.937 20.5867C229.583 20.5867 231.908 21.12 233.913 22.1866C235.919 23.2107 237.497 24.5547 238.649 26.2187V21.1627H247.673V56.8747C247.673 60.16 247.012 63.0827 245.689 65.6427C244.367 68.2453 242.383 70.2933 239.737 71.7867C237.092 73.3227 233.892 74.0907 230.137 74.0907C225.103 74.0907 220.964 72.9173 217.721 70.5707C214.521 68.224 212.708 65.024 212.281 60.9707H221.177C221.647 62.592 222.649 63.872 224.185 64.8107C225.764 65.792 227.663 66.2827 229.881 66.2827C232.484 66.2827 234.596 65.4933 236.217 63.9147C237.839 62.3787 238.649 60.032 238.649 56.8747V51.3707C237.497 53.0347 235.897 54.4213 233.849 55.5307C231.844 56.64 229.54 57.1947 226.937 57.1947C223.951 57.1947 221.22 56.4267 218.745 54.8907C216.271 53.3547 214.308 51.2 212.857 48.4267C211.449 45.6107 210.745 42.3893 210.745 38.7627C210.745 35.1787 211.449 32 212.857 29.2267C214.308 26.4533 216.249 24.32 218.681 22.8267C221.156 21.3333 223.908 20.5867 226.937 20.5867ZM238.649 38.8907C238.649 36.7147 238.223 34.8587 237.369 33.3227C236.516 31.744 235.364 30.5493 233.913 29.7387C232.463 28.8853 230.905 28.4587 229.241 28.4587C227.577 28.4587 226.041 28.864 224.633 29.6747C223.225 30.4853 222.073 31.68 221.177 33.2587C220.324 34.7947 219.897 36.6293 219.897 38.7627C219.897 40.896 220.324 42.7733 221.177 44.3947C222.073 45.9733 223.225 47.1893 224.633 48.0427C226.084 48.896 227.62 49.3227 229.241 49.3227C230.905 49.3227 232.463 48.9173 233.913 48.1067C235.364 47.2533 236.516 46.0587 237.369 44.5227C238.223 42.944 238.649 41.0667 238.649 38.8907ZM286.824 38.1227C286.824 39.4027 286.739 40.5547 286.568 41.5787H260.648C260.862 44.1387 261.758 46.144 263.336 47.5947C264.915 49.0453 266.856 49.7707 269.16 49.7707C272.488 49.7707 274.856 48.3413 276.264 45.4827H285.928C284.904 48.896 282.942 51.712 280.04 53.9307C277.139 56.1067 273.576 57.1947 269.352 57.1947C265.939 57.1947 262.867 56.448 260.136 54.9547C257.448 53.4187 255.336 51.264 253.8 48.4907C252.307 45.7173 251.56 42.5173 251.56 38.8907C251.56 35.2213 252.307 32 253.8 29.2267C255.294 26.4533 257.384 24.32 260.072 22.8267C262.76 21.3333 265.854 20.5867 269.352 20.5867C272.723 20.5867 275.731 21.312 278.376 22.7626C281.064 24.2133 283.134 26.2827 284.584 28.9707C286.078 31.616 286.824 34.6667 286.824 38.1227ZM277.544 35.5627C277.502 33.2587 276.67 31.424 275.048 30.0587C273.427 28.6507 271.443 27.9467 269.096 27.9467C266.878 27.9467 265 28.6293 263.464 29.9947C261.971 31.3173 261.054 33.1733 260.712 35.5627H277.544Z" fill="#1B2D4A"></path>
+            <path d="M299.764 26.3467C300.916 24.64 302.495 23.2533 304.5 22.1866C306.548 21.12 308.874 20.5867 311.476 20.5867C314.506 20.5867 317.236 21.3333 319.668 22.8267C322.143 24.32 324.084 26.4533 325.492 29.2267C326.943 31.9573 327.668 35.136 327.668 38.7627C327.668 42.3893 326.943 45.6107 325.492 48.4267C324.084 51.2 322.143 53.3547 319.668 54.8907C317.236 56.4267 314.506 57.1947 311.476 57.1947C308.831 57.1947 306.506 56.6827 304.5 55.6587C302.538 54.592 300.959 53.2267 299.764 51.5627V56.6187H290.804V9.25865H299.764V26.3467ZM318.516 38.7627C318.516 36.6293 318.068 34.7947 317.172 33.2587C316.319 31.68 315.167 30.4853 313.716 29.6747C312.308 28.864 310.772 28.4587 309.108 28.4587C307.487 28.4587 305.951 28.8853 304.5 29.7387C303.092 30.5493 301.94 31.744 301.044 33.3227C300.191 34.9013 299.764 36.7573 299.764 38.8907C299.764 41.024 300.191 42.88 301.044 44.4587C301.94 46.0373 303.092 47.2533 304.5 48.1067C305.951 48.9173 307.487 49.3227 309.108 49.3227C310.772 49.3227 312.308 48.896 313.716 48.0427C315.167 47.1893 316.319 45.9733 317.172 44.3947C318.068 42.816 318.516 40.9387 318.516 38.7627ZM364.579 38.1227C364.579 39.4027 364.494 40.5547 364.323 41.5787H338.403C338.617 44.1387 339.513 46.144 341.091 47.5947C342.67 49.0453 344.611 49.7707 346.915 49.7707C350.243 49.7707 352.611 48.3413 354.019 45.4827H363.683C362.659 48.896 360.697 51.712 357.795 53.9307C354.894 56.1067 351.331 57.1947 347.107 57.1947C343.694 57.1947 340.622 56.448 337.891 54.9547C335.203 53.4187 333.091 51.264 331.555 48.4907C330.062 45.7173 329.315 42.5173 329.315 38.8907C329.315 35.2213 330.062 32 331.555 29.2267C333.049 26.4533 335.139 24.32 337.827 22.8267C340.515 21.3333 343.609 20.5867 347.107 20.5867C350.478 20.5867 353.486 21.312 356.131 22.7626C358.819 24.2133 360.889 26.2827 362.339 28.9707C363.833 31.616 364.579 34.6667 364.579 38.1227ZM355.299 35.5627C355.257 33.2587 354.425 31.424 352.803 30.0587C351.182 28.6507 349.198 27.9467 346.851 27.9467C344.633 27.9467 342.755 28.6293 341.219 29.9947C339.726 31.3173 338.809 33.1733 338.467 35.5627H355.299ZM401.519 38.1227C401.519 39.4027 401.434 40.5547 401.263 41.5787H375.343C375.557 44.1387 376.453 46.144 378.031 47.5947C379.61 49.0453 381.551 49.7707 383.855 49.7707C387.183 49.7707 389.551 48.3413 390.959 45.4827H400.623C399.599 48.896 397.637 51.712 394.735 53.9307C391.834 56.1067 388.271 57.1947 384.047 57.1947C380.634 57.1947 377.562 56.448 374.831 54.9547C372.143 53.4187 370.031 51.264 368.495 48.4907C367.002 45.7173 366.255 42.5173 366.255 38.8907C366.255 35.2213 367.002 32 368.495 29.2267C369.989 26.4533 372.079 24.32 374.767 22.8267C377.455 21.3333 380.549 20.5867 384.047 20.5867C387.418 20.5867 390.426 21.312 393.071 22.7626C395.759 24.2133 397.829 26.2827 399.279 28.9707C400.773 31.616 401.519 34.6667 401.519 38.1227ZM392.239 35.5627C392.197 33.2587 391.365 31.424 389.743 30.0587C388.122 28.6507 386.138 27.9467 383.791 27.9467C381.573 27.9467 379.695 28.6293 378.159 29.9947C376.666 31.3173 375.749 33.1733 375.407 35.5627H392.239Z" fill="#FACF39"></path>
+          </svg>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li class="nav-has-dd"><button type="button" class="nav-dd-toggle active" aria-haspopup="true" aria-expanded="false">Product<svg class="nav-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul class="nav-dd-menu" role="menu"><li><a href="ai-sre.html"><span class="nav-dd-name">AI SRE</span><span class="nav-dd-desc">Investigate incidents to a cited root cause</span></a></li><li><a href="ai-finops.html"><span class="nav-dd-name">AI FinOps</span><span class="nav-dd-desc">Find and fix cloud and Kubernetes waste</span></a></li><li><a href="kubernetes-operations.html"><span class="nav-dd-name">Kubernetes Operations</span><span class="nav-dd-desc">Day-two Kubernetes with an AI agent</span></a></li><li><a href="cloudops.html" class="active"><span class="nav-dd-name">CloudOps</span><span class="nav-dd-desc">One console across AWS, Azure and GCP</span></a></li><li><a href="runbook-automation.html"><span class="nav-dd-name">Runbook Automation</span><span class="nav-dd-desc">Durable, no-code runbooks with approval gates</span></a></li></ul></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="resources/blog.html">Blog</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" class="btn-nav">
+            Sign In <span class="nav-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <button class="ham" aria-label="Open menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <nav class="mob-menu" id="mobNav" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="ai-sre.html">AI SRE</a>
+      <a href="ai-finops.html">AI FinOps</a>
+      <a href="kubernetes-operations.html">Kubernetes Operations</a>
+      <a href="cloudops.html" class="active">CloudOps</a>
+      <a href="runbook-automation.html">Runbook Automation</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="resources/blog.html">Blog</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" style="background:var(--yellow);color:var(--navy);text-align:center;font-weight:700;">Sign In</a>
+    </nav>
+  </header><!--NAVBAR-SSR-END--></div>
+  <script src="js/navbar.d2224.js" defer></script>
+
+  <main id="main">
+
+    <!-- &#9552;&#9552;&#9552; HERO &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-hero">
+      <div class="co-hero-inner">
+        <span class="hero-eyebrow co-hero-eyebrow reveal"><span class="pulse" aria-hidden="true"></span>AI for IT operations &middot; One console across your clouds</span>
+        <h1 class="co-hero-h reveal">One AI console for <span class="co-hl">AWS, Azure and GCP</span></h1>
+        <p class="co-hero-lead reveal d1">Your inventory, your security findings and your remediations across every cloud, in one place, with the three providers treated the same way. Self-hosted, and nothing changes without your approval.</p>
+        <div class="co-hero-ctas reveal d2">
+          <a href="demo.html" class="btn-primary" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo <span class="btn-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span></a>
+          <a href="pricing.html" class="btn-outline">Start free</a>
+        </div>
+        <p class="co-hero-trust reveal d2">AWS, Azure and GCP &middot; Self-hosted &middot; Zero telemetry &middot; Free forever tier</p>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; DIRECT ANSWER &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-answer-band" aria-labelledby="co-answer-h">
+      <div class="co-answer-inner">
+        <h2 class="co-answer-h" id="co-answer-h">What is AI CloudOps?</h2>
+        <p class="co-answer">AI CloudOps is AI for IT operations across every cloud: an AI agent for CloudOps that runs multi-cloud IT operations from one console, with a unified inventory across AWS, Azure and GCP, correlated security and cost findings, and remediation through each cloud's own APIs. NudgeBee runs in your environment and applies every change only after human approval. Think of it as a multi cloud management platform for operations, cost and security, not for provisioning.</p>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; STAT BAND &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-statband" aria-label="Three clouds, one model, in your environment">
+      <div class="co-statband-inner">
+        <span class="co-statband-eyebrow"><svg viewbox="0 0 24 24" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>One console across every cloud</span>
+        <div class="co-statband-grid">
+          <div class="co-stat-cell"><span class="co-stat-n">Three clouds, one model</span><span class="co-stat-l">AWS, Azure and GCP, plus Cloud Foundry, collected through one pipeline into one data model and one recommendation taxonomy.</span></div>
+          <div class="co-stat-cell"><span class="co-stat-n">One graph</span><span class="co-stat-l">Resources and their real dependencies are linked across accounts and clouds, so a finding in one account can be traced to the workload it affects in another.</span></div>
+          <div class="co-stat-cell"><span class="co-stat-n">In your environment</span><span class="co-stat-l">Least-privilege onboarding, credentials encrypted at rest, and nothing shipped to a third party.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; ONE INVENTORY ACROSS CLOUDS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <!-- TODO: a real multi-cloud inventory / account-summary product screenshot would
+         strengthen this section. None fabricated; left as text until an asset exists. -->
+    <section class="co-section" aria-labelledby="co-inventory-h">
+      <div class="co-section-inner">
+        <div class="co-split">
+          <div class="co-split-text reveal">
+            <h2 class="co-section-h" id="co-inventory-h">Every account, every cloud, one inventory</h2>
+            <p class="co-section-sub">Instead of three consoles and three mental models, you get one list of what exists, where, and in what state.</p>
+            <ul class="co-check-list" role="list">
+              <li class="co-check">Dozens of AWS service scanners, the deepest coverage of the three clouds.</li>
+              <li class="co-check">Broad Azure coverage across the estate.</li>
+              <li class="co-check">GCP, read through the same single collector.</li>
+              <li class="co-check">Everything normalised into one data model and one recommendation taxonomy.</li>
+            </ul>
+          </div>
+          <figure class="co-split-media reveal d1">
+            <img src="images/co-inventory.f10f1.png" alt="A unified cloud inventory across AWS, Azure and GCP, showing resource counts per service for each account plus month-to-date and forecast spend, 2,847 resources discovered agentless." width="1500" height="1000" loading="lazy" decoding="async" class="co-figure-img">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; SECURITY FINDINGS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section co-section--tinted" aria-labelledby="co-security-h">
+      <div class="co-section-inner">
+        <div class="co-split co-split--reverse">
+          <figure class="co-split-media reveal">
+            <img src="images/co-security.f10f1.png" alt="A unified security findings queue with GuardDuty, Azure Defender, Sentinel, Inspector and Security Hub signals normalised and ranked by severity, account and cloud." width="1500" height="1000" loading="lazy" decoding="async" class="co-figure-img">
+          </figure>
+          <div class="co-split-text reveal d1">
+            <h2 class="co-section-h" id="co-security-h">Security findings from every cloud, in one queue</h2>
+            <p class="co-section-sub">Findings are ranked in the same queue as everything else, so a critical exposure in a rarely-watched account does not sit unseen in a console nobody opens.</p>
+            <div class="co-chip-row">
+              <span class="co-chip-label">Native security signals, normalised into one queue:</span>
+              <ul class="co-chips" role="list">
+                <li class="co-chip">AWS GuardDuty</li>
+                <li class="co-chip">Inspector</li>
+                <li class="co-chip">Security Hub</li>
+                <li class="co-chip">Azure Defender</li>
+                <li class="co-chip">Sentinel</li>
+                <li class="co-chip">Kubernetes RBAC</li>
+                <li class="co-chip">CIS benchmarks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; CROSS-ACCOUNT CORRELATION &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section" aria-labelledby="co-correlation-h">
+      <div class="co-section-inner">
+        <div class="co-split">
+          <div class="co-split-text reveal">
+            <h2 class="co-section-h" id="co-correlation-h">It connects resources across accounts, not just within them</h2>
+            <p class="co-section-sub">A knowledge graph links resources and their real dependencies across accounts and clouds, using a set of default cross-account rules.</p>
+            <p class="co-p">That means a change or failure in a shared service can be traced to everything downstream of it, even when the downstream sits in a different account or a different cloud. One graph spans AWS, Azure and GCP, so a dependency does not fall out of view just because it lives in another team's account.</p>
+          </div>
+          <figure class="co-split-media reveal d1">
+            <img src="images/co-dependencies.f10f1.png" alt="A cross-account dependency graph for a shared payments-db, showing four dependents across three accounts and two clouds, with cross-account and cross-cloud READS_FROM edges drawn from network flows and IAM." width="1500" height="1000" loading="lazy" decoding="async" class="co-figure-img">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; REMEDIATION &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section co-section--tinted" aria-labelledby="co-remediation-h">
+      <div class="co-section-inner">
+        <div class="co-split co-split--reverse">
+          <figure class="co-split-media reveal">
+            <img src="images/co-remediation.f10f1.png" alt="A remediation queue with two fixes awaiting approval: an S3 encryption fix that applies via an s3:PutBucketEncryption cloud API call, and a security group fix on a Terraform-managed resource that opens a pull request instead." width="1500" height="1000" loading="lazy" decoding="async" class="co-figure-img">
+          </figure>
+          <div class="co-split-text reveal d1">
+            <h2 class="co-section-h" id="co-remediation-h">Fixes applied through each cloud's own APIs</h2>
+            <p class="co-section-sub">When you approve a change, NudgeBee applies it the native way, through each cloud's own APIs, a Kubernetes patch, or a pull request. These fixes run as durable, approval-gated <a href="runbook-automation.html">runbook automation</a>.</p>
+            <p class="co-section-sub">Apply coverage varies by service, so major services are supported directly and everything else lands as a pull request.</p>
+            <ul class="co-check-list" role="list">
+              <li class="co-check"><strong>A cloud API change</strong> for supported services on AWS, Azure and GCP, through the provider API.</li>
+              <li class="co-check"><strong>A Kubernetes patch</strong> applied to the deployment in your cluster.</li>
+              <li class="co-check"><strong>A pull request</strong> raised against your infrastructure repository, the GitOps way.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; AIOPS SERVICES &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section" aria-labelledby="co-aiops-h">
+      <div class="co-section-inner">
+        <header class="co-section-header">
+          <h2 class="co-section-h" id="co-aiops-h">AIOps services across AWS, Azure and GCP</h2>
+          <p class="co-section-sub">The operational work that normally needs three consoles, run by one agent: inventory, security findings and remediation, with the three providers treated the same way.</p>
+          <p class="co-section-sub">Multi cloud management usually means one tool per provider and a spreadsheet to reconcile them. This is one cloud management platform over all three, and AI driven cloud management in the practical sense: the agent reads every account, ranks what matters, and carries the fix through to your approval.</p>
+        </header>
+        <div class="co-feature-grid co-feature-grid--3">
+          <div class="co-feature reveal">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="2" y="3" width="20" height="7" rx="2"></rect><rect x="2" y="14" width="20" height="7" rx="2"></rect><line x1="6" y1="6.5" x2="6.01" y2="6.5"></line><line x1="6" y1="17.5" x2="6.01" y2="17.5"></line></svg></div>
+            <div>
+              <h3 class="co-feature-h">Inventory</h3>
+              <p class="co-feature-p">Dozens of AWS service scanners, broad Azure coverage and GCP read through the same collector, normalised into one data model and one recommendation taxonomy.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal d1">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+            <div>
+              <h3 class="co-feature-h">Security findings</h3>
+              <p class="co-feature-p">GuardDuty, Inspector, Security Hub, Azure Defender and Sentinel, plus Kubernetes RBAC analysis and CIS benchmark scans, ranked in one queue instead of three.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal d2">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></div>
+            <div>
+              <h3 class="co-feature-h">Remediation</h3>
+              <p class="co-feature-p">Applied through each cloud's own API, as a Kubernetes patch, or as a pull request against your infrastructure repository, always after your approval.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; COST AND RELIABILITY, SAME CONSOLE &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section" aria-labelledby="co-console-h">
+      <div class="co-section-inner">
+        <div class="co-split co-split--reverse">
+          <div class="co-split-media reveal">
+            <p class="co-p">The same console surfaces cost optimisation findings and incident investigations, so a cloud team does not switch tools to see spend, security and reliability across every cloud. Go deeper on cost with <a href="ai-finops.html">AI FinOps</a> and on incidents with <a href="ai-sre.html">AI SRE</a>. CloudOps is the breadth layer over both, in one place.</p>
+          </div>
+          <div class="co-split-text reveal d1">
+            <h2 class="co-section-h" id="co-console-h">Cost and incidents share the same pane</h2>
+            <p class="co-section-sub">One console for spend, security and reliability across every cloud, so the team stops switching tools to get the full picture.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; INVESTIGATE, DO NOT EXECUTE &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section" aria-labelledby="co-gate-h">
+      <div class="co-section-inner">
+        <header class="co-section-header">
+          <h2 class="co-section-h" id="co-gate-h">It reads freely. It changes nothing without you.</h2>
+          <p class="co-section-sub">Two modes, drawn at the tool layer, not left to the model's judgement.</p>
+        </header>
+
+        <div class="co-contrast">
+          <div class="co-cpanel co-cpanel--read reveal">
+            <div class="co-cpanel-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            <span class="co-cpanel-eyebrow">Reads</span>
+            <h3 class="co-cpanel-h">Reads every cloud without asking</h3>
+            <p class="co-cpanel-p">Read-only reads run without asking, so building the picture across your clouds is never slowed by a prompt.</p>
+          </div>
+          <div class="co-cpanel co-cpanel--gated reveal d1">
+            <div class="co-cpanel-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+            <span class="co-cpanel-eyebrow">Writes</span>
+            <h3 class="co-cpanel-h">Gated behind your approval</h3>
+            <p class="co-cpanel-p">Every create, update and delete is classified at the tool layer and gated behind explicit human approval. Before it applies a change, it scores the blast radius from the live dependency graph and auto-applies only what is safe. Everything else waits for your approval.</p>
+          </div>
+        </div>
+
+        <div class="co-feature-grid co-feature-grid--3">
+          <div class="co-feature reveal">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+            <div>
+              <h3 class="co-feature-h">No self-granted access</h3>
+              <p class="co-feature-p">The agent is forbidden from modifying IAM or RBAC to grant itself access it lacks.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal d1">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></div>
+            <div>
+              <h3 class="co-feature-h">It does the work, not you</h3>
+              <p class="co-feature-p">It never asks you to go and run commands yourself.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal d2">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="16.5" x2="12.01" y2="16.5"></line></svg></div>
+            <div>
+              <h3 class="co-feature-h">Untrusted by default</h3>
+              <p class="co-feature-p">All tool output is treated as untrusted input, a deliberate prompt-injection defence.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="co-chip-row reveal d1">
+          <span class="co-chip-label">Approvals arrive where the team already works:</span>
+          <ul class="co-chips" role="list">
+            <li class="co-chip"><img src="images/logo-slack.f10f1.svg" alt="" class="co-chip-logo" loading="lazy" width="16" height="16">Slack</li>
+            <li class="co-chip"><img src="images/logo-msteams.f10f1.svg" alt="" class="co-chip-logo" loading="lazy" width="16" height="16">Microsoft Teams</li>
+            <li class="co-chip"><img src="images/logo-gchat.f10f1.svg" alt="" class="co-chip-logo" loading="lazy" width="16" height="16">Google Chat</li>
+            <li class="co-chip"><svg viewbox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>Signed link</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; WHERE IT RUNS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section" aria-labelledby="co-runs-h">
+      <div class="co-section-inner">
+        <header class="co-section-header">
+          <h2 class="co-section-h" id="co-runs-h">Your cloud data does not leave your environment</h2>
+        </header>
+        <div class="co-feature-grid">
+          <div class="co-feature reveal">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="2" y="3" width="20" height="7" rx="2"></rect><rect x="2" y="14" width="20" height="7" rx="2"></rect><line x1="6" y1="6.5" x2="6.01" y2="6.5"></line><line x1="6" y1="17.5" x2="6.01" y2="17.5"></line></svg></div>
+            <div>
+              <h3 class="co-feature-h">Self-hosted</h3>
+              <p class="co-feature-p">Runs in your own environment.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal d1">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z"></path><line x1="3" y1="3" x2="21" y2="21"></line></svg></div>
+            <div>
+              <h3 class="co-feature-h">Zero telemetry</h3>
+              <p class="co-feature-p">Nothing shipped to a third party.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+            <div>
+              <h3 class="co-feature-h">Outbound only</h3>
+              <p class="co-feature-p">The in-cluster agent dials out only. No inbound ports, no exposed API server, no VPN.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal d1">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+            <div>
+              <h3 class="co-feature-h">Least-privilege onboarding</h3>
+              <p class="co-feature-p">AWS onboarding via STS AssumeRole with an External ID. Credentials encrypted at rest with AES-256-GCM.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></div>
+            <div>
+              <h3 class="co-feature-h">Bring your own model</h3>
+              <p class="co-feature-p">Eleven provider routes including AWS Bedrock, OpenAI, Azure OpenAI, Google AI, Vertex AI, SageMaker, HuggingFace, Anthropic, Ollama and vLLM.</p>
+            </div>
+          </div>
+          <div class="co-feature reveal d1">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+            <div>
+              <h3 class="co-feature-h">Readable source</h3>
+              <p class="co-feature-p"><a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">Read the implementation</a>, with a free Community edition.</p>
+            </div>
+          </div>
+          <div class="co-feature co-feature--wide reveal">
+            <div class="co-feature-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="9" y1="11" x2="15" y2="11"></line><line x1="12" y1="8" x2="12" y2="14"></line></svg></div>
+            <div>
+              <h3 class="co-feature-h">Nothing leaks to the model</h3>
+              <p class="co-feature-p">Outbound AI requests are scanned for secrets before they reach any model, and can be redacted or blocked.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; USE CASE (case study tile) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section co-section--tinted" aria-labelledby="co-usecase-h">
+      <div class="co-section-inner">
+        <header class="co-section-header">
+          <h2 class="co-section-h" id="co-usecase-h">See it across a real multi-cloud estate</h2>
+        </header>
+
+        <figure class="co-quote reveal">
+          <blockquote class="co-quote-bq">
+            Multicloud complexity does not slow down when your team does. NudgeBee's SRE and AIOps agents absorb routine operations autonomously so our teams focus on high-value engineering. Their extensive library of specialist agents gives Rackspace the building blocks to rapidly create custom agentic workflows at scale.
+          </blockquote>
+          <figcaption class="co-quote-cite">
+            <img class="co-quote-av" src="images/nirmal-ranganathan.f10f1.jpg" alt="" width="400" height="400" loading="lazy" decoding="async">
+            <cite class="co-quote-cite-inner">
+              <a class="co-quote-name" href="https://www.linkedin.com/in/rnirmal/" target="_blank" rel="noopener">Nirmal Ranganathan</a>
+              <span class="co-quote-role">CTO, Global Public Cloud, Rackspace</span>
+            </cite>
+          </figcaption>
+        </figure>
+
+        <hr class="co-divider">
+
+        <a class="co-usecase" href="case-studies/healthcare-enterprise/index.html">
+          <div class="co-usecase-media">
+            <img src="images/casestudy-cloudops.f10f1.jpg" alt="A modern hospital corridor, standing in for a large healthcare enterprise cloud estate" loading="lazy" width="1100" height="760">
+          </div>
+          <div class="co-usecase-body">
+            <span class="co-usecase-tag">CloudOps case study</span>
+            <h3 class="co-usecase-h">Healthcare enterprise saves $1.2M a year across 4,500+ instances</h3>
+            <p class="co-usecase-p">Every dollar mapped to a business outcome, rightsizing actioned via automated pull requests, and real-time cost visibility for product owners, with zero compliance breaches and a 14-day deployment.</p>
+            <span class="co-usecase-link">Read the case study <svg viewbox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; FAQ &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section id="faq" class="co-faq" aria-labelledby="co-faq-h">
+      <div class="faq-inner">
+        <div class="faq-sticky reveal-left">
+          <span class="section-kicker">CloudOps FAQ</span>
+          <h2 class="section-h" id="co-faq-h">Frequently asked <span class="acc">questions</span></h2>
+          <p class="section-lead">For the lead who has to answer for every cloud at once.</p>
+          <a href="demo.html" class="btn-primary" style="margin-top: 28px;" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo
+            <span class="btn-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+        </div>
+        <div class="faq-list reveal d1">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa1" id="cofb1">What is AI CloudOps?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa1" role="region" aria-labelledby="cofb1">
+              <div class="faq-a-body">AI CloudOps is the use of an autonomous agent to run multi-cloud operations from one console: a unified inventory across AWS, Azure and GCP, correlated security and cost findings, and remediation applied through each cloud's own APIs. It runs in your environment, reads freely, and applies every change only after human approval.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa2" id="cofb2">How is this different from a CSPM or cloud management tool?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa2" role="region" aria-labelledby="cofb2">
+              <div class="faq-a-body">A CSPM shows posture and a cloud management tool shows inventory, and both usually leave the fix to you, per cloud. NudgeBee unifies inventory, security and cost across AWS, Azure and GCP in one queue, correlates findings across accounts, and applies the remediation on approval through each cloud's native API.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa11" id="cofb11">What are AIOps services?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa11" role="region" aria-labelledby="cofb11">
+              <div class="faq-a-body">AIOps services apply AI to IT operations work: collecting the state of the estate, ranking what is wrong, and acting on it. NudgeBee delivers that across AWS, Azure and GCP from one console, with a unified inventory, native security findings normalised into one queue, and remediation applied through each cloud's own APIs after human approval.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa3" id="cofb3">Which clouds does it cover?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa3" role="region" aria-labelledby="cofb3">
+              <div class="faq-a-body">AWS, Azure and GCP, plus Cloud Foundry, collected through one pipeline into one data model and one recommendation taxonomy. Instead of three consoles and three mental models, you get one. AWS has the deepest service coverage of the three, which the collector reflects honestly.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa4" id="cofb4">How is it different from AI SRE and AI FinOps?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa4" role="region" aria-labelledby="cofb4">
+              <div class="faq-a-body">Same platform, different job. AI SRE goes deep on incidents and AI FinOps goes deep on cost. CloudOps is the breadth layer: one console across every cloud for inventory, security and remediation, with the depth of the other two assistants available in the same place when you need it.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa5" id="cofb5">Does it change my cloud resources automatically?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa5" role="region" aria-labelledby="cofb5">
+              <div class="faq-a-body">Only with your approval. Read-only reads run freely, but every create, update or delete is classified at the tool layer and gated behind explicit human approval, delivered in Slack, Teams, Google Chat or a signed link. The agent cannot grant itself permissions it does not already have.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa6" id="cofb6">What security signals does it use?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa6" role="region" aria-labelledby="cofb6">
+              <div class="faq-a-body">Native signals from each cloud, normalised into one queue: AWS GuardDuty, Inspector and Security Hub; Azure Defender and Sentinel; plus Kubernetes RBAC analysis and CIS benchmark scans. A critical exposure in a rarely-watched account is ranked alongside everything else, not left in a console nobody opens.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa7" id="cofb7">Can it correlate across accounts?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa7" role="region" aria-labelledby="cofb7">
+              <div class="faq-a-body">Yes. A knowledge graph links resources and their real dependencies across accounts and clouds, using a set of default cross-account rules. A change or failure in a shared service can be traced to everything downstream of it, even when the downstream sits in a different account or a different cloud.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa8" id="cofb8">Does my cloud data leave my environment?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa8" role="region" aria-labelledby="cofb8">
+              <div class="faq-a-body">No. NudgeBee is self-hosted in your own environment with zero telemetry, and your inventory, security and cost data is read in place. AWS onboarding uses least-privilege STS AssumeRole with an External ID, so you are not handing over long-lived credentials.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa9" id="cofb9">Can I read the source code?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa9" role="region" aria-labelledby="cofb9">
+              <div class="faq-a-body">Yes. The full implementation is readable: the agent architecture, the prompts and the quality gates. You can self-host it in your own cluster and run it in production internally for free, at any scale. The 2 cluster or cloud account limit applies to the hosted Cloud SaaS free tier.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa10" id="cofb10">What does it cost?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa10" role="region" aria-labelledby="cofb10">
+              <div class="faq-a-body">Self-hosted is free at any scale, and Cloud SaaS is free forever on up to two cloud accounts, with no credit card required. CloudOps is part of the platform every paid plan includes, alongside the other assistants, and paid plans are detailed on the <a href="pricing.html">pricing page</a>. You can validate it against your own accounts first.</div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="cofa12" id="cofb12">Is NudgeBee a multi-cloud management platform?<svg class="faq-chev" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+            <div class="faq-a" id="cofa12" role="region" aria-labelledby="cofb12">
+              <div class="faq-a-body">Partly. NudgeBee manages operations across AWS, Azure and GCP: a unified inventory, correlated security findings, cost and approval-gated remediation, all in one console. It complements provisioning and governance platforms like Terraform or CloudBolt rather than replacing them, so if what you need is infrastructure provisioning, NudgeBee is not that tool; if what you need is day-two operations across every cloud, it is.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; RELATED ASSISTANTS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section class="co-section co-section--tinted" aria-labelledby="co-related-h">
+      <div class="co-section-inner">
+        <div class="rel-head reveal">
+          <h2 class="rel-h" id="co-related-h">CloudOps is one of four assistants on the same platform</h2>
+          <p class="rel-sub">One platform, one knowledge graph. Add another assistant with no new install and no re-integration.</p>
+        </div>
+        <div class="rel-grid reveal d1">
+          <a class="rel-card" href="ai-sre.html">
+            <span class="rel-ico rel-ico--sre" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M3 12h4l2.5 7 5-14 2.5 7h4"></path></svg></span>
+            <span class="rel-name">AI SRE</span>
+            <span class="rel-desc">Investigates incidents to a cited root cause, then waits for your approval.</span>
+            <span class="rel-cta">Explore <svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <a class="rel-card" href="ai-finops.html">
+            <span class="rel-ico rel-ico--finops" aria-hidden="true"><svg viewbox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+            <span class="rel-name">AI FinOps</span>
+            <span class="rel-desc">Finds cloud and Kubernetes waste and attaches the exact fix.</span>
+            <span class="rel-cta">Explore <svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <a class="rel-card" href="kubernetes-operations.html">
+            <span class="rel-ico rel-ico--k8s" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></span>
+            <span class="rel-name">Kubernetes Operations</span>
+            <span class="rel-desc">Day-two clusters: live topology, alert de-noising and safe upgrades.</span>
+            <span class="rel-cta">Explore <svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- &#9552;&#9552;&#9552; CLOSING CTA &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+    <section id="cta" aria-labelledby="co-cta-h">
+      <div class="cta-card reveal" style="position:relative;">
+        <div class="co-cta-hc" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <defs>
+              <pattern id="co-cta-honeycomb" x="0" y="0" width="56" height="97.98" patternunits="userSpaceOnUse">
+                <polygon points="28,1 55,15.5 55,44.5 28,59 1,44.5 1,15.5" fill="none" stroke="#FAC835" stroke-width="1.2"></polygon>
+                <polygon points="28,50 55,64.5 55,93.5 28,108 1,93.5 1,64.5" fill="none" stroke="#FAC835" stroke-width="1.2"></polygon>
+                <polygon points="0,25.5 -27,40 -27,69 0,83.5 27,69 27,40" fill="none" stroke="#FAC835" stroke-width="1.2"></polygon>
+                <polygon points="56,25.5 29,40 29,69 56,83.5 83,69 83,40" fill="none" stroke="#FAC835" stroke-width="1.2"></polygon>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#co-cta-honeycomb)"></rect>
+          </svg>
+        </div>
+        <div class="bee-mascot bee-cta" aria-hidden="true"><img src="images/bee-cloud.0e376.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="cta-inner">
+          <span class="cta-tag"><span class="cta-tag-dot"></span>Free forever &middot; No credit card</span>
+          <h2 class="cta-h" id="co-cta-h">Put every cloud in <em>one console.</em></h2>
+          <p class="cta-sub">Free forever. Self-host at any scale, or run 2 clusters or cloud accounts free on Cloud SaaS. Nothing leaves your environment. No credit card.</p>
+          <div class="cta-btns">
+            <a href="pricing.html" class="btn-yellow">Start free <span class="btn-y-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span></a>
+            <a href="demo.html" class="btn-inv-sm" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a demo</a>
+          </div>
+          <p class="cta-free-note"><a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">Read the source on GitHub</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- &#9552;&#9552;&#9552; FOOTER &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+  <div id="footer"><!--FOOTER-SSR-START--><footer role="contentinfo">
+    <div class="foot-inner">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <img src="images/logo-footer.f10f1.svg" alt="Nudgebee" class="foot-logo-img">
+          </div>
+          <p class="foot-tagline">AIOps platform and AI agentic automation platform for SRE, DevOps, and CloudOps teams. Pre-built AI agents for incident management, cloud cost optimization, and cloud automation.</p>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Product</p>
+          <ul class="foot-links">
+            <li><a href="integrations.html">Integrations</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+            <li><a href="https://docs.nudgebee.com/docs/features/ai/use-cases/" target="_blank" rel="noopener">Use Cases</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Company</p>
+          <ul class="foot-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="case-studies.html">Case Studies</a></li>
+            <li><a href="resources/blog.html">Blog</a></li>
+            <li><a href="discover.html">Discover</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Connect</p>
+          <ul class="foot-links">
+            <li><a href="https://www.linkedin.com/company/nudgebee" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.youtube.com/@nudgebee" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://discord.com/invite/PzkHAuTfT7" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="demo.html" style="color:var(--yellow);font-weight:700;" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bot">
+        <div>
+          <div class="foot-copy">2026 Nudgebee, Inc. All rights reserved.</div>
+        </div>
+        <div class="foot-legal">
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="#" data-cookie-settings>Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer><!--FOOTER-SSR-END--></div>
+  <script src="js/footer.d2224.js" defer></script>
+
+  <script src="js/main.d2224.js" defer></script>
+
+  <!-- Chatwoot Live Chat -->
+  <script>
+    (function (d, t) {
+      var BASE_URL = "https://app.chatwoot.com";
+      var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function () {
+        window.chatwootSDK.run({
+          websiteToken: "aEPrqyM6sRck2eeXYx6ofk6D",
+          baseUrl: BASE_URL,
+        });
+      };
+    })(document, "script");
+  </script>
+</body>
+</html>

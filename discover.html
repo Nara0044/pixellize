@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<?xml encoding="utf-8" ?><html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="index, follow" name="robots">
+<meta content="Unified agentic AI platform for day-2 cloud operations. Nudge Bee resources on SRE, FinOps, CloudOps and K8s." name="description">
+<title>Discover</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="assets/css2.efa61.bin" rel="stylesheet">
+<link href="https://nudgebee.com/discover" rel="canonical">
+<link href="assets/favicons.ba283.bin" rel="icon">
+<style>
+            :root {
+    --bg: #ffffff;
+    --bg-soft: #f6f8fc;
+    --bg-tint: #eef4fd;
+    --ink: #1b2541;
+    --muted: #5b6477;
+    --line: #e4e8ef;
+    --line-blue: #d6e3f5;
+    --accent: #f5c84c;
+    --accent-ink: #1b2541;
+    --serif: "Plus Jakarta Sans", "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --sans: "Plus Jakarta Sans", "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --shadow-btn: 0 6px 14px -6px rgba(27, 37, 65, 0.45);
+}
+ 
+*, *::before, *::after { 
+    box-sizing: border-box; 
+}
+ 
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+ 
+ 
+/* ---------- Top bar ---------- */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: saturate(160%) blur(10px);
+    -webkit-backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--line);
+}
+ 
+.topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+ 
+.brand {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-decoration: none;
+}
+ 
+.site-nav {
+    display: flex;
+    gap: 40px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+ 
+.site-nav a {
+    position: relative;
+    padding: 4px 0;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+ 
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+    color: var(--ink);
+}
+ 
+.site-nav a[aria-current="page"] {
+    font-weight: 600;
+    box-shadow: inset 0 -2px 0 var(--ink);
+}
+ 
+.brand:focus-visible,
+.site-nav a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+ 
+ 
+/* ---------- Footer ---------- */
+.site-footer {
+    background: var(--bg-soft);
+    border-top: 1px solid var(--line);
+}
+ 
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+}
+ 
+.footer-left .brand {
+    font-size: 1.25rem;
+}
+ 
+.footer-left p {
+    margin: 8px 0 0;
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+ 
+.footer-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+ 
+.footer-right a {
+    color: var(--muted);
+    text-decoration: none;
+}
+ 
+.footer-right a:hover { color: var(--ink); }
+ 
+.footer-right a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+ 
+/* ---------- Footer ---------- */
+.site-footer {
+    background: var(--bg-soft);
+    border-top: 1px solid var(--line);
+}
+ 
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+}
+ 
+.footer-left .brand {
+    font-size: 1.25rem;
+}
+ 
+.footer-left p {
+    margin: 8px 0 0;
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+ 
+.footer-right {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+ 
+.footer-right a {
+    color: var(--muted);
+    text-decoration: none;
+}
+ 
+.footer-right a:hover { color: var(--ink); }
+ 
+.footer-right a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+ 
+ 
+/* ---------- Article Card Previews - Card ---------- */
+ 
+.card[hidden] { 
+    display: none; 
+}
+ 
+.card-link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+ 
+.card-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: var(--radius-md);
+}
+ 
+/* Cover: the script below picks one design + one palette per card */
+.cover {
+    aspect-ratio: 2 / 1;
+    margin-bottom: 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--tint);
+    box-shadow: 0 1px 2px rgba(27, 37, 65, 0.04);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+ 
+.card-link:hover .cover {
+    border-color: var(--line-blue);
+    box-shadow: 0 10px 24px -14px rgba(27, 37, 65, 0.35);
+}
+ 
+.cover svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+ 
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--muted);
+}
+ 
+.topic {
+    padding: 2px 10px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+}
+ 
+.card h2 {
+    margin: 10px 0 8px;
+    font-size: 1.3125rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+ 
+.card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--muted);
+}
+ 
+.card-link:hover h2 {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
+            .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 88px 24px 104px;
+    min-height: 100vh;
+}
+ 
+/* ---------- Header ---------- */
+.blog-header {
+    margin-bottom: 56px;  
+}
+ 
+.blog-header h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    color: var(--ink);
+}
+ 
+.blog-header p {
+    margin: 24px 0 36px;
+    max-width: 52ch;
+    color: var(--muted);
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+ 
+/* ---------- Featured ---------- */
+.featured {
+    margin-bottom: 80px;
+}
+ 
+.featured[hidden] { display: none; }
+ 
+.featured-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 40px 32px;
+}
+ 
+/* The first featured post is the large one on the left */
+.featured-grid .card:first-child {
+    grid-row: 1 / span 2;
+}
+ 
+.featured-grid .card:first-child .cover {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 300px;
+    border-radius: var(--radius-lg);
+}
+ 
+.featured-grid .card:first-child h2 {
+    font-size: clamp(1.75rem, 3vw, 2.375rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+}
+ 
+.featured-grid .card:first-child p {
+    font-size: 1.0625rem;
+    max-width: 56ch;
+}
+ 
+/* ---------- Topic filter ---------- */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg-tint);
+    border: 1px solid var(--line-blue);
+    border-radius: var(--radius-lg);
+}
+ 
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 5px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+}
+ 
+/* ---------- Search ---------- */
+.search {
+    position: relative;
+    width: 280px;
+}
+ 
+.search svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+}
+ 
+.search input {
+    width: 100%;
+    font: inherit;
+    font-size: 0.9375rem;
+    padding: 10px 16px 10px 40px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    color: var(--ink);
+}
+ 
+.search input::placeholder { 
+    color: var(--muted);
+}
+ 
+.search input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--ink);
+}
+ 
+.empty {
+    margin: 56px 0 0;
+    color: var(--muted);
+    font-size: 1rem;
+}
+ 
+.empty[hidden] { 
+    display: none; 
+}
+ 
+.filters button {
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    padding: 8px 18px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+ 
+.filters button:hover { 
+    background: var(--bg-soft);
+}
+ 
+.filters button[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #ffffff;
+    box-shadow: var(--shadow-btn);
+}
+ 
+.filters button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+ 
+/* ---------- Grid ---------- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 56px 28px;
+    margin-top: 48px;
+}
+ 
+ 
+ 
+/* ---------- Responsive Discover Hub ---------- */
+@media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .site-nav { gap: 28px; }
+}
+ 
+@media (max-width: 640px) {
+    .page { padding: 56px 20px 72px; }
+    .topbar-inner { padding: 14px 20px; }
+    .site-nav { gap: 18px; font-size: 0.9375rem; }
+    .footer-inner { flex-direction: column; padding: 32px 20px; gap: 20px; }
+    .toolbar { padding: 14px; }
+    .filters { border-radius: var(--radius-md); }
+    .search { width: 100%; }
+    .grid { grid-template-columns: 1fr; gap: 44px; }
+    .featured-grid { grid-template-columns: 1fr; gap: 44px; }
+}
+        </style>
+<script>
+                !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init os ds Ie us vs ss ls capture calculateEventProperties register register_once register_for_session unregister unregister_for_session ws getFeatureFlag getFeatureFlagPayload getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty bs ps createPersonProfile setInternalOrTestUser ys es $s opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing cs debug M gs getPageViewId captureTraceFeedback captureTraceMetric Qr".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+                posthog.init('phc_zHYZWhZiE5Wo7u9wwuR5F9bmAnf6DZi5TUSrZJd5XXHE', {
+                    api_host: 'https://us.i.posthog.com',
+                    defaults: '2026-01-30',
+                })
+            </script>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">NudgeBee</a>
+<nav aria-label="Main" class="site-nav">
+<a href="index.html">Home</a>
+<a href="pricing.html">Pricing</a>
+<a href="case-studies.html">Case Studies</a>
+<a href="discover.html">Discover</a>
+</nav>
+</div>
+</header>
+<main class="page">
+<header class="blog-header">
+<h1>Discover</h1>
+<p>Unified agentic AI platform for day-2 cloud operations. Nudge Bee resources on SRE, FinOps, CloudOps and K8s.</p>
+</header>
+<section aria-labelledby="featured-title" class="featured" id="featured">
+<h2 class="section-title" id="featured-title">Top Reads</h2>
+<div class="featured-grid">
+<article class="feature-card card" data-topic="top-featured">
+<a class="card-link" href="discover/automated-cloud-cost-optimization-tool.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Featured</span>
+<span>10 min read</span>
+</div>
+<h2>Automated Cloud Cost Optimization Platform | NudgeBee</h2>
+<p>Automate cloud cost optimization across AWS, Azure, GCP, and Kubernetes. Find waste, prioritize savings, and apply approved infrastructure fixes.</p>
+</a>
+</article>
+</div>
+</section>
+<div class="toolbar">
+<nav aria-label="Filter posts by topic" class="filters">
+<button aria-pressed="true" data-filter="all" type="button">All posts</button>
+<button aria-pressed="false" data-filter="featured" type="button">Featured</button>
+<button aria-pressed="false" data-filter="article" type="button">Articles</button>
+</nav>
+<div class="search" role="search">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path>
+</svg>
+<input aria-label="Search posts" autocomplete="off" id="search" placeholder="Search posts" type="search">
+</div>
+</div>
+<section class="grid">
+<article class="card" data-topic="featured">
+<a class="card-link" href="discover/automated-cloud-cost-optimization-tool.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Featured</span>
+<span>10 min read</span>
+</div>
+<h2>Automated Cloud Cost Optimization Platform | NudgeBee</h2>
+<p>Automate cloud cost optimization across AWS, Azure, GCP, and Kubernetes. Find waste, prioritize savings, and apply approved infrastructure fixes.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/devops-automation-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>DevOps Automation Tools: Top 12 Platforms Compared</h2>
+<p>Compare the best DevOps automation tools for 2026 across CI/CD, infrastructure, testing, database, build, release, compliance and production operations.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/cloud-infrastructure-management-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>6 Best Cloud Infrastructure Management Tools for 2026</h2>
+<p>Compare cloud infrastructure management platforms for 2026 across provisioning, multi-cloud operations, governance, observability, FinOps, security, and IaC.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/free-multicloud-management-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>5 Best Free Multicloud Management Tools: Comparing Coverage and Limits</h2>
+<p>Compare the best free multicloud management tools for AWS, Azure, GCP and Kubernetes across provisioning, governance, costs, security and operations.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/multicloud-management-platforms.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>10 Best Multicloud Management Tools 2026: Ranked &amp; Compared</h2>
+<p>Compare the 10 best multicloud management tools for 2026 across cloud coverage, FinOps, governance, security, automation, Kubernetes, and pricing.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/cloud-rightsizing-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>8 Cloud Rightsizing Tools for AWS, Azure, GCP, and Multi-Cloud</h2>
+<p>Compare cloud rightsizing platforms for AWS, Azure, GCP, Kubernetes and multi-cloud environments by recommendations, automation, coverage and risk controls.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/sre-automation-tools-toil-reduction.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>10 Best SRE Automation Tools to Reduce Toil in 2026: Ranked and Reviewed</h2>
+<p>Compare the 10 best SRE automation tools to reduce toil across incident investigation, runbook execution, remediation, Kubernetes and cloud operations.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/self-hosted-ai-sre.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>Self-Hosted AI SRE Tools &amp; Agents (2026): VPC, On-Prem and Kubernetes</h2>
+<p>A comparison of AI SRE products and agentic SRE frameworks that deploy in your own VPC, private cloud, on-premises environment, or Kubernetes cluster.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/pod-rightsizing-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>6 Best Pod Rightsizing Tools for Kubernetes: Compared (2026)</h2>
+<p>Compare the best pod rightsizing tools for Kubernetes by CPU and memory requests and limits, recommendation accuracy, automation, guardrails, and cost impact.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/kubernetes-automation-platforms.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>9 Best Kubernetes Automation Platforms for 2026 (Ranked &amp; Reviewed)</h2>
+<p>Compare the 9 best Kubernetes automation platforms for 2026 across day-two operations, GitOps, multi-cluster management, optimization and provisioning.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/it-infrastructure-automation-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>10 Best IT Infrastructure Automation Tools for 2026: Full Comparison</h2>
+<p>Compare the 10 best IT infrastructure automation tools for 2026 across IaC, cloud, Kubernetes, servers, networks, hybrid IT, and MSP operations.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/multi-cloud-management.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>Multi-Cloud Management: How It Works, Benefits and Challenges</h2>
+<p>Learn what multi-cloud management is, how it works across AWS, Azure and Google Cloud, and the key benefits, challenges and best practices.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/finops-automation-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>Best Tools for Finops Automation 2026: 10 Platforms Ranked by Automation Depth</h2>
+<p>Compare the best tools for FinOps automation across rightsizing, waste remediation, commitments, Kubernetes optimization, and execution depth.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/multi-cloud-operations-software.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>7 Best Multi-Cloud Operations Software Platforms for 2026: AWS, Azure &amp; GCP Compared</h2>
+<p>Compare the 7 best multi-cloud operations software platforms for AWS, Azure and GCP by automation, governance, observability, FinOps and remediation.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/kubernetes-management-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>Kubernetes Management Tools: Best Picks for Operations, Cost, and Logging (2026)</h2>
+<p>Compare the best Kubernetes management tools for cluster operations, multi-cluster management, cost optimization, logging, security, upgrades, and automation.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/day-2-operations.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>Day 2 Operations: A Complete Guide to Safe Automation</h2>
+<p>Learn what Day 2 operations are, see cloud and Kubernetes examples, and discover how to automate incident response, upgrades, and cost optimization safely.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/cloudops-management-platforms.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>5 Best CloudOps Management Platforms in 2026: Which One Leads?</h2>
+<p>Compare 5 leading CloudOps management tools for AWS, Azure, GCP, Kubernetes and hybrid cloud operations, automation, AIOps, FinOps and remediation.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/cloud-cost-allocation-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>Best Cloud Cost Allocation Tool (2026): 6 Top Platforms Compared</h2>
+<p>Compare 6 cloud cost allocation tools for multi-cloud, Kubernetes, showback, chargeback, shared costs, governance, and remediation.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/cloud-cost-savings.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>Cloud Cost Savings: Strategies, Statistics, and Tools for 2026</h2>
+<p>Explore cloud cost savings strategies for AWS, Azure, GCP, and Kubernetes: from rightsizing and autoscaling to FinOps, AI cost control, and safe automation.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/cloud-cost-management-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>10 Best Cloud Cost Management Tools in 2026 - Compared</h2>
+<p>Compare the 10 best cloud cost management tools for 2026 by multi-cloud coverage, FinOps allocation, Kubernetes automation, pricing, and best use case.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/ai-agents-cloudops.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>6 Best AI Agents for CloudOps in 2026: Full Comparison</h2>
+<p>Compare the 6 best AI agents for CloudOps across AWS, Azure, GCP and Kubernetes by incident resolution, safety, remediation and deployment.</p>
+</a>
+</article>
+<article class="card" data-topic="article">
+<a class="card-link" href="discover/cloud-cost-optimization-tools.html">
+<div class="cover"></div>
+<div class="meta">
+<span class="topic">Article</span>
+<span>10 min read</span>
+</div>
+<h2>Best Cloud Cost Optimization Tools: AWS, Azure, GCP &amp; Multicloud (2026)</h2>
+<p>Compare the best cloud cost optimization tools for AWS, Azure, GCP, Kubernetes and multicloud environments by rightsizing, FinOps, automation and remediation.</p>
+</a>
+</article>
+</section>
+<p class="empty" hidden="" id="empty"></p>
+</main>
+<footer class="site-footer">
+<div class="footer-inner">
+<!-- Left section -->
+<div class="footer-left">
+<a class="brand" href="index.html">NudgeBee Discover</a>
+<p>Unified agentic AI platform for day-2 cloud operations. Nudge Bee resources on SRE, FinOps, CloudOps and K8s.</p>
+</div>
+<!-- Right section -->
+<nav aria-label="Footer" class="footer-right">
+<a href="https://ceana.ai">Powered by Ceana</a>
+</nav>
+</div>
+</footer>
+<script>
+            // ---------- Covers ----------
+            // 3 palettes x 7 designs. Each card gets a random combination.
+
+            // Set to true to give each post the same cover on every visit
+            // (picked from its title) instead of a new one on each page load.
+            const STABLE_COVERS = false;
+
+            const PALETTES = [{"name": "honey", "soft": "#f5d67a", "strong": "#d9a21b", "tint": "#fdf4d8"}, {"name": "navy", "soft": "#a9c0e2", "strong": "#1b2541", "tint": "#eaf1fb"}]
+
+            // Each design is drawn on a 400 x 200 canvas using the palette's
+            // --strong and --soft colors. Add or edit designs here.
+            const S = "var(--strong)", F = "var(--soft)", T = "var(--tint)";
+
+            const DESIGNS = [
+                // 1. Tiles: quarter circles on a grid
+                () => {
+                    let out = "";
+                    for (let r = 0; r < 4; r++) {
+                    for (let c = 0; c < 8; c++) {
+                        if ((r * 5 + c * 3) % 7 === 0) continue;
+                        const x = c * 50, y = r * 50;
+                        const rot = ((r + c * 2) % 4) * 90;
+                        const fill = (r * 3 + c) % 3 === 0 ? F : S;
+                        out += `<path d="M${x} ${y}h50a50 50 0 0 1 -50 50z" fill="${fill}" transform="rotate(${rot} ${x + 25} ${y + 25})"/>`;
+                    }
+                    }
+                    return out;
+                },
+
+                // 2. Sun and hills
+                () => `
+                    <circle cx="290" cy="78" r="44" fill="${S}"/>
+                    <path d="M0 145 Q100 95 200 145 T400 135 V200 H0Z" fill="${F}"/>
+                    <path d="M0 178 Q120 138 250 172 T400 165 V200 H0Z" fill="${S}"/>`,
+
+                // 3. Dot grid
+                () => {
+                    let out = "";
+                    for (let r = 0; r < 5; r++) {
+                    for (let c = 0; c < 10; c++) {
+                        const fill = (r * 7 + c * 3) % 5 === 0 ? S : F;
+                        out += `<circle cx="${20 + c * 40}" cy="${20 + r * 40}" r="7" fill="${fill}"/>`;
+                    }
+                    }
+                    return out;
+                },
+
+                // 4. Waves
+                () => {
+                    let out = "";
+                    for (let i = 0; i < 6; i++) {
+                    const y = 30 + i * 30;
+                    out += `<path d="M-20 ${y} Q30 ${y - 22} 80 ${y} T180 ${y} T280 ${y} T380 ${y} T480 ${y}" fill="none" stroke="${i % 2 ? F : S}" stroke-width="9" stroke-linecap="round"/>`;
+                    }
+                    return out;
+                },
+
+                // 5. Arches
+                () => `
+                    <circle cx="200" cy="200" r="160" fill="${S}"/>
+                    <circle cx="200" cy="200" r="120" fill="${F}"/>
+                    <circle cx="200" cy="200" r="80"  fill="${S}"/>
+                    <circle cx="200" cy="200" r="40"  fill="${T}"/>`,
+
+                // 6. Diagonal stripes
+                () => {
+                    let out = "";
+                    for (let i = 0, x = -200; x < 420; i++, x += 36) {
+                    out += `<polygon points="${x},200 ${x + 16},200 ${x + 216},0 ${x + 200},0" fill="${i % 3 === 0 ? S : F}"/>`;
+                    }
+                    return out;
+                },
+
+                // 7. Overlapping rings
+                () => {
+                let out = "";
+                for (let i = 0; i < 5; i++) {
+                out += `<circle cx="${80 + i * 60}" cy="100" r="58" fill="none" stroke="${i % 2 ? F : S}" stroke-width="10"/>`;
+                }
+                return out;
+            },
+            ];
+
+            function hash(str) {
+                let h = 2166136261;
+                for (let i = 0; i < str.length; i++) {
+                    h ^= str.charCodeAt(i);
+                    h = Math.imul(h, 16777619);
+                }
+                return h >>> 0;
+            }
+
+            let previous = "";
+
+            document.querySelectorAll(".card").forEach((card) => {
+                let design, palette;
+
+                if (STABLE_COVERS) {
+                    const n = hash(card.querySelector("h2").textContent.trim());
+                    design = n % DESIGNS.length;
+                    palette = Math.floor(n / DESIGNS.length) % PALETTES.length;
+                } else {
+                    // random, but never the same combination twice in a row
+                    do {
+                        design = Math.floor(Math.random() * DESIGNS.length);
+                        palette = Math.floor(Math.random() * PALETTES.length);
+                    } while (`${design}-${palette}` === previous);
+                    previous = `${design}-${palette}`;
+                }
+
+                const colors = PALETTES[palette];
+                card.style.setProperty("--tint", colors.tint);
+                card.style.setProperty("--strong", colors.strong);
+                card.style.setProperty("--soft", colors.soft);
+
+                card.querySelector(".cover").innerHTML =
+                    `<svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${DESIGNS[design]()}`;
+                });
+
+                // ---------- Topic filter + search ----------
+                const buttons = document.querySelectorAll(".filters button");
+                const cards = document.querySelectorAll(".card");
+                const search = document.getElementById("search");
+                const empty = document.getElementById("empty");
+                let activeTopic = "all";
+
+                function update() {
+                const query = search.value.trim().toLowerCase();
+                let visible = 0;
+
+                cards.forEach((card) => {
+                    const text = card.textContent.toLowerCase();
+                    const topicMatch = activeTopic === "all" || card.dataset.topic === activeTopic || card.dataset.topic === "top-featured";
+                    const searchMatch = !query || text.includes(query);
+                    const isFeatured = card.dataset.featured !== undefined;
+                    card.hidden = !(topicMatch && searchMatch);
+                    if (!card.hidden) visible++;
+                });
+
+                empty.hidden = visible > 0;
+                if (visible === 0) {
+                    empty.textContent = query
+                    ? `No posts match "${search.value.trim()}". Try a different word or topic.`
+                    : "No posts in this topic yet.";
+                }
+            }
+
+            buttons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    activeTopic = button.dataset.filter;
+                    buttons.forEach((b) => b.setAttribute("aria-pressed", b === button));
+                    update();
+                });
+            });
+
+            search.addEventListener("input", update);
+        </script>
+<script>
+            (   function () {
+                var script = document.currentScript;
+                if (!window.opener) {
+                    if (script) script.remove();
+                    return;
+                }
+                var ALLOWED = ["https://console.ceana.ai"];
+                var target = new URLSearchParams(location.search).get("origin");
+                var m = d.cookie.match(new RegExp('(?:^|; )' + '_ceana_temp_uid' + '=([^;]*)'));
+                var visitorId = m ? decodeURIComponent(m[1]) : null;
+                if (window.opener && ALLOWED.indexOf(target) !== -1) {
+                    window.opener.postMessage({ visitorId: visitorId }, target);
+                }
+                window.close();
+            })();
+        </script>
+<script id="x-c-script" src="assets/script.95a41.bin" attr-pk="8fe4b36b-33c4-481f-b5df-b588675d0804e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" async></script></body>
+</html>
