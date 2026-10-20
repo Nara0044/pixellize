@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<?xml encoding="utf-8" ?><html lang="en">
+<head>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  'ad_storage':'denied',
+  'ad_user_data':'denied',
+  'ad_personalization':'denied',
+  'analytics_storage':'denied',
+  'wait_for_update':500
+});
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ9TMSSH');</script>
+<script id="x-c-script" src="../../assets/script.95a41.bin" attr-pk="8fe4b36b-33c4-481f-b5df-b588675d0804e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" async></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Scoped vs Generic AI Agents: Production Safety and Architecture</title>
+  <meta name="description" content="Why task-based scoped agents and policy gates are necessary to run AI agents safely in production, why unbounded agents become too expensive to verify at scale, and why the right pattern is personas for coordination and scoped agents for execution.">
+  <link rel="canonical" href="https://nudgebee.com/resources/blog/scoped-ai-agents-production-safety">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="../../assets/css2.a8ad4.bin" rel="stylesheet">
+
+  <link rel="icon" href="../../images/favicon.f10f1.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/design-system.83658.css">
+  <link rel="stylesheet" href="../../css/styles.83658.css">
+  <link rel="stylesheet" href="../../css/blog.71c03.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Scoped vs Generic AI Agents: Production Safety and Architecture">
+  <meta property="og:description" content="Why task-based scoped agents and policy gates are necessary to run AI agents safely in production, why unbounded agents become too expensive to verify at scale, and why the right pattern is personas for coordination and scoped agents for execution.">
+  <meta property="og:url" content="https://nudgebee.com/resources/blog/scoped-ai-agents-production-safety">
+  <meta property="og:image" content="../../images/scoped-ai-agents-production-safety.5ec51.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Don't Give Your AI Agent Root: Why Production Needs Scoped Agents">
+  <meta property="og:site_name" content="NudgeBee">
+  <meta property="article:author" content="Rakesh Rajendran">
+  <meta property="article:published_time" content="2026-10-14T13:14:14.000Z">
+  <meta property="article:modified_time" content="2026-10-14T13:14:35.000Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scoped vs Generic AI Agents: Production Safety and Architecture">
+  <meta name="twitter:description" content="Why task-based scoped agents and policy gates are necessary to run AI agents safely in production, why unbounded agents become too expensive to verify at scale, and why the right pattern is personas for coordination and scoped agents for execution.">
+  <meta name="twitter:image" content="../../images/scoped-ai-agents-production-safety.5ec51.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nudgebee.com/resources/blog/scoped-ai-agents-production-safety"
+  },
+  "headline": "Scoped vs Generic AI Agents: Production Safety and Architecture",
+  "description": "Why task-based scoped agents and policy gates are necessary to run AI agents safely in production, why unbounded agents become too expensive to verify at scale, and why the right pattern is personas for coordination and scoped agents for execution.",
+  "image": [
+    "https://nudgebee.com/assets/images/blog-covers/scoped-ai-agents-production-safety.png"
+  ],
+  "datePublished": "2026-10-14T13:14:14.000Z",
+  "dateModified": "2026-10-14T13:14:35.000Z",
+  "url": "https://nudgebee.com/resources/blog/scoped-ai-agents-production-safety",
+  "author": {
+    "@type": "Person",
+    "name": "Rakesh Rajendran",
+    "url": "https://www.linkedin.com/in/rakeshrajendrn/",
+    "jobTitle": "Founder & CEO, NudgeBee",
+    "description": "Rakesh Rajendran is Founder & CEO of NudgeBee, where the team builds an Agentic Operations and Automation Platform that helps cloud, SRE, FinOps and platform engineering teams run AI agents safely in production. He has spent two decades building distributed systems for large ente",
+    "sameAs": [
+      "https://www.linkedin.com/in/rakeshrajendrn/"
+    ],
+    "image": "https://cdn.sanity.io/images/1zj1rldc/production/1de2d9079cc64467426b9d9cd9941da84eaa3cb6-900x900.png?w=400&q=80&fit=max&auto=format"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "NudgeBee",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nudgebee.com/assets/images/logo-footer.svg"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nudgebee.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://nudgebee.com/resources/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Don't Give Your AI Agent Root: Why Production Needs Scoped Agents",
+      "item": "https://nudgebee.com/resources/blog/scoped-ai-agents-production-safety"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a scoped (task-based) AI agent?","acceptedAnswer":{"@type":"Answer","text":"A scoped agent is an agent that does one job with a fixed, known set of actions, pointed at one part of your system. Examples are an agent that only rightsizes Kubernetes clusters, or one that only triages alerts. Because its actions are limited and known in advance, it is easy to review and control."}},{"@type":"Question","name":"What is the difference between a persona agent and a task-based agent?","acceptedAnswer":{"@type":"Answer","text":"A persona agent (for example AI-SRE or AI-FinOps) covers a whole discipline and has many possible actions. A task-based agent does a single job with a short, fixed action list. The reliable production pattern uses both: the persona coordinates and reasons, and delegates execution to scoped agents behind policy gates."}},{"@type":"Question","name":"What are common use cases for scoped AI agents?","acceptedAnswer":{"@type":"Answer","text":"Repeatable operational toil that runs on a schedule or an event: cleaning up idle and abandoned resources, rightsizing workloads, scanning and patching CVEs, renewing certificates, catching configuration drift, triaging and de-noising alerts, and running access reviews. Each runs as its own worker, usually with a different trust level in production than in lower environments."}},{"@type":"Question","name":"Are specialised AI agents safer than general-purpose ones?","acceptedAnswer":{"@type":"Answer","text":"Not by themselves. An agent is safe because something outside the model limits what it can do: its scope, an allow-list, and a policy check on every action. Scoped agents are safer in practice because that small action surface is cheap to control and review."}},{"@type":"Question","name":"How do you control an AI agent in production?","acceptedAnswer":{"@type":"Answer","text":"Put the control outside the model. Give the agent a limited scope, define which action types it may use, set per-action limits, and run a policy check before any action touches a real system. Add approvals for risky actions, log every step, and keep a kill switch."}},{"@type":"Question","name":"How do you stop an agent from taking a destructive action?","acceptedAnswer":{"@type":"Answer","text":"Use two stages. A fast deterministic rule checks whether an action is destructive, not just dangerous verbs like DELETE or terminate, but destructive-by-effect operations such as scaling to zero, opening a security group to the world, or draining a node. Only for flagged actions, a semantic check compares the action against the original goal and holds it if they do not match. Hard rules stay as the backstop."}},{"@type":"Question","name":"Why do agentic AI pilots fail to reach production?","acceptedAnswer":{"@type":"Answer","text":"The demo is easy, but production needs control, not just capability. Teams cannot guarantee what an open-ended agent will do, cannot pass a security review, and cannot predict the cost. Narrowing each agent's job and enforcing its limits is what closes that gap."}},{"@type":"Question","name":"How do you keep AI agent cost and latency low at scale?","acceptedAnswer":{"@type":"Answer","text":"Keep the action surface small so the expensive safety checks run rarely, send only the context a task needs instead of raw logs, and use small models for the high-volume work with a larger model only for hard reasoning."}}]}</script>
+
+</head>
+<body>
+<script src="../../js/cookie-consent.d2224.js" defer></script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9TMSSH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="bp-progress" aria-hidden="true"><div class="bp-progress-bar"></div></div>
+
+  <div class="bp-float-cta" id="bpFloatCta">
+    <div class="bp-float-cta-inner">
+      <button type="button" class="bp-float-cta-close" aria-label="Dismiss">
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+      <p class="bp-float-cta-text">Free, self-hosted, or let us run it for you.</p>
+      <div class="bp-float-cta-btns">
+        <a href="../../demo.html" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442" class="bp-inline-cta-btn-primary">
+          <span>Book a demo</span>
+          <span class="bp-inline-cta-btn-arr">
+            <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </span>
+        </a>
+        <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="bp-inline-cta-btn-secondary">Free on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="navbar"><a href="#main" class="sr-only">Skip to main content</a>
+  <header>
+    <nav id="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo" aria-label="Nudgebee home">
+          <svg class="nav-logo-img" viewbox="0 0 405 75" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nudgebee">
+            <path d="M23.1028 32.4683C23.1028 32.4683 21.9369 52.2891 35.0536 66.8632C35.0536 66.8632 20.8035 70.2525 15.5242 53.455C10.7148 38.1522 23.1028 32.4683 23.1028 32.4683Z" fill="#FACF39"></path>
+            <path d="M39.3252 29.8549C39.3252 29.8549 38.3095 47.1217 49.7361 59.818C49.7361 59.818 37.3221 62.7706 32.7231 48.1374C28.5334 34.8064 39.3252 29.8549 39.3252 29.8549Z" fill="#FACF39"></path>
+            <path d="M9.25643 44.9543C9.25643 44.9543 8.46733 58.369 17.3447 68.2327C17.3447 68.2327 8.89167 68.7541 5.28457 58.7708C2.59682 51.332 9.25643 44.9543 9.25643 44.9543Z" fill="#FACF39"></path>
+            <path d="M53.0582 24.6657C53.0582 24.6657 23.7642 -12.0611 3.6519 4.11621C-16.4604 20.2935 53.0582 24.6657 53.0582 24.6657Z" fill="#FACF39"></path>
+            <path d="M63.2315 48.019C68.2474 48.019 72.3136 43.9528 72.3136 38.9369C72.3136 33.921 68.2474 29.8549 63.2315 29.8549C58.2156 29.8549 54.1494 33.921 54.1494 38.9369C54.1494 43.9528 58.2156 48.019 63.2315 48.019Z" fill="#FACF39"></path>
+            <path d="M112.377 20.6507C116.601 20.6507 120.015 21.9947 122.617 24.6827C125.22 27.328 126.521 31.04 126.521 35.8187V56.6187H117.561V37.0347C117.561 34.2187 116.857 32.064 115.449 30.5707C114.041 29.0347 112.121 28.2667 109.689 28.2667C107.215 28.2667 105.252 29.0347 103.801 30.5707C102.393 32.064 101.689 34.2187 101.689 37.0347V56.6187H92.7295V21.1627H101.689V25.5787C102.884 24.0427 104.399 22.848 106.233 21.9947C108.111 21.0987 110.159 20.6507 112.377 20.6507ZM165.954 21.1627V56.6187H156.93V52.1387C155.778 53.6747 154.263 54.8907 152.386 55.7867C150.551 56.64 148.546 57.0667 146.37 57.0667C143.597 57.0667 141.143 56.4907 139.01 55.3387C136.877 54.144 135.191 52.416 133.954 50.1547C132.759 47.8507 132.162 45.12 132.162 41.9627V21.1627H141.122V40.6827C141.122 43.4987 141.826 45.6747 143.234 47.2107C144.642 48.704 146.562 49.4507 148.994 49.4507C151.469 49.4507 153.41 48.704 154.818 47.2107C156.226 45.6747 156.93 43.4987 156.93 40.6827V21.1627H165.954ZM169.93 38.7627C169.93 35.1787 170.634 32 172.042 29.2267C173.493 26.4533 175.456 24.32 177.93 22.8267C180.405 21.3333 183.157 20.5867 186.186 20.5867C188.49 20.5867 190.688 21.0987 192.778 22.1227C194.869 23.104 196.533 24.4267 197.77 26.0907V9.25865H206.858V56.6187H197.77V51.3707C196.661 53.12 195.104 54.528 193.098 55.5947C191.093 56.6613 188.768 57.1947 186.122 57.1947C183.136 57.1947 180.405 56.4267 177.93 54.8907C175.456 53.3547 173.493 51.2 172.042 48.4267C170.634 45.6107 169.93 42.3893 169.93 38.7627ZM197.834 38.8907C197.834 36.7147 197.408 34.8587 196.554 33.3227C195.701 31.744 194.549 30.5493 193.098 29.7387C191.648 28.8853 190.09 28.4587 188.426 28.4587C186.762 28.4587 185.226 28.864 183.818 29.6747C182.41 30.4853 181.258 31.68 180.362 33.2587C179.509 34.7947 179.082 36.6293 179.082 38.7627C179.082 40.896 179.509 42.7733 180.362 44.3947C181.258 45.9733 182.41 47.1893 183.818 48.0427C185.269 48.896 186.805 49.3227 188.426 49.3227C190.09 49.3227 191.648 48.9173 193.098 48.1067C194.549 47.2533 195.701 46.0587 196.554 44.5227C197.408 42.944 197.834 41.0667 197.834 38.8907ZM226.937 20.5867C229.583 20.5867 231.908 21.12 233.913 22.1866C235.919 23.2107 237.497 24.5547 238.649 26.2187V21.1627H247.673V56.8747C247.673 60.16 247.012 63.0827 245.689 65.6427C244.367 68.2453 242.383 70.2933 239.737 71.7867C237.092 73.3227 233.892 74.0907 230.137 74.0907C225.103 74.0907 220.964 72.9173 217.721 70.5707C214.521 68.224 212.708 65.024 212.281 60.9707H221.177C221.647 62.592 222.649 63.872 224.185 64.8107C225.764 65.792 227.663 66.2827 229.881 66.2827C232.484 66.2827 234.596 65.4933 236.217 63.9147C237.839 62.3787 238.649 60.032 238.649 56.8747V51.3707C237.497 53.0347 235.897 54.4213 233.849 55.5307C231.844 56.64 229.54 57.1947 226.937 57.1947C223.951 57.1947 221.22 56.4267 218.745 54.8907C216.271 53.3547 214.308 51.2 212.857 48.4267C211.449 45.6107 210.745 42.3893 210.745 38.7627C210.745 35.1787 211.449 32 212.857 29.2267C214.308 26.4533 216.249 24.32 218.681 22.8267C221.156 21.3333 223.908 20.5867 226.937 20.5867ZM238.649 38.8907C238.649 36.7147 238.223 34.8587 237.369 33.3227C236.516 31.744 235.364 30.5493 233.913 29.7387C232.463 28.8853 230.905 28.4587 229.241 28.4587C227.577 28.4587 226.041 28.864 224.633 29.6747C223.225 30.4853 222.073 31.68 221.177 33.2587C220.324 34.7947 219.897 36.6293 219.897 38.7627C219.897 40.896 220.324 42.7733 221.177 44.3947C222.073 45.9733 223.225 47.1893 224.633 48.0427C226.084 48.896 227.62 49.3227 229.241 49.3227C230.905 49.3227 232.463 48.9173 233.913 48.1067C235.364 47.2533 236.516 46.0587 237.369 44.5227C238.223 42.944 238.649 41.0667 238.649 38.8907ZM286.824 38.1227C286.824 39.4027 286.739 40.5547 286.568 41.5787H260.648C260.862 44.1387 261.758 46.144 263.336 47.5947C264.915 49.0453 266.856 49.7707 269.16 49.7707C272.488 49.7707 274.856 48.3413 276.264 45.4827H285.928C284.904 48.896 282.942 51.712 280.04 53.9307C277.139 56.1067 273.576 57.1947 269.352 57.1947C265.939 57.1947 262.867 56.448 260.136 54.9547C257.448 53.4187 255.336 51.264 253.8 48.4907C252.307 45.7173 251.56 42.5173 251.56 38.8907C251.56 35.2213 252.307 32 253.8 29.2267C255.294 26.4533 257.384 24.32 260.072 22.8267C262.76 21.3333 265.854 20.5867 269.352 20.5867C272.723 20.5867 275.731 21.312 278.376 22.7626C281.064 24.2133 283.134 26.2827 284.584 28.9707C286.078 31.616 286.824 34.6667 286.824 38.1227ZM277.544 35.5627C277.502 33.2587 276.67 31.424 275.048 30.0587C273.427 28.6507 271.443 27.9467 269.096 27.9467C266.878 27.9467 265 28.6293 263.464 29.9947C261.971 31.3173 261.054 33.1733 260.712 35.5627H277.544Z" fill="#1B2D4A"></path>
+            <path d="M299.764 26.3467C300.916 24.64 302.495 23.2533 304.5 22.1866C306.548 21.12 308.874 20.5867 311.476 20.5867C314.506 20.5867 317.236 21.3333 319.668 22.8267C322.143 24.32 324.084 26.4533 325.492 29.2267C326.943 31.9573 327.668 35.136 327.668 38.7627C327.668 42.3893 326.943 45.6107 325.492 48.4267C324.084 51.2 322.143 53.3547 319.668 54.8907C317.236 56.4267 314.506 57.1947 311.476 57.1947C308.831 57.1947 306.506 56.6827 304.5 55.6587C302.538 54.592 300.959 53.2267 299.764 51.5627V56.6187H290.804V9.25865H299.764V26.3467ZM318.516 38.7627C318.516 36.6293 318.068 34.7947 317.172 33.2587C316.319 31.68 315.167 30.4853 313.716 29.6747C312.308 28.864 310.772 28.4587 309.108 28.4587C307.487 28.4587 305.951 28.8853 304.5 29.7387C303.092 30.5493 301.94 31.744 301.044 33.3227C300.191 34.9013 299.764 36.7573 299.764 38.8907C299.764 41.024 300.191 42.88 301.044 44.4587C301.94 46.0373 303.092 47.2533 304.5 48.1067C305.951 48.9173 307.487 49.3227 309.108 49.3227C310.772 49.3227 312.308 48.896 313.716 48.0427C315.167 47.1893 316.319 45.9733 317.172 44.3947C318.068 42.816 318.516 40.9387 318.516 38.7627ZM364.579 38.1227C364.579 39.4027 364.494 40.5547 364.323 41.5787H338.403C338.617 44.1387 339.513 46.144 341.091 47.5947C342.67 49.0453 344.611 49.7707 346.915 49.7707C350.243 49.7707 352.611 48.3413 354.019 45.4827H363.683C362.659 48.896 360.697 51.712 357.795 53.9307C354.894 56.1067 351.331 57.1947 347.107 57.1947C343.694 57.1947 340.622 56.448 337.891 54.9547C335.203 53.4187 333.091 51.264 331.555 48.4907C330.062 45.7173 329.315 42.5173 329.315 38.8907C329.315 35.2213 330.062 32 331.555 29.2267C333.049 26.4533 335.139 24.32 337.827 22.8267C340.515 21.3333 343.609 20.5867 347.107 20.5867C350.478 20.5867 353.486 21.312 356.131 22.7626C358.819 24.2133 360.889 26.2827 362.339 28.9707C363.833 31.616 364.579 34.6667 364.579 38.1227ZM355.299 35.5627C355.257 33.2587 354.425 31.424 352.803 30.0587C351.182 28.6507 349.198 27.9467 346.851 27.9467C344.633 27.9467 342.755 28.6293 341.219 29.9947C339.726 31.3173 338.809 33.1733 338.467 35.5627H355.299ZM401.519 38.1227C401.519 39.4027 401.434 40.5547 401.263 41.5787H375.343C375.557 44.1387 376.453 46.144 378.031 47.5947C379.61 49.0453 381.551 49.7707 383.855 49.7707C387.183 49.7707 389.551 48.3413 390.959 45.4827H400.623C399.599 48.896 397.637 51.712 394.735 53.9307C391.834 56.1067 388.271 57.1947 384.047 57.1947C380.634 57.1947 377.562 56.448 374.831 54.9547C372.143 53.4187 370.031 51.264 368.495 48.4907C367.002 45.7173 366.255 42.5173 366.255 38.8907C366.255 35.2213 367.002 32 368.495 29.2267C369.989 26.4533 372.079 24.32 374.767 22.8267C377.455 21.3333 380.549 20.5867 384.047 20.5867C387.418 20.5867 390.426 21.312 393.071 22.7626C395.759 24.2133 397.829 26.2827 399.279 28.9707C400.773 31.616 401.519 34.6667 401.519 38.1227ZM392.239 35.5627C392.197 33.2587 391.365 31.424 389.743 30.0587C388.122 28.6507 386.138 27.9467 383.791 27.9467C381.573 27.9467 379.695 28.6293 378.159 29.9947C376.666 31.3173 375.749 33.1733 375.407 35.5627H392.239Z" fill="#FACF39"></path>
+          </svg>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="../../index.html">Home</a></li>
+          <li class="nav-has-dd"><button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Product<svg class="nav-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul class="nav-dd-menu" role="menu"><li><a href="../../ai-sre.html"><span class="nav-dd-name">AI SRE</span><span class="nav-dd-desc">Investigate incidents to a cited root cause</span></a></li><li><a href="../../ai-finops.html"><span class="nav-dd-name">AI FinOps</span><span class="nav-dd-desc">Find and fix cloud and Kubernetes waste</span></a></li><li><a href="../../kubernetes-operations.html"><span class="nav-dd-name">Kubernetes Operations</span><span class="nav-dd-desc">Day-two Kubernetes with an AI agent</span></a></li><li><a href="../../cloudops.html"><span class="nav-dd-name">CloudOps</span><span class="nav-dd-desc">One console across AWS, Azure and GCP</span></a></li><li><a href="../../runbook-automation.html"><span class="nav-dd-name">Runbook Automation</span><span class="nav-dd-desc">Durable, no-code runbooks with approval gates</span></a></li></ul></li>
+          <li><a href="../../pricing.html">Pricing</a></li>
+          <li><a href="../blog.html" class="active">Blog</a></li>
+          <li><a href="../../case-studies.html">Case Studies</a></li>
+          <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" class="btn-nav">
+            Sign In <span class="nav-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <button class="ham" aria-label="Open menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <nav class="mob-menu" id="mobNav" aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../ai-sre.html">AI SRE</a>
+      <a href="../../ai-finops.html">AI FinOps</a>
+      <a href="../../kubernetes-operations.html">Kubernetes Operations</a>
+      <a href="../../cloudops.html">CloudOps</a>
+      <a href="../../runbook-automation.html">Runbook Automation</a>
+      <a href="../../pricing.html">Pricing</a>
+      <a href="../blog.html" class="active">Blog</a>
+      <a href="../../case-studies.html">Case Studies</a>
+      <a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" style="background:var(--yellow);color:var(--navy);text-align:center;font-weight:700;">Sign In</a>
+    </nav>
+  </header></div>
+  <script src="../../js/navbar.d2224.js" defer></script>
+
+  <main id="main">
+
+    <section class="bp-hero">
+      <div class="bp-hero-inner">
+        
+        <h1 class="bp-title bp-title-long reveal">Don't Give Your AI Agent Root: Why Production Needs Scoped Agents</h1>
+        
+        <div class="bp-author reveal d1">
+          <img class="bp-author-pic" src="../../images/1de2d9079cc64467426b9d9cd9941da84eaa3cb6-900x900.993fb.png" alt="Rakesh Rajendran" loading="eager" decoding="async" width="40" height="40">
+          <div class="bp-author-meta">
+            <a class="bp-author-name" href="https://www.linkedin.com/in/rakeshrajendrn/" target="_blank" rel="noopener">Rakesh Rajendran</a>
+            <span class="bp-author-role">Founder &amp; CEO, NudgeBee &middot; Published: <time datetime="2026-10-14">October 2026</time> &middot; 11 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bp-content">
+      <div class="bp-layout">
+
+        <article class="bp-body">
+          <div class="bp-toc">
+    <div class="bp-toc-head">
+      <span class="bp-toc-title">Contents<span class="bp-toc-count">11</span></span>
+      <a href="#tldr" class="bp-toc-first">TL;DR</a>
+      <details class="bp-toc-expand">
+        <summary><span class="bp-toc-expand-label">See all</span><span class="bp-toc-expand-label-open">Close</span></summary>
+      </details>
+    </div>
+    <ul class="bp-toc-list"><li class="bp-toc-h2"><a href="#tldr">TL;DR</a></li><li class="bp-toc-h2"><a href="#persona-agents-vs-scoped-agents">Persona Agents vs. Scoped Agents</a></li><li class="bp-toc-h2"><a href="#the-blast-radius-and-iam-problem">The Blast Radius and IAM Problem</a></li><li class="bp-toc-h2"><a href="#scoped-agents-keep-the-action-surface-small">Scoped Agents Keep the Action Surface Small</a></li><li class="bp-toc-h2"><a href="#safety-must-exist-outside-the-model">Safety Must Exist Outside the Model</a></li><li class="bp-toc-h2"><a href="#the-cost-and-latency-of-safety-checks-at-scale">The Cost and Latency of Safety Checks at Scale</a></li><li class="bp-toc-h2"><a href="#using-personas-for-coordination-and-scoped-agents-for-execution">Using Personas for Coordination and Scoped Agents for Execution</a></li><li class="bp-toc-h2"><a href="#in-practice-a-crew-of-scoped-workers-per-engineer">In Practice: A Crew of Scoped Workers per Engineer</a></li><li class="bp-toc-h2"><a href="#where-personas-and-copilots-fit">Where personas and copilots fit</a></li><li class="bp-toc-h2"><a href="#summary">Summary</a></li><li class="bp-toc-h2"><a href="#frequently-asked-questions">Frequently Asked Questions</a></li></ul>
+  </div>
+          <p class="bp-p">In production, the real question is not how smart your agent is. It is how small the damage can be when it is wrong. The answer is to let broad agents coordinate and scoped agents execute.</p><h2 class="bp-h2" id="tldr">TL;DR</h2><ul class="bp-list"><li class="bp-li">Broad persona agents (like AI-SRE or AI-FinOps) are useful for coordination and triage, but letting them run unconstrained actions directly on production infrastructure is unsafe.</li><li class="bp-li">Scoped agents do one specific job with a short, fixed list of allowed actions.</li><li class="bp-li">Model specialization does not create safety. Safety comes from controls outside the model: limited IAM access, fixed tool sets, and deterministic policy gates.</li><li class="bp-li">Checking actions at scale has an asymmetric cost: on scoped agents, deep verification runs rarely and stays cheap. On unbounded agents, every step is unknown, making latency and token cost unsustainable.</li><li class="bp-li">The practical production pattern is composite: a persona agent coordinates and reasons, but delegates execution to scoped worker agents behind hard policy gates.</li></ul><p class="bp-p">Most agentic demos follow the same pattern. You give an agent a broad instruction, it calls a few tools, and it solves the problem. But if you ask an SRE or platform engineer whether they will run this agent unattended on production systems, the answer is almost always no.</p><p class="bp-p">The reason is not that the model lacks capability. The reason is that an engineer cannot predict the exact actions the model will take.</p><p class="bp-p">Closing this gap is where most agentic ops projects get stuck. Teams often try to solve it by waiting for larger or more capable models. That is the wrong fix. To run agents in production, the goal is not to maximize model intelligence. The goal is to minimize the blast radius and control execution from outside the model.</p><h2 class="bp-h2" id="persona-agents-vs-scoped-agents">Persona Agents vs. Scoped Agents</h2><p class="bp-p">In an operations context, "generic" does not mean a general chatbot. It means broad inside a domain.</p><p class="bp-p">The broad persona agent. An agent that covers an entire discipline, such as <a href="../../ai-sre.html" target="_blank" rel="noopener">AI-SRE</a>, <a href="../../ai-finops.html" target="_blank" rel="noopener">AI-FinOps</a>, or AI-SecOps. You give it a high-level goal, and it decides its own execution path across multiple tools and environments.</p><p class="bp-p">The scoped, task-based agent. An agent designed for one specific operational job with a pre-defined set of actions. Examples include an agent that only finds abandoned cloud disks, one that only calculates Kubernetes pod resource sizes, or one that only triages incoming alert payloads.</p><div class="blog-table-wrap"><table class="bp-table blog-table"><thead><tr><th></th><th>Unbounded Persona Agent</th><th>Scoped Task-Based Agent</th></tr></thead><tbody><tr><td>Scope</td><td>Full operational domain</td><td>One specific task</td></tr><tr><td>Action space</td><td>Open-ended and dynamic</td><td>Fixed, known list of actions</td></tr><tr><td>Input</td><td>Broad operational goal</td><td>Defined job with explicit bounds</td></tr><tr><td>Auditability</td><td>Difficult: execution path varies per run</td><td>Clear: actions map to explicit API calls</td></tr><tr><td>Primary role</td><td>Triage, investigation, orchestration</td><td>Controlled execution and remediation</td></tr></tbody></table></div><h2 class="bp-h2" id="the-blast-radius-and-iam-problem">The Blast Radius and IAM Problem</h2><p class="bp-p">A generic agent is useful for open-ended exploration and handling rare incidents that have no runbook.</p><p class="bp-p">However, you cannot provide operational guarantees for a system whose possible behaviors you cannot list in advance. If an agent determines its own execution path, the same incident can trigger completely different remediation commands on different days. This makes testing, tracing, and compliance audits very difficult.</p><p class="bp-p">There is also an IAM problem. To let a broad persona agent troubleshoot and fix issues across infrastructure, you must grant it broad cloud permissions. This violates the principle of least privilege. If the model misinterprets a log, hits an error, or encounters an indirect prompt injection in system output, the potential blast radius covers every resource the role can touch.</p>
+<div class="bp-inline-cta">
+  <div class="bp-inline-cta-inner">
+    <div class="bp-inline-cta-text">
+      <p class="bp-inline-cta-h">Find the root cause faster</p>
+      <p class="bp-inline-cta-sub">NudgeBee finds the root cause of an incident, with evidence, and suggests a fix. Runs self-hosted in your own environment.</p>
+    </div>
+    <div class="bp-inline-cta-btns">
+      <a href="../../demo.html" class="bp-inline-cta-btn-primary">
+      <span>Book a demo</span>
+      <span class="bp-inline-cta-btn-arr">
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+    </a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="bp-inline-cta-btn-secondary">Free on GitHub</a>
+    </div>
+  </div>
+</div>
+<h2 class="bp-h2" id="scoped-agents-keep-the-action-surface-small">Scoped Agents Keep the Action Surface Small</h2><p class="bp-p">A scoped agent is much simpler to reason about. Its actions are restricted to a short list of specific functions, and its access is limited strictly to the clusters or queues needed for that task.</p><p class="bp-p">Because the action set is finite, security teams only need to review a predictable set of API calls, instead of trying to imagine every possible command an open-ended model might generate.</p><p class="bp-p">Scoped execution also allows gradual rollout:</p><ul class="bp-list"><li class="bp-li">Run the agent in audit-only mode to log recommendations.</li><li class="bp-li">Grant write access for low-risk changes with automated rollback.</li><li class="bp-li">Keep state-changing or destructive actions behind human approval.</li></ul><p class="bp-p">The trade-off is maintenance. A scoped agent cannot solve problems outside its definition. If a new issue occurs, it needs a human or a new dedicated task definition. In production infrastructure, trading open-ended autonomy for deterministic safety is usually the correct operational decision.</p><h2 class="bp-h2" id="safety-must-exist-outside-the-model">Safety Must Exist Outside the Model</h2><p class="bp-p">A scoped agent is not safe simply because it is specialized. The underlying model remains non-deterministic.</p><p class="bp-p">What makes the system safe is that control is enforced outside the model:</p><ul class="bp-list"><li class="bp-li">Input boundary. The agent receives only the exact context needed for the job, rather than entire log streams. This reduces data exposure, lowers prompt injection risk, and keeps token costs low.</li><li class="bp-li">Deterministic policy gate. Before any API call touches infrastructure, an external engine checks the command against policy rules, environment limits, and approval requirements. If a check fails, the action does not run.</li></ul><p class="bp-p">Specialization does not replace policy checks. It makes policy checks simple and cheap to maintain.</p><h2 class="bp-h2" id="the-cost-and-latency-of-safety-checks-at-scale">The Cost and Latency of Safety Checks at Scale</h2><p class="bp-p">To run state-changing operations safely, a system needs two verification stages:</p><ol class="bp-list"><li class="bp-li">Deterministic check. A fast, code-level rule decides whether an action is destructive. This is not only a list of dangerous API verbs like HTTP DELETE, database drop, or cloud resource termination. It is a policy list of destructive-by-effect operations: scaling a deployment to zero replicas, opening a security group to 0.0.0.0/0, draining a node, rotating or deleting a secret, or lowering a database's provisioned capacity. Each looks harmless at the API level but can cause an outage, so the rule has to cover effect, not just verb.</li><li class="bp-li">Semantic intent check. For anything the rule flags, or cannot clearly classify, a language model compares the action against what the user or runbook actually requested, and holds it if they do not match.</li></ol><p class="bp-p">Here is where agent design directly affects production cost and latency.</p><p class="bp-p">For a scoped agent, the set of possible actions is small and known in advance, so you can enumerate the destructive ones as cheap deterministic rules. Most operations are read-only or low-risk parameter changes. The code-level check runs instantly on every step, and the slower semantic check runs only on the rare flagged action. Token cost and latency stay low.</p><p class="bp-p">On an unbounded generic agent, you cannot do this. Because the agent can run arbitrary shell scripts or multi-parameter API calls, its action space is open, and you cannot pre-enumerate every destructive pattern as a cheap rule. Nearly every intermediate step could carry an unintended side effect, so to stay safe you are forced to fall back on model-based evaluation across almost every step of a long reasoning loop.</p><p class="bp-p">Running intent-verification models across dozens of steps per workflow adds seconds of latency and multiplies token consumption. At enterprise scale, with thousands of operational steps per day, this verification overhead makes unbounded agents too slow and too expensive to run safely.</p>
+<div class="bp-inline-cta">
+  <div class="bp-inline-cta-inner">
+    <div class="bp-inline-cta-text">
+      <p class="bp-inline-cta-h">How teams actually run it</p>
+      <p class="bp-inline-cta-sub">Four AI assistants sharing one context across SRE, FinOps, Kubernetes and CloudOps, with every change gated on human approval.</p>
+    </div>
+    <div class="bp-inline-cta-btns">
+      <a href="../../case-studies.html" class="bp-inline-cta-btn-primary">
+      <span>Read the case studies</span>
+      <span class="bp-inline-cta-btn-arr">
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+    </a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="bp-inline-cta-btn-secondary">Free on GitHub</a>
+    </div>
+  </div>
+</div>
+<h2 class="bp-h2" id="using-personas-for-coordination-and-scoped-agents-for-execution">Using Personas for Coordination and Scoped Agents for Execution</h2><p class="bp-p">Enterprises do not need to avoid operational personas like AI-SRE or AI-FinOps. The mistake is building them as single monolithic agents that execute commands directly.</p><p class="bp-p">The reliable pattern is to separate coordination from execution:</p><ul class="bp-list"><li class="bp-li">The persona agent acts as an orchestrator. It receives alerts, pulls context across systems, and decides which workflow is required.</li><li class="bp-li">The scoped worker agents carry out the actual work. Each worker handles one job, has minimal IAM privileges, and operates behind a hard policy gate.</li></ul><p class="bp-p">This architecture provides the reasoning benefits of a domain persona without exposing production infrastructure to an unbounded action space.</p><p class="bp-p">This is how we built <a href="../../ai-sre.html">NudgeBee</a>. High-level personas coordinate domain workflows, but direct operations are handled by scoped Worker Bees. Each worker has a fixed action schema, explicit risk tiers, and must pass external policy checks before modifying any resource.</p><h2 class="bp-h2" id="in-practice-a-crew-of-scoped-workers-per-engineer">In Practice: A Crew of Scoped Workers per Engineer</h2><p class="bp-p">The value shows up at the level of the individual engineer. Because each worker is scoped and runs behind a policy gate, an engineer can assemble a small crew of task-specific agents without widening their own blast radius. Each worker is pointed at a slice the engineer already owns, runs on its own schedule or event trigger, and carries a different trust level in production than in lower environments. The crew is always on. It waits for a schedule window or an event, does the repeatable toil the engineer would otherwise do by hand, and reports back.</p><p class="bp-p">Each worker does one of three things, or a short sequence of them: analyse, report, or execute. You choose which, per environment. A common setup lets a worker execute automatically in non-production, while in production the same worker only reports and waits for a one-click approval.</p><div class="blog-table-wrap"><table class="bp-table blog-table"><thead><tr><th>Scoped worker</th><th>Trigger / cadence</th><th>In non-production</th><th>In production</th></tr></thead><tbody><tr><td>Idle and abandoned resource cleanup</td><td>Nightly</td><td>Delete automatically</td><td>Report with one-click approval</td></tr><tr><td>Workload rightsizing</td><td>Daily scan</td><td>Apply automatically</td><td>Raise a PR for review</td></tr><tr><td>CVE and patch scan</td><td>Daily scan</td><td>Patch in the next window</td><td>Patch behind approval</td></tr><tr><td>Certificate expiry</td><td>Daily</td><td>Auto-renew</td><td>Alert and approve</td></tr><tr><td>Config drift</td><td>Hourly</td><td>Auto-correct</td><td>Report the drift</td></tr><tr><td>Alert triage and noise</td><td>On each alert (event)</td><td>Tune, group, snooze</td><td>Tune, group, page on the real ones</td></tr><tr><td>Access and RBAC review</td><td>Weekly</td><td>Report</td><td>Report</td></tr></tbody></table></div><p class="bp-p">Because each worker is scoped, adding one to the crew does not hand the engineer or the agent any access the engineer did not already have. The crew grows bottom-up: an engineer starts one or two workers in analyse-only, raises the trust dial in non-production where the worker was right, and promotes the ones that earn it. Over time the team inherits a shared crew that covers nights, weekends and handovers, while every run still reports its work for review.</p>
+<div class="bp-inline-cta">
+  <div class="bp-inline-cta-inner">
+    <div class="bp-inline-cta-text">
+      <p class="bp-inline-cta-h">Start free, any scale</p>
+      <p class="bp-inline-cta-sub">Readable source, self-hosted, and free at any scale. 2 clusters or cloud accounts free on Cloud SaaS.</p>
+    </div>
+    <div class="bp-inline-cta-btns">
+      <a href="../../pricing.html" class="bp-inline-cta-btn-primary">
+      <span>See pricing</span>
+      <span class="bp-inline-cta-btn-arr">
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+    </a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="bp-inline-cta-btn-secondary">Free on GitHub</a>
+    </div>
+  </div>
+</div>
+<h2 class="bp-h2" id="where-personas-and-copilots-fit">Where personas and copilots fit</h2><p class="bp-p">Personas like AI-SRE or AI-FinOps, and chat copilots, sit above the crew. They also respond to triggers, but their default posture is the opposite of a worker. They are given broad read access across the domain and are limited to non-destructive actions. Their job is to answer questions, pull context across systems, correlate signals, and decide which scoped worker should act. They coordinate; they do not run destructive changes themselves. Anything that changes state is delegated down to a scoped worker that executes behind the policy gate.</p><p class="bp-p">This is what keeps a broad agent safe. The wide reach is read and reason; the narrow reach is act.</p><h2 class="bp-h2" id="summary">Summary</h2><p class="bp-p">Unbounded agents remain useful for sandboxes, read-only incident investigation, and interactive developer tooling.</p><p class="bp-p">But moving agentic workflows into production requires bounded execution. Reliable automation does not depend on waiting for models that never make mistakes. It depends on an architecture where, when a model makes a mistake, the blast radius is small and blocked by policy outside the model.</p><p class="bp-p">If you are working through the same control and build-vs-buy questions for agentic operations, I am happy to compare notes.</p><h2 class="bp-h2" id="frequently-asked-questions">Frequently Asked Questions</h2>
+<div class="bp-faq-item"><div class="bp-faq-q">What is a scoped (task-based) AI agent?</div><div class="bp-faq-a">A scoped agent is an agent that does one job with a fixed, known set of actions, pointed at one part of your system. Examples are an agent that only rightsizes Kubernetes clusters, or one that only triages alerts. Because its actions are limited and known in advance, it is easy to review and control.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">What is the difference between a persona agent and a task-based agent?</div><div class="bp-faq-a">A persona agent (for example AI-SRE or AI-FinOps) covers a whole discipline and has many possible actions. A task-based agent does a single job with a short, fixed action list. The reliable production pattern uses both: the persona coordinates and reasons, and delegates execution to scoped agents behind policy gates.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">What are common use cases for scoped AI agents?</div><div class="bp-faq-a">Repeatable operational toil that runs on a schedule or an event: cleaning up idle and abandoned resources, rightsizing workloads, scanning and patching CVEs, renewing certificates, catching configuration drift, triaging and de-noising alerts, and running access reviews. Each runs as its own worker, usually with a different trust level in production than in lower environments.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">Are specialised AI agents safer than general-purpose ones?</div><div class="bp-faq-a">Not by themselves. An agent is safe because something outside the model limits what it can do: its scope, an allow-list, and a policy check on every action. Scoped agents are safer in practice because that small action surface is cheap to control and review.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">How do you control an AI agent in production?</div><div class="bp-faq-a">Put the control outside the model. Give the agent a limited scope, define which action types it may use, set per-action limits, and run a policy check before any action touches a real system. Add approvals for risky actions, log every step, and keep a kill switch.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">How do you stop an agent from taking a destructive action?</div><div class="bp-faq-a">Use two stages. A fast deterministic rule checks whether an action is destructive, not just dangerous verbs like DELETE or terminate, but destructive-by-effect operations such as scaling to zero, opening a security group to the world, or draining a node. Only for flagged actions, a semantic check compares the action against the original goal and holds it if they do not match. Hard rules stay as the backstop.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">Why do agentic AI pilots fail to reach production?</div><div class="bp-faq-a">The demo is easy, but production needs control, not just capability. Teams cannot guarantee what an open-ended agent will do, cannot pass a security review, and cannot predict the cost. Narrowing each agent's job and enforcing its limits is what closes that gap.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">How do you keep AI agent cost and latency low at scale?</div><div class="bp-faq-a">Keep the action surface small so the expensive safety checks run rarely, send only the context a task needs instead of raw logs, and use small models for the high-volume work with a larger model only for hard reasoning.</div></div>
+
+        </article>
+
+      </div>
+    </section>
+    
+    <section class="bp-recommended">
+      <div class="bp-rec-inner">
+        <h2 class="bp-rec-h">Keep reading</h2>
+        <div class="bp-rec-grid">
+          
+      <article class="blog-card" data-cats="AIOps">
+        <a href="kg-vs-rag.html" class="blog-card-img-wrap"><img class="blog-card-img" src="../../images/kg-vs-rag.24184.png" alt="KG vs RAG: Why SRE and DevOps Teams Need Both (And Most AI Tools Get It Wrong)" loading="lazy" decoding="async" width="480" height="270"></a>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">AIOps</span>
+          <h3 class="blog-card-title">
+            <a href="kg-vs-rag.html">KG vs RAG: Why SRE and DevOps Teams Need Both (And Most AI Tools Get It Wrong)</a>
+          </h3>
+          
+          <div class="blog-card-footer">
+            
+            <span class="blog-card-time">12 min read</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card" data-cats="AIOps">
+        <a href="best-aiops-platforms.html" class="blog-card-img-wrap"><img class="blog-card-img" src="../../images/best-aiops-platforms.24184.png" alt="The Best AIOps Platforms for Startups and Enterprises in 2026" loading="lazy" decoding="async" width="480" height="270"></a>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">AIOps</span>
+          <h3 class="blog-card-title">
+            <a href="best-aiops-platforms.html">The Best AIOps Platforms for Startups and Enterprises in 2026</a>
+          </h3>
+          
+          <div class="blog-card-footer">
+            <span class="blog-card-date">May 2026</span>
+            <span class="blog-card-time">16 min read</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card" data-cats="SRE &amp; Reliability">
+        <a href="build-agentic-sre-on-nudgebee-oss.html" class="blog-card-img-wrap"><img class="blog-card-img" src="../../images/build-agentic-sre-on-nudgebee-oss.24184.png" alt="How to Build Your Agentic SRE on NudgeBee OSS Instead of From Scratch" loading="lazy" decoding="async" width="480" height="270"></a>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">SRE &amp; Reliability</span>
+          <h3 class="blog-card-title">
+            <a href="build-agentic-sre-on-nudgebee-oss.html">How to Build Your Agentic SRE on NudgeBee OSS Instead of From Scratch</a>
+          </h3>
+          
+          <div class="blog-card-footer">
+            <span class="blog-card-date">October 2026</span>
+            <span class="blog-card-time">10 min read</span>
+          </div>
+        </div>
+      </article>
+        </div>
+      </div>
+    </section>
+    
+    <section id="cta" aria-labelledby="bp-cta-h">
+      <div class="cta-card reveal">
+        <div class="cta-inner">
+          <span class="cta-tag"><span class="cta-tag-dot"></span>Free forever &middot; No credit card</span>
+          <h2 class="cta-h" id="bp-cta-h">See it on <em>your</em> alerts.</h2>
+          <p class="cta-sub">Free forever. Self-host at any scale, or run 2 clusters or cloud accounts free on Cloud SaaS. Nothing leaves your environment.</p>
+          <div class="cta-btns">
+            <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="btn-yellow">Get it on GitHub <span class="btn-y-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span></a>
+            <a href="../../demo.html" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442" class="btn-inv-sm">Book a demo</a>
+          </div>
+          <p class="cta-free-note"><a href="../../pricing.html">See pricing</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- &#9552;&#9552;&#9552; FOOTER &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+  <div id="footer"><footer role="contentinfo">
+    <div class="foot-inner">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <img src="../../images/logo-footer.f10f1.svg" alt="Nudgebee" class="foot-logo-img">
+          </div>
+          <p class="foot-tagline">AIOps platform and AI agentic automation platform for SRE, DevOps, and CloudOps teams. Pre-built AI agents for incident management, cloud cost optimization, and cloud automation.</p>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Product</p>
+          <ul class="foot-links">
+            <li><a href="../../integrations.html">Integrations</a></li>
+            <li><a href="../../pricing.html">Pricing</a></li>
+            <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+            <li><a href="https://docs.nudgebee.com/docs/features/ai/use-cases/" target="_blank" rel="noopener">Use Cases</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Company</p>
+          <ul class="foot-links">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../case-studies.html">Case Studies</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../../discover.html">Discover</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Connect</p>
+          <ul class="foot-links">
+            <li><a href="https://www.linkedin.com/company/nudgebee" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.youtube.com/@nudgebee" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://discord.com/invite/PzkHAuTfT7" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="../../demo.html" style="color:var(--yellow);font-weight:700;" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bot">
+        <div>
+          <div class="foot-copy">2026 Nudgebee, Inc. All rights reserved.</div>
+        </div>
+        <div class="foot-legal">
+          <a href="../../privacy-policy.html">Privacy Policy</a>
+          <a href="../../terms.html">Terms of Service</a>
+          <a href="#" data-cookie-settings>Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer></div>
+  <script src="../../js/footer.d2224.js" defer></script>
+
+  <script src="../../js/blog.d2224.js" defer></script>
+  <script src="../../js/main.d2224.js" defer></script>
+
+  <!-- Chatwoot Live Chat -->
+  <script>
+    (function (d, t) {
+      var BASE_URL = "https://app.chatwoot.com";
+      var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function () {
+        window.chatwootSDK.run({
+          websiteToken: "aEPrqyM6sRck2eeXYx6ofk6D",
+          baseUrl: BASE_URL,
+        });
+      };
+    })(document, "script");
+  </script>
+</body>
+</html>

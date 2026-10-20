@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<?xml encoding="utf-8" ?><html lang="en">
+<head>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  'ad_storage':'denied',
+  'ad_user_data':'denied',
+  'ad_personalization':'denied',
+  'analytics_storage':'denied',
+  'wait_for_update':500
+});
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ9TMSSH');</script>
+<script id="x-c-script" src="../../assets/script.95a41.bin" attr-pk="8fe4b36b-33c4-481f-b5df-b588675d0804e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" async></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Build Your Agentic SRE on Open Source: Keep the Edge, Adopt the Core (NudgeBee OSS)</title>
+  <meta name="description" content="You do not have to throw away your in-house agentic SRE. Keep your scripts, runbooks and policies, and swap the undifferentiated core underneath for an open-source platform. A practical migration guide with a two-week comparison.">
+  <link rel="canonical" href="https://nudgebee.com/resources/blog/build-agentic-sre-on-nudgebee-oss">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="../../assets/css2.a8ad4.bin" rel="stylesheet">
+
+  <link rel="icon" href="../../images/favicon.f10f1.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/design-system.83658.css">
+  <link rel="stylesheet" href="../../css/styles.83658.css">
+  <link rel="stylesheet" href="../../css/blog.71c03.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Build Your Agentic SRE on Open Source: Keep the Edge, Adopt the Core (NudgeBee OSS)">
+  <meta property="og:description" content="You do not have to throw away your in-house agentic SRE. Keep your scripts, runbooks and policies, and swap the undifferentiated core underneath for an open-source platform. A practical migration guide with a two-week comparison.">
+  <meta property="og:url" content="https://nudgebee.com/resources/blog/build-agentic-sre-on-nudgebee-oss">
+  <meta property="og:image" content="../../images/build-agentic-sre-on-nudgebee-oss.5ec51.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="How to Build Your Agentic SRE on NudgeBee OSS Instead of From Scratch">
+  <meta property="og:site_name" content="NudgeBee">
+  <meta property="article:author" content="Rakesh Rajendran">
+  <meta property="article:published_time" content="2026-10-14T13:14:14.000Z">
+  <meta property="article:modified_time" content="2026-10-14T17:32:06.000Z">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Build Your Agentic SRE on Open Source: Keep the Edge, Adopt the Core (NudgeBee OSS)">
+  <meta name="twitter:description" content="You do not have to throw away your in-house agentic SRE. Keep your scripts, runbooks and policies, and swap the undifferentiated core underneath for an open-source platform. A practical migration guide with a two-week comparison.">
+  <meta name="twitter:image" content="../../images/build-agentic-sre-on-nudgebee-oss.5ec51.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://nudgebee.com/resources/blog/build-agentic-sre-on-nudgebee-oss"
+  },
+  "headline": "Build Your Agentic SRE on Open Source: Keep the Edge, Adopt the Core (NudgeBee OSS)",
+  "description": "You do not have to throw away your in-house agentic SRE. Keep your scripts, runbooks and policies, and swap the undifferentiated core underneath for an open-source platform. A practical migration guide with a two-week comparison.",
+  "image": [
+    "https://nudgebee.com/assets/images/blog-covers/build-agentic-sre-on-nudgebee-oss.png"
+  ],
+  "datePublished": "2026-10-14T13:14:14.000Z",
+  "dateModified": "2026-10-14T17:32:06.000Z",
+  "url": "https://nudgebee.com/resources/blog/build-agentic-sre-on-nudgebee-oss",
+  "author": {
+    "@type": "Person",
+    "name": "Rakesh Rajendran",
+    "url": "https://www.linkedin.com/in/rakeshrajendrn/",
+    "jobTitle": "Founder & CEO, NudgeBee",
+    "description": "Rakesh Rajendran is Founder & CEO of NudgeBee, where the team builds an Agentic Operations and Automation Platform that helps cloud, SRE, FinOps and platform engineering teams run AI agents safely in production. He has spent two decades building distributed systems for large ente",
+    "sameAs": [
+      "https://www.linkedin.com/in/rakeshrajendrn/"
+    ],
+    "image": "https://cdn.sanity.io/images/1zj1rldc/production/1de2d9079cc64467426b9d9cd9941da84eaa3cb6-900x900.png?w=400&q=80&fit=max&auto=format"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "NudgeBee",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nudgebee.com/assets/images/logo-footer.svg"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nudgebee.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://nudgebee.com/resources/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Build Your Agentic SRE on NudgeBee OSS Instead of From Scratch",
+      "item": "https://nudgebee.com/resources/blog/build-agentic-sre-on-nudgebee-oss"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is NudgeBee OSS?","acceptedAnswer":{"@type":"Answer","text":"It is the open-source core of an agentic operations platform: always-on orchestration, structured memory and a service dependency graph, model routing, the integration layer, governance and cost controls. You run it in your own environment and build your workflows, agents and policies on top."}},{"@type":"Question","name":"Can you run agentic SRE on open source?","acceptedAnswer":{"@type":"Answer","text":"Yes. The agents, integrations, troubleshooting, optimisation and the automation builder are open source, and teams run them in production on that alone. The enterprise licence is for large fleets, multi-tenant estates and regulated organisations."}},{"@type":"Question","name":"We have two years of work in our in-house system. Does any of it survive?","acceptedAnswer":{"@type":"Answer","text":"All of the edge does: scripts, runbooks, prompts, policies and the knowledge. What you retire is the plumbing underneath."}},{"@type":"Question","name":"Does NudgeBee replace our observability stack?","acceptedAnswer":{"@type":"Answer","text":"No. It queries Prometheus, New Relic, Datadog, Elasticsearch and the cloud APIs on demand and stores only insights and evidence, never raw telemetry."}},{"@type":"Question","name":"Can we keep our own model gateway and our own models?","acceptedAnswer":{"@type":"Answer","text":"Yes. Any OpenAI-compatible endpoint is a provider; assign models per tier or per agent."}},{"@type":"Question","name":"Where do we start?","acceptedAnswer":{"@type":"Answer","text":"Install the open-source control plane, connect one cluster, bring one script across, and run the two-week comparison above."}}]}</script>
+
+</head>
+<body>
+<script src="../../js/cookie-consent.d2224.js" defer></script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9TMSSH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="bp-progress" aria-hidden="true"><div class="bp-progress-bar"></div></div>
+
+  <div class="bp-float-cta" id="bpFloatCta">
+    <div class="bp-float-cta-inner">
+      <button type="button" class="bp-float-cta-close" aria-label="Dismiss">
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+      <p class="bp-float-cta-text">Free, self-hosted, or let us run it for you.</p>
+      <div class="bp-float-cta-btns">
+        <a href="../../demo.html" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442" class="bp-inline-cta-btn-primary">
+          <span>Book a demo</span>
+          <span class="bp-inline-cta-btn-arr">
+            <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </span>
+        </a>
+        <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="bp-inline-cta-btn-secondary">Free on GitHub</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="navbar"><a href="#main" class="sr-only">Skip to main content</a>
+  <header>
+    <nav id="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo" aria-label="Nudgebee home">
+          <svg class="nav-logo-img" viewbox="0 0 405 75" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Nudgebee">
+            <path d="M23.1028 32.4683C23.1028 32.4683 21.9369 52.2891 35.0536 66.8632C35.0536 66.8632 20.8035 70.2525 15.5242 53.455C10.7148 38.1522 23.1028 32.4683 23.1028 32.4683Z" fill="#FACF39"></path>
+            <path d="M39.3252 29.8549C39.3252 29.8549 38.3095 47.1217 49.7361 59.818C49.7361 59.818 37.3221 62.7706 32.7231 48.1374C28.5334 34.8064 39.3252 29.8549 39.3252 29.8549Z" fill="#FACF39"></path>
+            <path d="M9.25643 44.9543C9.25643 44.9543 8.46733 58.369 17.3447 68.2327C17.3447 68.2327 8.89167 68.7541 5.28457 58.7708C2.59682 51.332 9.25643 44.9543 9.25643 44.9543Z" fill="#FACF39"></path>
+            <path d="M53.0582 24.6657C53.0582 24.6657 23.7642 -12.0611 3.6519 4.11621C-16.4604 20.2935 53.0582 24.6657 53.0582 24.6657Z" fill="#FACF39"></path>
+            <path d="M63.2315 48.019C68.2474 48.019 72.3136 43.9528 72.3136 38.9369C72.3136 33.921 68.2474 29.8549 63.2315 29.8549C58.2156 29.8549 54.1494 33.921 54.1494 38.9369C54.1494 43.9528 58.2156 48.019 63.2315 48.019Z" fill="#FACF39"></path>
+            <path d="M112.377 20.6507C116.601 20.6507 120.015 21.9947 122.617 24.6827C125.22 27.328 126.521 31.04 126.521 35.8187V56.6187H117.561V37.0347C117.561 34.2187 116.857 32.064 115.449 30.5707C114.041 29.0347 112.121 28.2667 109.689 28.2667C107.215 28.2667 105.252 29.0347 103.801 30.5707C102.393 32.064 101.689 34.2187 101.689 37.0347V56.6187H92.7295V21.1627H101.689V25.5787C102.884 24.0427 104.399 22.848 106.233 21.9947C108.111 21.0987 110.159 20.6507 112.377 20.6507ZM165.954 21.1627V56.6187H156.93V52.1387C155.778 53.6747 154.263 54.8907 152.386 55.7867C150.551 56.64 148.546 57.0667 146.37 57.0667C143.597 57.0667 141.143 56.4907 139.01 55.3387C136.877 54.144 135.191 52.416 133.954 50.1547C132.759 47.8507 132.162 45.12 132.162 41.9627V21.1627H141.122V40.6827C141.122 43.4987 141.826 45.6747 143.234 47.2107C144.642 48.704 146.562 49.4507 148.994 49.4507C151.469 49.4507 153.41 48.704 154.818 47.2107C156.226 45.6747 156.93 43.4987 156.93 40.6827V21.1627H165.954ZM169.93 38.7627C169.93 35.1787 170.634 32 172.042 29.2267C173.493 26.4533 175.456 24.32 177.93 22.8267C180.405 21.3333 183.157 20.5867 186.186 20.5867C188.49 20.5867 190.688 21.0987 192.778 22.1227C194.869 23.104 196.533 24.4267 197.77 26.0907V9.25865H206.858V56.6187H197.77V51.3707C196.661 53.12 195.104 54.528 193.098 55.5947C191.093 56.6613 188.768 57.1947 186.122 57.1947C183.136 57.1947 180.405 56.4267 177.93 54.8907C175.456 53.3547 173.493 51.2 172.042 48.4267C170.634 45.6107 169.93 42.3893 169.93 38.7627ZM197.834 38.8907C197.834 36.7147 197.408 34.8587 196.554 33.3227C195.701 31.744 194.549 30.5493 193.098 29.7387C191.648 28.8853 190.09 28.4587 188.426 28.4587C186.762 28.4587 185.226 28.864 183.818 29.6747C182.41 30.4853 181.258 31.68 180.362 33.2587C179.509 34.7947 179.082 36.6293 179.082 38.7627C179.082 40.896 179.509 42.7733 180.362 44.3947C181.258 45.9733 182.41 47.1893 183.818 48.0427C185.269 48.896 186.805 49.3227 188.426 49.3227C190.09 49.3227 191.648 48.9173 193.098 48.1067C194.549 47.2533 195.701 46.0587 196.554 44.5227C197.408 42.944 197.834 41.0667 197.834 38.8907ZM226.937 20.5867C229.583 20.5867 231.908 21.12 233.913 22.1866C235.919 23.2107 237.497 24.5547 238.649 26.2187V21.1627H247.673V56.8747C247.673 60.16 247.012 63.0827 245.689 65.6427C244.367 68.2453 242.383 70.2933 239.737 71.7867C237.092 73.3227 233.892 74.0907 230.137 74.0907C225.103 74.0907 220.964 72.9173 217.721 70.5707C214.521 68.224 212.708 65.024 212.281 60.9707H221.177C221.647 62.592 222.649 63.872 224.185 64.8107C225.764 65.792 227.663 66.2827 229.881 66.2827C232.484 66.2827 234.596 65.4933 236.217 63.9147C237.839 62.3787 238.649 60.032 238.649 56.8747V51.3707C237.497 53.0347 235.897 54.4213 233.849 55.5307C231.844 56.64 229.54 57.1947 226.937 57.1947C223.951 57.1947 221.22 56.4267 218.745 54.8907C216.271 53.3547 214.308 51.2 212.857 48.4267C211.449 45.6107 210.745 42.3893 210.745 38.7627C210.745 35.1787 211.449 32 212.857 29.2267C214.308 26.4533 216.249 24.32 218.681 22.8267C221.156 21.3333 223.908 20.5867 226.937 20.5867ZM238.649 38.8907C238.649 36.7147 238.223 34.8587 237.369 33.3227C236.516 31.744 235.364 30.5493 233.913 29.7387C232.463 28.8853 230.905 28.4587 229.241 28.4587C227.577 28.4587 226.041 28.864 224.633 29.6747C223.225 30.4853 222.073 31.68 221.177 33.2587C220.324 34.7947 219.897 36.6293 219.897 38.7627C219.897 40.896 220.324 42.7733 221.177 44.3947C222.073 45.9733 223.225 47.1893 224.633 48.0427C226.084 48.896 227.62 49.3227 229.241 49.3227C230.905 49.3227 232.463 48.9173 233.913 48.1067C235.364 47.2533 236.516 46.0587 237.369 44.5227C238.223 42.944 238.649 41.0667 238.649 38.8907ZM286.824 38.1227C286.824 39.4027 286.739 40.5547 286.568 41.5787H260.648C260.862 44.1387 261.758 46.144 263.336 47.5947C264.915 49.0453 266.856 49.7707 269.16 49.7707C272.488 49.7707 274.856 48.3413 276.264 45.4827H285.928C284.904 48.896 282.942 51.712 280.04 53.9307C277.139 56.1067 273.576 57.1947 269.352 57.1947C265.939 57.1947 262.867 56.448 260.136 54.9547C257.448 53.4187 255.336 51.264 253.8 48.4907C252.307 45.7173 251.56 42.5173 251.56 38.8907C251.56 35.2213 252.307 32 253.8 29.2267C255.294 26.4533 257.384 24.32 260.072 22.8267C262.76 21.3333 265.854 20.5867 269.352 20.5867C272.723 20.5867 275.731 21.312 278.376 22.7626C281.064 24.2133 283.134 26.2827 284.584 28.9707C286.078 31.616 286.824 34.6667 286.824 38.1227ZM277.544 35.5627C277.502 33.2587 276.67 31.424 275.048 30.0587C273.427 28.6507 271.443 27.9467 269.096 27.9467C266.878 27.9467 265 28.6293 263.464 29.9947C261.971 31.3173 261.054 33.1733 260.712 35.5627H277.544Z" fill="#1B2D4A"></path>
+            <path d="M299.764 26.3467C300.916 24.64 302.495 23.2533 304.5 22.1866C306.548 21.12 308.874 20.5867 311.476 20.5867C314.506 20.5867 317.236 21.3333 319.668 22.8267C322.143 24.32 324.084 26.4533 325.492 29.2267C326.943 31.9573 327.668 35.136 327.668 38.7627C327.668 42.3893 326.943 45.6107 325.492 48.4267C324.084 51.2 322.143 53.3547 319.668 54.8907C317.236 56.4267 314.506 57.1947 311.476 57.1947C308.831 57.1947 306.506 56.6827 304.5 55.6587C302.538 54.592 300.959 53.2267 299.764 51.5627V56.6187H290.804V9.25865H299.764V26.3467ZM318.516 38.7627C318.516 36.6293 318.068 34.7947 317.172 33.2587C316.319 31.68 315.167 30.4853 313.716 29.6747C312.308 28.864 310.772 28.4587 309.108 28.4587C307.487 28.4587 305.951 28.8853 304.5 29.7387C303.092 30.5493 301.94 31.744 301.044 33.3227C300.191 34.9013 299.764 36.7573 299.764 38.8907C299.764 41.024 300.191 42.88 301.044 44.4587C301.94 46.0373 303.092 47.2533 304.5 48.1067C305.951 48.9173 307.487 49.3227 309.108 49.3227C310.772 49.3227 312.308 48.896 313.716 48.0427C315.167 47.1893 316.319 45.9733 317.172 44.3947C318.068 42.816 318.516 40.9387 318.516 38.7627ZM364.579 38.1227C364.579 39.4027 364.494 40.5547 364.323 41.5787H338.403C338.617 44.1387 339.513 46.144 341.091 47.5947C342.67 49.0453 344.611 49.7707 346.915 49.7707C350.243 49.7707 352.611 48.3413 354.019 45.4827H363.683C362.659 48.896 360.697 51.712 357.795 53.9307C354.894 56.1067 351.331 57.1947 347.107 57.1947C343.694 57.1947 340.622 56.448 337.891 54.9547C335.203 53.4187 333.091 51.264 331.555 48.4907C330.062 45.7173 329.315 42.5173 329.315 38.8907C329.315 35.2213 330.062 32 331.555 29.2267C333.049 26.4533 335.139 24.32 337.827 22.8267C340.515 21.3333 343.609 20.5867 347.107 20.5867C350.478 20.5867 353.486 21.312 356.131 22.7626C358.819 24.2133 360.889 26.2827 362.339 28.9707C363.833 31.616 364.579 34.6667 364.579 38.1227ZM355.299 35.5627C355.257 33.2587 354.425 31.424 352.803 30.0587C351.182 28.6507 349.198 27.9467 346.851 27.9467C344.633 27.9467 342.755 28.6293 341.219 29.9947C339.726 31.3173 338.809 33.1733 338.467 35.5627H355.299ZM401.519 38.1227C401.519 39.4027 401.434 40.5547 401.263 41.5787H375.343C375.557 44.1387 376.453 46.144 378.031 47.5947C379.61 49.0453 381.551 49.7707 383.855 49.7707C387.183 49.7707 389.551 48.3413 390.959 45.4827H400.623C399.599 48.896 397.637 51.712 394.735 53.9307C391.834 56.1067 388.271 57.1947 384.047 57.1947C380.634 57.1947 377.562 56.448 374.831 54.9547C372.143 53.4187 370.031 51.264 368.495 48.4907C367.002 45.7173 366.255 42.5173 366.255 38.8907C366.255 35.2213 367.002 32 368.495 29.2267C369.989 26.4533 372.079 24.32 374.767 22.8267C377.455 21.3333 380.549 20.5867 384.047 20.5867C387.418 20.5867 390.426 21.312 393.071 22.7626C395.759 24.2133 397.829 26.2827 399.279 28.9707C400.773 31.616 401.519 34.6667 401.519 38.1227ZM392.239 35.5627C392.197 33.2587 391.365 31.424 389.743 30.0587C388.122 28.6507 386.138 27.9467 383.791 27.9467C381.573 27.9467 379.695 28.6293 378.159 29.9947C376.666 31.3173 375.749 33.1733 375.407 35.5627H392.239Z" fill="#FACF39"></path>
+          </svg>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="../../index.html">Home</a></li>
+          <li class="nav-has-dd"><button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Product<svg class="nav-chevron" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul class="nav-dd-menu" role="menu"><li><a href="../../ai-sre.html"><span class="nav-dd-name">AI SRE</span><span class="nav-dd-desc">Investigate incidents to a cited root cause</span></a></li><li><a href="../../ai-finops.html"><span class="nav-dd-name">AI FinOps</span><span class="nav-dd-desc">Find and fix cloud and Kubernetes waste</span></a></li><li><a href="../../kubernetes-operations.html"><span class="nav-dd-name">Kubernetes Operations</span><span class="nav-dd-desc">Day-two Kubernetes with an AI agent</span></a></li><li><a href="../../cloudops.html"><span class="nav-dd-name">CloudOps</span><span class="nav-dd-desc">One console across AWS, Azure and GCP</span></a></li><li><a href="../../runbook-automation.html"><span class="nav-dd-name">Runbook Automation</span><span class="nav-dd-desc">Durable, no-code runbooks with approval gates</span></a></li></ul></li>
+          <li><a href="../../pricing.html">Pricing</a></li>
+          <li><a href="../blog.html" class="active">Blog</a></li>
+          <li><a href="../../case-studies.html">Case Studies</a></li>
+          <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" class="btn-nav">
+            Sign In <span class="nav-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+          <button class="ham" aria-label="Open menu" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <nav class="mob-menu" id="mobNav" aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../ai-sre.html">AI SRE</a>
+      <a href="../../ai-finops.html">AI FinOps</a>
+      <a href="../../kubernetes-operations.html">Kubernetes Operations</a>
+      <a href="../../cloudops.html">CloudOps</a>
+      <a href="../../runbook-automation.html">Runbook Automation</a>
+      <a href="../../pricing.html">Pricing</a>
+      <a href="../blog.html" class="active">Blog</a>
+      <a href="../../case-studies.html">Case Studies</a>
+      <a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">GitHub Repo</a>
+      <a href="https://app.nudgebee.com/signin" target="_blank" rel="noopener" style="background:var(--yellow);color:var(--navy);text-align:center;font-weight:700;">Sign In</a>
+    </nav>
+  </header></div>
+  <script src="../../js/navbar.d2224.js" defer></script>
+
+  <main id="main">
+
+    <section class="bp-hero">
+      <div class="bp-hero-inner">
+        
+        <h1 class="bp-title bp-title-long reveal">How to Build Your Agentic SRE on NudgeBee OSS Instead of From Scratch</h1>
+        
+        <div class="bp-author reveal d1">
+          <img class="bp-author-pic" src="../../images/1de2d9079cc64467426b9d9cd9941da84eaa3cb6-900x900.993fb.png" alt="Rakesh Rajendran" loading="eager" decoding="async" width="40" height="40">
+          <div class="bp-author-meta">
+            <a class="bp-author-name" href="https://www.linkedin.com/in/rakeshrajendrn/" target="_blank" rel="noopener">Rakesh Rajendran</a>
+            <span class="bp-author-role">Founder &amp; CEO, NudgeBee &middot; Published: <time datetime="2026-10-14">October 2026</time> &middot; 10 min read</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bp-content">
+      <div class="bp-layout">
+
+        <article class="bp-body">
+          <div class="bp-toc">
+    <div class="bp-toc-head">
+      <span class="bp-toc-title">Contents<span class="bp-toc-count">9</span></span>
+      <a href="#tldr" class="bp-toc-first">TL;DR</a>
+      <details class="bp-toc-expand">
+        <summary><span class="bp-toc-expand-label">See all</span><span class="bp-toc-expand-label-open">Close</span></summary>
+      </details>
+    </div>
+    <ul class="bp-toc-list"><li class="bp-toc-h2"><a href="#tldr">TL;DR</a></li><li class="bp-toc-h2"><a href="#decide-what-is-core-and-what-is-edge">Decide what is core and what is edge</a></li><li class="bp-toc-h2"><a href="#what-nudgebee-oss-gives-you-on-day-one">What NudgeBee OSS gives you on day one</a></li><li class="bp-toc-h2"><a href="#what-you-still-build">What you still build</a></li><li class="bp-toc-h2"><a href="#bringing-an-existing-script-across">Bringing an existing script across</a></li><li class="bp-toc-h2"><a href="#run-it-alongside-what-you-have">Run it alongside what you have</a></li><li class="bp-toc-h2"><a href="#when-the-enterprise-layer-earns-its-keep">When the enterprise layer earns its keep</a></li><li class="bp-toc-h2"><a href="#why-this-compounds">Why this compounds</a></li><li class="bp-toc-h2"><a href="#frequently-asked-questions">Frequently Asked Questions</a></li></ul>
+  </div>
+          <h2 class="bp-h2" id="tldr">TL;DR</h2><ul class="bp-list"><li class="bp-li">For agentic SRE, the question is not build versus buy. It is which parts are specific to your company (the edge) and which parts are the same for everyone (the core).</li><li class="bp-li">Keep the edge you already built: scripts, runbooks, prompts, policies, your model gateway. Adopt the core (orchestration, memory, routing, governance, cost controls) instead of maintaining it yourself.</li><li class="bp-li">Bringing an existing script across is roughly an afternoon per script, and the script keeps working the whole time.</li><li class="bp-li">Run the open-source platform next to your current system on one cluster for two weeks and compare on real numbers before you migrate anything.</li></ul><p class="bp-p">For agentic SRE, the question is not really build versus buy. It is which parts of the work are specific to your company, and which parts are the same for everyone.</p><p class="bp-p">This post is for teams that have already started building. You have a Slack bot that answers questions about alerts, a rightsizing job that runs on a schedule, maybe a few auto-remediation scripts. You are not going to throw that away, and you should not. This is a guide to keeping what you built and swapping the undifferentiated core underneath it for <a href="../../ai-sre.html">NudgeBee</a>'s open-source platform, so the full-stack operation you set out to build actually gets finished.</p><p class="bp-p">If you have read the two companion posts, the seven pitfalls of building from scratch and the seven gaps of relying on a general assistant, this is the constructive answer to both. If you have not, each section stands on its own.</p><h2 class="bp-h2" id="decide-what-is-core-and-what-is-edge">Decide what is core and what is edge</h2><p class="bp-p">One test sorts every component of an in-house agentic ops build: could another company run this unchanged? If yes, it is core. If no, it is edge.</p><p class="bp-p">Edge is your runbooks, your service knowledge, the SOP that says a payments incident pages two teams, the approval policy that lets staging self-heal but keeps production on human review, the model gateway you standardised on, and the specific workflows your on-call engineers have learned to trust. Nobody can build this for you, and it is the only part of the system that is actually yours.</p><p class="bp-p">Core is the always-on orchestrator, the structured memory and service dependency graph, model routing and the certified model list, the integration layer for Prometheus, New Relic, Datadog, GitHub, Slack and the cloud APIs, role-based access, audit trails, approval gates, egress scanning, spend budgets, and the maintenance of all of it through every model release and every Kubernetes version. It is the same in every company, it is most of the engineering effort, and it is where in-house builds stall.</p><p class="bp-p">The approach that works: keep building the edge, adopt the core, and treat the boundary between them as an API you contribute to rather than a system you own.</p><p class="bp-p">Bottom line: your team's time on the core is time no competitor sees and no customer values. Your team's time on the edge is the whole point.</p>
+<div class="bp-inline-cta">
+  <div class="bp-inline-cta-inner">
+    <div class="bp-inline-cta-text">
+      <p class="bp-inline-cta-h">Find the root cause faster</p>
+      <p class="bp-inline-cta-sub">NudgeBee finds the root cause of an incident, with evidence, and suggests a fix. Runs self-hosted in your own environment.</p>
+    </div>
+    <div class="bp-inline-cta-btns">
+      <a href="../../demo.html" class="bp-inline-cta-btn-primary">
+      <span>Book a demo</span>
+      <span class="bp-inline-cta-btn-arr">
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+    </a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="bp-inline-cta-btn-secondary">Free on GitHub</a>
+    </div>
+  </div>
+</div>
+<h2 class="bp-h2" id="what-nudgebee-oss-gives-you-on-day-one">What NudgeBee OSS gives you on day one</h2><p class="bp-p">The open-source platform is the core, installed. Each item below is one of the seven pitfalls from the companion post, closed.</p><ul class="bp-list"><li class="bp-li">Always-on orchestration, not a chat loop. Agents run as standing workers with schedules, durable state, per-environment autonomy levels, budgets and a kill switch. Slack, Teams, CLI and web UI are interfaces onto that, not the engine.</li><li class="bp-li">b-Cortex memory and dependency graph. Structured memory scoped to tenant, application, environment, agent and session, plus a service dependency graph built deterministically from traces and platform metadata. Every investigation starts from what is already known.</li><li class="bp-li">Model routing and compatibility. Agents are tiered as reasoning, retrieval or summary and mapped to models accordingly. Any OpenAI-compatible endpoint, including your own gateway, plugs in. The project tracks model releases so your team does not re-test every agent.</li><li class="bp-li">One substrate, several functions. <a href="../../ai-sre.html" target="_blank" rel="noopener">SRE</a>, <a href="../../ai-finops.html" target="_blank" rel="noopener">FinOps</a>, <a href="../../kubernetes-operations.html" target="_blank" rel="noopener">Kubernetes ops</a> and an <a href="../../runbook-automation.html" target="_blank" rel="noopener">automation builder</a> ship together and share integrations, memory and the approval path. Your second function is a workflow, not a second project.</li><li class="bp-li">Governance from the first commit. RBAC, an audit trail of every command executed and evidence consulted, approval gates per environment, egress scanning of prompts for credentials.</li><li class="bp-li">Cost that stays flat. Small and open-weight models on high-volume steps, precise context from memory instead of log dumps, per-agent daily budgets and rate limits.</li><li class="bp-li">A maintained core. Integrations, model compatibility and security patches arrive with each release instead of with your two platform engineers' spare time.</li></ul><p class="bp-p"><strong>The unit of execution is a tightly scoped task worker agent.</strong> One job, a fixed set of actions, pointed only at the clusters or accounts you give it, behind the policy gate. This is what makes autonomous action in production reviewable: security approves a worker once, by its scope and action types, not every action it might take. These task worker agents (NudgeBee calls them Worker Bees) ship in the open-source core, along with the guardrail framework: scope, action types, trust dials per environment, approval and rollback. Why a tightly scoped task worker is the safest way to run execution actions in production is the subject of <a href="scoped-ai-agents-production-safety.html" target="_blank" rel="noopener">a companion post</a>.</p><h2 class="bp-h2" id="what-you-still-build">What you still build</h2><p class="bp-p">Everything that makes the system yours, and none of it is throwaway.</p><ul class="bp-list"><li class="bp-li">Workflows. Your rightsizing logic, your alert handling, your remediation scripts, expressed as NudgeBee workflows: YAML or no-code, with webhook, schedule, event and lifecycle triggers, mixing deterministic steps (a script, a container) with LLM steps where judgement is needed. They version in Git and deploy through your CI/CD.</li><li class="bp-li">Custom agents. Agents for the things only your estate has: a legacy batch system, a bespoke deployment pipeline, a compliance check regulators ask about. Built in the same builder the shipped agents use.</li><li class="bp-li">Knowledge. Runbooks, Confluence spaces, past incident write-ups, service ownership. Loaded once into b-Cortex and reused by every agent.</li><li class="bp-li">Internal tools as MCP servers. Anything with an API inside your network, exposed to agents through the <a href="cli-vs-mcp-at-nudgebee.html" target="_blank" rel="noopener">Model Context Protocol</a> so they can call it like any other tool.</li><li class="bp-li">Policy. Which environments allow autonomous action, which actions need approval, who approves, what the daily spend ceiling is per agent.</li><li class="bp-li">Your model gateway. Register it as the provider endpoint and every call routes through it; your model selection, cost and latency policies apply unchanged.</li></ul><h2 class="bp-h2" id="bringing-an-existing-script-across">Bringing an existing script across</h2><p class="bp-p">Take the most common in-house artefact: a scheduled rightsizing job that reads CPU and memory utilisation from Prometheus, writes a report, and leaves a human to apply the changes. Here is how it moves.</p><ol class="bp-list"><li class="bp-li">Install the control plane on a Kubernetes cluster in your own account with the <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener">Helm chart</a>. Add a cluster with a second Helm install of the per-cluster agent. Point it at Prometheus with a read-only credential.</li><li class="bp-li">Wrap the script as a workflow step. The existing container or script becomes a deterministic step. Nothing in it changes.</li><li class="bp-li">Replace the schedule with a trigger and let the FinOps agent's continuous utilisation signal decide when the step runs, instead of a cron expression.</li><li class="bp-li">Add the closing step the script never had: a pull request against your infrastructure repository with the proposed limits and the evidence behind them, behind the approval policy you set for that environment.</li><li class="bp-li">Let memory take over. The next run knows which recommendations were accepted, which were rejected and why, and adjusts.</li></ol><p class="bp-p">A Slack alert handler follows the same path. Its logic becomes a step, alert ingestion comes from the platform's Prometheus and New Relic integrations instead of your webhook receiver, and triage, deduplication and dependency-aware root cause are added in front of it rather than written by you.</p>
+<div class="bp-inline-cta">
+  <div class="bp-inline-cta-inner">
+    <div class="bp-inline-cta-text">
+      <p class="bp-inline-cta-h">How teams actually run it</p>
+      <p class="bp-inline-cta-sub">Four AI assistants sharing one context across SRE, FinOps, Kubernetes and CloudOps, with every change gated on human approval.</p>
+    </div>
+    <div class="bp-inline-cta-btns">
+      <a href="../../case-studies.html" class="bp-inline-cta-btn-primary">
+      <span>Read the case studies</span>
+      <span class="bp-inline-cta-btn-arr">
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+    </a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="bp-inline-cta-btn-secondary">Free on GitHub</a>
+    </div>
+  </div>
+</div>
+<h2 class="bp-h2" id="run-it-alongside-what-you-have">Run it alongside what you have</h2><p class="bp-p">Do not migrate on faith. Run NudgeBee next to your current system on one cluster for two weeks and compare.</p><p class="bp-p">Week one is read-only. Both systems see the same alerts. Measure how many reach a human after triage, how long the first root-cause analysis takes on critical alerts, and how often the two systems disagree on cause. Compare model spend, since both can route through the same gateway.</p><p class="bp-p">Week two switches on pull requests and guarded actions for the environment you chose. Measure the share of proposed changes that get merged and the time from alert to merged fix.</p><p class="bp-p">If your in-house system wins, you have learned something about your build and lost two weeks. If it does not, you have a migration plan with numbers attached.</p><p class="bp-p">Bottom line: this is the cheapest way to find out whether the in-house platform is ahead or behind, and it does not require anyone to admit anything.</p><h2 class="bp-h2" id="when-the-enterprise-layer-earns-its-keep">When the enterprise layer earns its keep</h2><p class="bp-p">Most of the platform is open source and stays that way: the agents, the integrations, troubleshooting, optimisation and the automation builder. Teams run it in production on the open-source version alone.</p><p class="bp-p">The <a href="../../pricing.html" target="_blank" rel="noopener">enterprise licence</a> adds the parts that matter once the agent fleet is large, the estate is multi-tenant or the organisation is regulated: the multi-tier memory layer across tenants and business units, the application-aware model router that picks models per step on cost and accuracy, model certification against each new release so your evals are not the first line of defence, and a support contract with people on the other end.</p><p class="bp-p">Start on open source. Move when the memory layer or the model churn becomes a line on someone's job description.</p><p class="bp-p">Bottom line: the licence buys back the two engineering roles the core would otherwise need. If the fleet is small, keep the money.</p>
+<div class="bp-inline-cta">
+  <div class="bp-inline-cta-inner">
+    <div class="bp-inline-cta-text">
+      <p class="bp-inline-cta-h">Start free, any scale</p>
+      <p class="bp-inline-cta-sub">Readable source, self-hosted, and free at any scale. 2 clusters or cloud accounts free on Cloud SaaS.</p>
+    </div>
+    <div class="bp-inline-cta-btns">
+      <a href="../../pricing.html" class="bp-inline-cta-btn-primary">
+      <span>See pricing</span>
+      <span class="bp-inline-cta-btn-arr">
+        <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </span>
+    </a>
+      <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="bp-inline-cta-btn-secondary">Free on GitHub</a>
+    </div>
+  </div>
+</div>
+<h2 class="bp-h2" id="why-this-compounds">Why this compounds</h2><p class="bp-p">An in-house platform grows as fast as the engineers assigned to it. A shared one grows on two fronts at once.</p><p class="bp-p">The first is memory. Every incident the agents work makes the next one cheaper and more accurate, because the facts, patterns, decisions and corrections are kept and reused. Your edge gets better without your team touching it.</p><p class="bp-p">The second is the platform itself. Every release adds skills, tools, agents and integrations, and your existing workflows inherit them. The upgrade pre-check that did not exist when you installed shows up and uses the same approval path you already configured. Your two platform engineers did not write it, and they did not have to.</p><p class="bp-p">So, not build versus buy. Keep what you built, move it onto a core that keeps learning and keeps growing, and spend the engineers on the part only you can do.</p><h2 class="bp-h2" id="frequently-asked-questions">Frequently Asked Questions</h2>
+<div class="bp-faq-item"><div class="bp-faq-q">What is NudgeBee OSS?</div><div class="bp-faq-a">It is the open-source core of an agentic operations platform: always-on orchestration, structured memory and a service dependency graph, model routing, the integration layer, governance and cost controls. You run it in your own environment and build your workflows, agents and policies on top.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">Can you run agentic SRE on open source?</div><div class="bp-faq-a">Yes. The agents, integrations, troubleshooting, optimisation and the automation builder are open source, and teams run them in production on that alone. The enterprise licence is for large fleets, multi-tenant estates and regulated organisations.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">We have two years of work in our in-house system. Does any of it survive?</div><div class="bp-faq-a">All of the edge does: scripts, runbooks, prompts, policies and the knowledge. What you retire is the plumbing underneath.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">Does NudgeBee replace our observability stack?</div><div class="bp-faq-a">No. It queries Prometheus, New Relic, Datadog, Elasticsearch and the cloud APIs on demand and stores only insights and evidence, never raw telemetry.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">Can we keep our own model gateway and our own models?</div><div class="bp-faq-a">Yes. Any OpenAI-compatible endpoint is a provider; assign models per tier or per agent.</div></div>
+<div class="bp-faq-item"><div class="bp-faq-q">Where do we start?</div><div class="bp-faq-a">Install the open-source control plane, connect one cluster, bring one script across, and run the two-week comparison above.</div></div>
+<p class="bp-p">Related reading: <a href="scoped-ai-agents-production-safety.html" target="_blank" rel="noopener">Why scoped, production-safe agents are the ones that reach production</a>, on where enforcement has to sit and why bounded agents stay cheap at scale.</p><p class="bp-p">Part of a three-post series: <a href="agentic-sre-build-or-buy.html" target="_blank" rel="noopener">Seven Pitfalls of Building Your Own Agentic SRE</a>, <a href="chatgpt-claude-gemini-ai-sre.html" target="_blank" rel="noopener">Seven Things You Give Up When a General-Purpose Assistant Is Your AI SRE</a>, and this post.</p>
+        </article>
+
+      </div>
+    </section>
+    
+    <section class="bp-recommended">
+      <div class="bp-rec-inner">
+        <h2 class="bp-rec-h">Keep reading</h2>
+        <div class="bp-rec-grid">
+          
+      <article class="blog-card" data-cats="SRE &amp; Reliability">
+        <a href="agentic-sre-build-or-buy.html" class="blog-card-img-wrap"><img class="blog-card-img" src="../../images/agentic-sre-build-or-buy.24184.png" alt="Seven Pitfalls of Building Your Own Agentic SRE (and What to Build Instead)" loading="lazy" decoding="async" width="480" height="270"></a>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">SRE &amp; Reliability</span>
+          <h3 class="blog-card-title">
+            <a href="agentic-sre-build-or-buy.html">Seven Pitfalls of Building Your Own Agentic SRE (and What to Build Instead)</a>
+          </h3>
+          
+          <div class="blog-card-footer">
+            <span class="blog-card-date">October 2026</span>
+            <span class="blog-card-time">10 min read</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card" data-cats="SRE &amp; Reliability">
+        <a href="chatgpt-claude-gemini-ai-sre.html" class="blog-card-img-wrap"><img class="blog-card-img" src="../../images/chatgpt-claude-gemini-ai-sre.24184.png" alt="Seven Things You Give Up When a General-Purpose Assistant Is Your AI SRE" loading="lazy" decoding="async" width="480" height="270"></a>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">SRE &amp; Reliability</span>
+          <h3 class="blog-card-title">
+            <a href="chatgpt-claude-gemini-ai-sre.html">Seven Things You Give Up When a General-Purpose Assistant Is Your AI SRE</a>
+          </h3>
+          
+          <div class="blog-card-footer">
+            <span class="blog-card-date">October 2026</span>
+            <span class="blog-card-time">9 min read</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="blog-card" data-cats="SRE &amp; Reliability">
+        <a href="best-ai-tools-for-reliability-engineers.html" class="blog-card-img-wrap"><img class="blog-card-img" src="../../images/best-ai-tools-for-reliability-engineers.24184.png" alt="14 Best AI SRE Tools for Reliability Engineers (2026)" loading="lazy" decoding="async" width="480" height="270"></a>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">SRE &amp; Reliability</span>
+          <h3 class="blog-card-title">
+            <a href="best-ai-tools-for-reliability-engineers.html">14 Best AI SRE Tools for Reliability Engineers (2026)</a>
+          </h3>
+          
+          <div class="blog-card-footer">
+            <span class="blog-card-date">March 2026</span>
+            <span class="blog-card-time">19 min read</span>
+          </div>
+        </div>
+      </article>
+        </div>
+      </div>
+    </section>
+    
+    <section id="cta" aria-labelledby="bp-cta-h">
+      <div class="cta-card reveal">
+        <div class="cta-inner">
+          <span class="cta-tag"><span class="cta-tag-dot"></span>Free forever &middot; No credit card</span>
+          <h2 class="cta-h" id="bp-cta-h">See it on <em>your</em> alerts.</h2>
+          <p class="cta-sub">Free forever. Self-host at any scale, or run 2 clusters or cloud accounts free on Cloud SaaS. Nothing leaves your environment.</p>
+          <div class="cta-btns">
+            <a href="https://github.com/nudgebee/nudgebee" target="_blank" rel="noopener" class="btn-yellow">Get it on GitHub <span class="btn-y-arr"><svg viewbox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span></a>
+            <a href="../../demo.html" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442" class="btn-inv-sm">Book a demo</a>
+          </div>
+          <p class="cta-free-note"><a href="../../pricing.html">See pricing</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- &#9552;&#9552;&#9552; FOOTER &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
+  <div id="footer"><footer role="contentinfo">
+    <div class="foot-inner">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">
+            <img src="../../images/logo-footer.f10f1.svg" alt="Nudgebee" class="foot-logo-img">
+          </div>
+          <p class="foot-tagline">AIOps platform and AI agentic automation platform for SRE, DevOps, and CloudOps teams. Pre-built AI agents for incident management, cloud cost optimization, and cloud automation.</p>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Product</p>
+          <ul class="foot-links">
+            <li><a href="../../integrations.html">Integrations</a></li>
+            <li><a href="../../pricing.html">Pricing</a></li>
+            <li><a href="https://docs.nudgebee.com/" target="_blank" rel="noopener">Docs</a></li>
+            <li><a href="https://docs.nudgebee.com/docs/features/ai/use-cases/" target="_blank" rel="noopener">Use Cases</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Company</p>
+          <ul class="foot-links">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../case-studies.html">Case Studies</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+            <li><a href="../../discover.html">Discover</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <p class="foot-h">Connect</p>
+          <ul class="foot-links">
+            <li><a href="https://www.linkedin.com/company/nudgebee" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.youtube.com/@nudgebee" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://discord.com/invite/PzkHAuTfT7" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="../../demo.html" style="color:var(--yellow);font-weight:700;" attr-ceana-public-event-id="57a74a4d6a1b436895b655bcb10f1c0de3b0c442">Book a Demo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bot">
+        <div>
+          <div class="foot-copy">2026 Nudgebee, Inc. All rights reserved.</div>
+        </div>
+        <div class="foot-legal">
+          <a href="../../privacy-policy.html">Privacy Policy</a>
+          <a href="../../terms.html">Terms of Service</a>
+          <a href="#" data-cookie-settings>Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer></div>
+  <script src="../../js/footer.d2224.js" defer></script>
+
+  <script src="../../js/blog.d2224.js" defer></script>
+  <script src="../../js/main.d2224.js" defer></script>
+
+  <!-- Chatwoot Live Chat -->
+  <script>
+    (function (d, t) {
+      var BASE_URL = "https://app.chatwoot.com";
+      var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function () {
+        window.chatwootSDK.run({
+          websiteToken: "aEPrqyM6sRck2eeXYx6ofk6D",
+          baseUrl: BASE_URL,
+        });
+      };
+    })(document, "script");
+  </script>
+</body>
+</html>
