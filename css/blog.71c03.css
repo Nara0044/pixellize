@@ -1,0 +1,1675 @@
+@import "../assets/css.0873b.bin";
+/* ═══════════════════════════════════════════════════════════════
+   BLOG STYLES
+   Blog home page catalog + individual blog post pages
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══ BLOG HOME — CATALOG ═══════════════════════════════════════ */
+.blog-hero {
+  padding: 120px var(--gutter) 48px;
+  text-align: center;
+  background: var(--off);
+}
+.blog-hero-h {
+  font-family: var(--fh);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.03em;
+  margin-bottom: 12px;
+}
+.blog-hero-h .hl-yellow { color: var(--yellow); }
+.blog-hero-h .hl-blue { color: var(--blue); }
+.blog-hero-sub {
+  font-family: var(--fb);
+  font-size: 1.05rem;
+  color: var(--ink-light);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Dual-path row: free/self-hosted (GitHub) vs. talk to us (demo) ── */
+.blog-hero-paths {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0 0;
+  font-family: var(--fb);
+  font-size: .88rem;
+}
+.blog-hero-paths .nav-github {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--mid);
+  transition: color var(--dur-fast);
+}
+.blog-hero-paths .nav-github:hover { color: var(--ink); }
+.blog-hero-paths-sep { color: var(--ink-light); opacity: .5; }
+.blog-hero-paths-demo { color: var(--ink-light); }
+.blog-hero-paths-demo strong { color: var(--navy); font-weight: 700; }
+.blog-hero-paths-demo:hover strong { color: var(--purple); }
+@media (max-width: 480px) {
+  .blog-hero-paths { flex-direction: column; gap: 6px; }
+  .blog-hero-paths-sep { display: none; }
+}
+
+/* ── Category Filter ── */
+.blog-filter {
+  max-width: var(--max-w);
+  margin: 0 auto 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.blog-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--fb);
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--mid);
+  background: transparent;
+  border: 1.5px solid #D1D5DB;
+  border-radius: var(--r-sm);
+  padding: 7px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--dur-fast),
+              border-color var(--dur-fast),
+              background var(--dur-fast),
+              transform var(--dur-fast) var(--ease-out-expo),
+              box-shadow var(--dur-fast);
+}
+.blog-filter-btn:hover {
+  color: var(--ink);
+  border-color: var(--yellow);
+}
+.blog-filter-btn.active {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+  box-shadow: 0 2px 12px rgba(27,45,74,.28), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.blog-filter-btn.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(27,45,74,.38);
+  border-color: var(--navy);
+}
+
+/* ── Blog Grid ── */
+.blog-catalog {
+  padding: 0 var(--gutter) 80px;
+  background: var(--off);
+}
+
+/* ── Featured (horizontal) post ── */
+.blog-featured-slot {
+  max-width: var(--max-w);
+  margin: 0 auto 48px;
+}
+.blog-featured {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--dur-fast) var(--ease-out-expo),
+              box-shadow var(--dur-fast) var(--ease-out-expo);
+}
+.blog-featured:hover {
+  border-color: var(--border-mid);
+  box-shadow: 0 2px 6px rgba(56,162,255,.06), 0 14px 36px rgba(27,45,74,.08);
+}
+.blog-featured-body {
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.blog-featured-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  background: rgba(250,200,53,.16);
+  color: var(--yellow-deep);
+  font-family: var(--fb);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  margin-bottom: 18px;
+}
+.blog-featured-tag {
+  font-family: var(--fb);
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.blog-featured-title {
+  font-family: var(--bp-satoshi);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  line-height: 1.18;
+  margin: 0 0 18px;
+  transition: color var(--dur-fast);
+}
+.blog-featured:hover .blog-featured-title { color: var(--navy); }
+.blog-featured-excerpt {
+  font-family: var(--fb);
+  font-size: .95rem;
+  color: var(--ink-light);
+  line-height: 1.55;
+  margin: 0 0 22px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
+.blog-featured-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fb);
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--ink-light);
+}
+.blog-featured-meta svg {
+  flex-shrink: 0;
+  opacity: .8;
+}
+.blog-featured-img-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--off);
+  min-height: 320px;
+}
+.blog-featured-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ── Grid cards ── */
+.blog-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 28px;
+}
+.blog-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 12px 12px 18px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--dur-fast) var(--ease-out-expo),
+              box-shadow var(--dur-fast) var(--ease-out-expo);
+}
+.blog-card:hover {
+  border-color: var(--border-mid);
+  box-shadow: 0 2px 6px rgba(56,162,255,.06), 0 14px 36px rgba(27,45,74,.08);
+}
+.blog-card-img-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  background: var(--off);
+  border-radius: var(--r-sm);
+}
+.blog-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.blog-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px 6px 0;
+}
+.blog-card-title {
+  font-family: var(--bp-satoshi);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.015em;
+  line-height: 1.32;
+  margin: 0 0 14px;
+  transition: color var(--dur-fast);
+}
+.blog-card:hover .blog-card-title { color: var(--navy); }
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+.blog-card-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fb);
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--ink-light);
+}
+.blog-card-read svg {
+  flex-shrink: 0;
+  opacity: .8;
+}
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+.blog-card-time {
+  font-family: var(--fb);
+  font-size: .85rem;
+  color: var(--mid);
+  white-space: nowrap;
+}
+.blog-card-date {
+  font-family: var(--fb);
+  font-size: .8rem;
+  color: var(--ink-light);
+  white-space: nowrap;
+}
+.blog-card-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  font-family: var(--fb);
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: transparent;
+  border: 1.5px solid #D1D5DB;
+  padding: 3px 10px;
+  border-radius: var(--r-sm);
+  letter-spacing: -.005em;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+/* ═══ BLOG POST — INDIVIDUAL PAGE ═══════════════════════════════ */
+.bp-hero {
+  padding: 100px var(--gutter) 40px;
+  background: var(--off);
+}
+.bp-hero-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.bp-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--fb);
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--ink-light);
+  text-decoration: none;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-sm);
+  padding: 8px 16px;
+  margin-bottom: 32px;
+  transition: background .2s, border-color .2s;
+}
+.bp-back:hover {
+  background: var(--white);
+  border-color: rgba(56,162,255,.3);
+}
+.bp-back svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* ── Breadcrumb Navigation ── */
+.bp-breadcrumb {
+  margin-bottom: 24px;
+}
+.bp-breadcrumb-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.bp-breadcrumb-item {
+  display: flex;
+  align-items: center;
+  font-family: var(--fb);
+  font-size: .82rem;
+}
+.bp-breadcrumb-item:not(:last-child)::after {
+  content: '/';
+  margin-left: 8px;
+  color: var(--ink-light);
+  opacity: .5;
+}
+.bp-breadcrumb-link {
+  color: var(--ink-light);
+  text-decoration: none;
+  transition: color .2s;
+}
+.bp-breadcrumb-link:hover {
+  color: var(--navy);
+}
+.bp-title {
+  font-family: var(--fh);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.bp-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--fb);
+  font-size: .82rem;
+  color: var(--ink-light);
+  margin-bottom: 32px;
+}
+.bp-meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ink-light);
+  opacity: .5;
+}
+
+/* ── Author byline (no date — shows pic, name link, role, read time) ── */
+.bp-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+.bp-author .bp-author-pic {
+  width: 44px;
+  height: 44px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+  display: block;
+  overflow: hidden;
+  background: var(--off);
+  box-shadow: 0 0 0 2px var(--white), 0 2px 6px rgba(27,45,74,.12);
+}
+.bp-author-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+  min-width: 0;
+}
+.bp-author-name {
+  font-family: var(--fb);
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color .2s;
+}
+a.bp-author-name:hover {
+  color: var(--navy);
+  text-decoration: underline;
+}
+.bp-author-role {
+  font-family: var(--fb);
+  font-size: .8rem;
+  color: var(--ink-light);
+}
+
+/* ── Sign In, demoted on blog pages only ──
+   A first-time reader on a blog post has nothing to sign into yet; the
+   bold navy pill + yellow arrow read as noise next to the article. Scoped
+   to this stylesheet (loaded only on blog pages) so every other page's
+   nav is untouched. */
+#navbar .btn-nav {
+  background: transparent;
+  color: var(--ink-light);
+  font-weight: 600;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+#navbar .btn-nav:hover {
+  transform: none;
+  box-shadow: none;
+  color: var(--navy);
+  text-decoration: underline;
+}
+#navbar .btn-nav .nav-arr { display: none; }
+
+/* ── Blog Post Content Layout ── */
+.bp-content {
+  padding: 48px var(--gutter) 80px;
+  background: var(--off);
+}
+.bp-layout {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ── Table of Contents ── */
+.bp-toc {
+  position: sticky;
+  top: 100px;
+  align-self: start;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.bp-toc::-webkit-scrollbar { width: 6px; }
+.bp-toc::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 3px; }
+.bp-toc-title {
+  font-family: var(--fh);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.bp-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.bp-toc-list li {
+  margin-bottom: 10px;
+}
+.bp-toc-list a {
+  font-family: var(--fb);
+  font-size: .85rem;
+  color: var(--ink-light);
+  text-decoration: none;
+  line-height: 1.45;
+  display: block;
+  transition: color .2s;
+}
+.bp-toc-list a:hover,
+.bp-toc-list a.active {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+/* ── Article Body ── */
+.bp-body h2 {
+  font-family: var(--fh);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  margin: 48px 0 16px;
+  scroll-margin-top: 100px;
+}
+.bp-body h2:first-child {
+  margin-top: 0;
+}
+.bp-body h3 {
+  font-family: var(--fh);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 32px 0 12px;
+}
+.bp-body p {
+  font-family: var(--fb);
+  font-size: .95rem;
+  color: var(--ink-light);
+  line-height: 1.8;
+  margin-bottom: 18px;
+}
+.bp-body ul,
+.bp-body ol {
+  padding-left: 24px;
+  margin-bottom: 18px;
+}
+.bp-body li {
+  font-family: var(--fb);
+  font-size: .95rem;
+  color: var(--ink-light);
+  line-height: 1.75;
+  margin-bottom: 8px;
+}
+.bp-body strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.bp-figure {
+  margin: 28px 0;
+}
+.bp-body-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-mid);
+}
+.bp-figcaption {
+  font-family: var(--fb);
+  font-size: .82rem;
+  color: var(--ink-light);
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.blog-table th strong {
+  color: #ffffff;
+}
+.bp-body a {
+  color: var(--purple);
+  text-decoration: underline;
+}
+.bp-body code:not(pre *) {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: .86em;
+  font-weight: 500;
+  color: var(--navy);
+  background: rgba(56, 162, 255, 0.07);
+  border: 1px solid var(--border-mid);
+  border-radius: 4px;
+  padding: 1px 6px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.bp-body strong code,
+.bp-body a code,
+.bp-body h2 code,
+.bp-body h3 code { color: inherit; }
+.bp-body blockquote {
+  border-left: 3px solid var(--purple);
+  padding: 12px 20px;
+  margin: 24px 0;
+  background: var(--purple-pale);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+.bp-body blockquote p {
+  margin-bottom: 0;
+  color: var(--ink);
+  font-style: italic;
+}
+
+/* ═══ RECOMMENDED SECTION — "Keep reading" ══════════════════════
+   Real cards (shared .blog-card markup with the catalog grid), not a
+   plain link list — a related post should look like the same quality
+   surface you were just reading, not a downgraded footer afterthought. */
+.bp-recommended {
+  padding: 72px var(--gutter) 88px;
+  background: var(--off);
+  border-top: 1px solid var(--border);
+}
+.bp-rec-inner {
+  max-width: 940px;
+  margin: 0 auto;
+}
+.bp-rec-h {
+  font-family: var(--fh);
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  margin-bottom: 32px;
+}
+.bp-rec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+}
+
+/* ═══ INLINE CTA BLOCK ══════════════════════════════════════════ */
+.bp-inline-cta {
+  margin: 40px 0;
+  background: var(--navy-deep);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+}
+.bp-inline-cta::before { content: none; }
+.bp-inline-cta-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.bp-inline-cta-text {
+  flex: 1;
+  min-width: 0;
+}
+.bp-inline-cta-tag { display: none; }
+.bp-inline-cta-tag-dot { display: none; }
+/* High specificity to win against .bp-body h3 / .bp-body p descendant rules */
+.bp-body .bp-inline-cta-h,
+.bp-inline-cta-h {
+  font-family: var(--fh);
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+.bp-inline-cta-h em {
+  color: #fff;
+  font-style: normal;
+  border-bottom: 1px solid rgba(255,255,255,.35);
+}
+.bp-body .bp-inline-cta-sub,
+.bp-inline-cta-sub {
+  font-family: var(--fb);
+  font-size: .9rem;
+  color: rgba(255,255,255,.62);
+  line-height: 1.55;
+  margin: 0;
+}
+.bp-inline-cta-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-shrink: 0;
+}
+.bp-inline-cta-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: #fff !important;
+  font-family: var(--fb);
+  font-size: .88rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,.35);
+  text-decoration: none !important;
+  box-shadow: none;
+  transition: border-color .2s, background .2s;
+  white-space: nowrap;
+}
+.bp-inline-cta-btn-primary:hover {
+  border-color: rgba(255,255,255,.7);
+  background: rgba(255,255,255,.04);
+}
+.bp-inline-cta-btn-arr {
+  width: auto;
+  height: auto;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0;
+  flex-shrink: 0;
+}
+.bp-inline-cta-btn-arr svg {
+  width: 14px;
+  height: 14px;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.bp-body .bp-inline-cta-btn-secondary,
+.bp-inline-cta-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: rgba(255,255,255,.55);
+  font-family: var(--fb);
+  font-size: .84rem;
+  font-weight: 500;
+  padding: 10px 4px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid transparent;
+  text-decoration: none !important;
+  transition: border-color .2s, color .2s;
+  white-space: nowrap;
+}
+.bp-inline-cta-btn-secondary:hover {
+  border-bottom-color: rgba(255,255,255,.4);
+  color: #fff;
+}
+
+/* ═══ FLOATING CTA ══════════════════════════════════════════════
+   The one small-viewport CTA touch: below 1100px there's no room for
+   a side rail, so this bottom-corner card takes over instead.
+   Compact, dismissible, anchored left so it never sits under the
+   Chatwoot bubble in the bottom-right corner. Shown once the reader
+   scrolls past the hero, hidden again once the closing CTA card scrolls
+   into view, and stays dismissed for the session once closed. */
+.bp-float-cta {
+  display: none;
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 55;
+  max-width: min(460px, calc(100vw - 40px));
+  pointer-events: none;
+}
+@media (max-width: 1100px) {
+  .bp-float-cta { display: block; }
+}
+.bp-float-cta-inner {
+  position: relative;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--navy);
+  border-radius: 14px;
+  padding: 14px 18px 14px 20px;
+  box-shadow: 0 12px 36px rgba(13,27,46,.32), 0 2px 10px rgba(13,27,46,.18);
+  opacity: 0;
+  transform: translateY(16px) scale(.98);
+  transition: opacity .3s var(--ease-out-expo), transform .3s var(--ease-out-expo), visibility .3s;
+  visibility: hidden;
+}
+.bp-float-cta.is-visible .bp-float-cta-inner {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+  pointer-events: auto;
+}
+.bp-float-cta-bee {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 3px 8px rgba(13,27,46,.3));
+}
+.bp-float-cta-text {
+  font-family: var(--fb);
+  font-size: .85rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.35;
+  flex: 1;
+  min-width: 0;
+}
+.bp-float-cta-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+/* Reuses .bp-inline-cta-btn-primary / -secondary as-is, at this component's
+   natural size — same buttons the reader already recognizes from the
+   in-article CTA, not a third visual style to learn. */
+.bp-float-cta-close {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  border: 1.5px solid rgba(255,255,255,.35);
+  color: rgba(255,255,255,.85);
+  padding: 0;
+  transition: background .18s, border-color .18s;
+}
+.bp-float-cta-close:hover {
+  background: #1a2640;
+  border-color: rgba(255,255,255,.6);
+}
+.bp-float-cta-close svg {
+  width: 11px;
+  height: 11px;
+}
+@media (max-width: 640px) {
+  .bp-float-cta { left: 12px; right: 12px; bottom: 12px; max-width: none; }
+  .bp-float-cta-inner {
+    flex-wrap: wrap;
+    padding: 14px 16px;
+    border-radius: 16px;
+  }
+  .bp-float-cta-bee { width: 36px; height: 36px; }
+  /* Bee + text share the first row; buttons get their own full-width row below. */
+  .bp-float-cta-btns { flex-basis: 100%; }
+  .bp-float-cta-btns .bp-inline-cta-btn-primary,
+  .bp-float-cta-btns .bp-inline-cta-btn-secondary { flex: 1; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bp-float-cta-inner { transition: opacity .2s linear, visibility .2s; }
+}
+
+/* ═══ FAQ IN BLOG POSTS ═════════════════════════════════════════ */
+/* FAQ items are detected in JS and rendered as .bp-faq-item divs. Plain
+   hairline-divided Q&A, not a colored callout card — a card per question
+   is the same "same-size box" scaffold the rest of this template avoids. */
+.bp-faq-item {
+  margin: 0;
+  padding: 26px 0;
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--border-mid);
+  border-radius: 0;
+}
+.bp-faq-item:first-of-type {
+  border-top: none;
+  padding-top: 4px;
+}
+.bp-faq-q {
+  font-family: var(--fh);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bp-ink);
+  letter-spacing: -.005em;
+  margin-bottom: 10px;
+  padding-left: 22px;
+  position: relative;
+}
+.bp-faq-q::before {
+  content: '';
+  position: absolute;
+  left: 0; top: .38em;
+  width: 9px; height: 9px;
+  background: var(--yellow);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+.bp-faq-a {
+  font-family: var(--fb);
+  font-size: 1rem;
+  color: var(--bp-ink-soft);
+  line-height: 1.65;
+  padding-left: 22px;
+}
+/* Multi-paragraph / list answers are rendered as real blocks; keep them flush inside the card */
+.bp-faq-a > :first-child { margin-top: 0; }
+.bp-faq-a > :last-child { margin-bottom: 0; }
+.bp-faq-a .bp-p { font-size: inherit; color: inherit; line-height: inherit; }
+.bp-faq-a .bp-list { margin: 8px 0 0; }
+
+/* ═══ BLOG TABLE ════════════════════════════════════════════════ */
+.blog-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 28px 0;
+}
+.blog-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--fb);
+  font-size: .9rem;
+}
+.blog-table th,
+.blog-table td {
+  border: 1px solid var(--border-mid);
+  padding: 10px 14px;
+  text-align: left;
+  line-height: 1.5;
+}
+.blog-table th,
+.bp-body .blog-table th {
+  background: var(--navy);
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  white-space: nowrap;
+}
+.blog-table tbody tr:nth-child(odd) {
+  background: var(--white);
+}
+.blog-table tbody tr:nth-child(even) {
+  background: var(--off);
+}
+.blog-table td {
+  color: var(--ink-light);
+}
+
+/* ═══ RESPONSIVE ════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .blog-grid,
+  .bp-rec-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .blog-featured {
+    grid-template-columns: 1fr;
+  }
+  .blog-featured-body {
+    padding: 36px 32px 16px;
+    order: 2;
+  }
+  .blog-featured-img-wrap {
+    min-height: 0;
+    aspect-ratio: 1200 / 630;
+    margin: 0 24px 24px;
+    order: 1;
+  }
+  .bp-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .bp-toc {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+}
+/* ═══ BLOG POST — bp-* CONTENT CLASSES ══════════════════════════ */
+.bp-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.bp-table th, .bp-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.bp-body {
+  max-width: 720px;
+  min-width: 0;
+}
+
+/* TOC inner styling */
+.bp-toc-list { list-style: none; padding: 0; margin: 0; }
+.bp-toc-list li { margin-bottom: 10px; }
+.bp-toc-list .bp-toc-h3 { padding-left: 14px; }
+.bp-toc-list a {
+  font-family: var(--fb);
+  font-size: .85rem;
+  color: var(--ink-light);
+  text-decoration: none;
+  line-height: 1.45;
+  display: block;
+  transition: color .2s;
+}
+.bp-toc-list a:hover { color: var(--navy); }
+
+/* Blog card excerpt for index page cards */
+.blog-card-excerpt {
+  font-family: var(--fb);
+  font-size: .88rem;
+  color: var(--ink-light);
+  line-height: 1.55;
+  margin: 0 0 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .bp-inline-cta { padding: 20px 18px; }
+  .bp-inline-cta-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .bp-inline-cta-sub { margin-bottom: 0; }
+  .bp-inline-cta-btns { flex-direction: column; align-items: stretch; width: 100%; }
+  .bp-inline-cta-btn-primary,
+  .bp-inline-cta-btn-secondary { justify-content: center; }
+  .blog-filter {
+    gap: 8px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .blog-filter-btn {
+    font-size: .75rem;
+    padding: 6px 14px;
+  }
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .blog-featured-body {
+    padding: 28px 24px 12px;
+  }
+  .blog-featured-img-wrap {
+    margin: 0 16px 16px;
+  }
+  .blog-featured-title {
+    font-size: 1.3rem;
+  }
+  .blog-featured-excerpt {
+    font-size: .92rem;
+  }
+  .bp-rec-grid {
+    grid-template-columns: 1fr;
+  }
+  .bp-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* ── Mobile readability: tighten gutters, wrap long words, contain overflow ── */
+@media (max-width: 768px) {
+  .blog-hero { padding: 96px var(--gutter-sm) 32px; }
+  .blog-catalog { padding: 0 var(--gutter-sm) 56px; }
+  .bp-hero { padding: 88px var(--gutter-sm) 28px; }
+  .bp-content { padding: 32px var(--gutter-sm) 56px; }
+  .bp-recommended { padding: 48px var(--gutter-sm) 56px; }
+  .bp-layout { gap: 24px; }
+  .bp-back { margin-bottom: 24px; }
+  .bp-meta { gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+
+  .bp-body { max-width: 100%; min-width: 0; }
+  .bp-body h2 { font-size: 1.3rem; margin: 36px 0 14px; line-height: 1.3; }
+  .bp-body h3 { font-size: 1.05rem; margin: 24px 0 10px; }
+  .bp-body p,
+  .bp-body li { font-size: .95rem; line-height: 1.7; overflow-wrap: anywhere; word-break: break-word; }
+  .bp-body a { overflow-wrap: anywhere; word-break: break-word; }
+  .bp-body ul,
+  .bp-body ol { padding-left: 20px; }
+  .bp-body img { height: auto; border-radius: var(--r-sm); }
+  .bp-body pre,
+  .bp-body code { white-space: pre-wrap; word-break: break-word; }
+
+  /* Inline CTA: extra breathing room from surrounding paragraphs */
+  .bp-inline-cta { margin: 28px 0; padding: 18px 16px; }
+  .bp-inline-cta-h { font-size: 1rem; }
+  .bp-inline-cta-sub { font-size: .82rem; }
+
+  /* FAQ items: tighter rhythm, wrap long answers */
+  .bp-faq-item { padding: 18px 0; }
+  .bp-faq-q { font-size: .98rem; }
+  .bp-faq-a { font-size: .92rem; overflow-wrap: anywhere; }
+
+  /* TOC list — readable when stacked above content */
+  .bp-toc-title { font-size: .9rem; margin-bottom: 12px; }
+  .bp-toc-list a { font-size: .82rem; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MEDIUM-STYLE POST REDESIGN  (promoted from blog-medium.css)
+   Applies to individual blog posts (.bp-* markup). The catalog
+   (.blog-* markup) is unaffected. Rules sit at the end of the file
+   so they win the cascade over the earlier base .bp-* rules.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Reading tokens — final values (no runtime toggle in production).
+     Headings and body now use the site's actual brand pair (Bricolage
+     Grotesque / Instrument Sans) instead of Satoshi — the post template
+     was the one surface on the whole site not using NudgeBee's own type,
+     which is why it read as a generic template bolted onto the brand
+     rather than as NudgeBee. --bp-satoshi survives only for the catalog
+     card titles (.blog-card-title / .blog-featured-title), unchanged. */
+  --bp-satoshi: 'Satoshi', 'Instrument Sans', system-ui, sans-serif;
+  --bp-font:      var(--fh);              /* headings — Bricolage Grotesque */
+  --bp-body-font: var(--fb);              /* body copy — Instrument Sans */
+  --bp-fs:    18px;                       /* body font-size */
+  --bp-lh:    1.7;                        /* body line-height */
+  --bp-ink:   #14213D;                    /* near-navy body ink, on-brand instead of neutral grey */
+  --bp-ink-soft: #4A6178;                 /* secondary text — matches --muted */
+  --read-measure: 815px;                  /* centered reading column, ~72ch at --bp-fs */
+}
+
+/* ── Reading progress ── the one authored motion moment on this template:
+   a thin fixed bar tracking scroll depth through the article body only
+   (not the whole page), so it reads 0→100% across the actual content. ── */
+.bp-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  z-index: 60;
+  background: transparent;
+  pointer-events: none;
+}
+.bp-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--yellow), var(--purple));
+  transition: width .12s linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bp-progress-bar { transition: none; }
+}
+
+/* ── Text selection & focus — themed instead of left as browser default ── */
+.bp-body ::selection,
+.bp-title::selection,
+.bp-toc ::selection {
+  background: var(--purple-pale);
+  color: var(--navy);
+}
+.bp-content a:focus-visible,
+.bp-inline-cta-btn-primary:focus-visible,
+.bp-inline-cta-btn-secondary:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── Balanced headings — fewer awkward one-word orphan lines ── */
+.bp-title,
+.bp-body h2,
+.bp-body .bp-h2 {
+  text-wrap: balance;
+}
+
+/* ── Lede — the opening paragraph reads a step larger, the way a printed
+   article's intro sets pace before the body settles into its rhythm. ── */
+.bp-body > p:first-of-type {
+  font-size: 1.18em;
+  line-height: 1.6;
+  color: var(--bp-ink);
+}
+
+/* ── Page background: clean white, like a Medium story ── */
+.bp-hero,
+.bp-content,
+.bp-recommended {
+  background: var(--white);
+}
+
+/* Hard guard: never allow horizontal page scroll. `overflow-x: clip`
+   is sticky-safe (it does NOT create a scroll container, so the sticky
+   TOC keeps working) and contains the wide cover-image breakout. */
+.bp-hero { overflow-x: clip; }
+
+/* ═══ HERO ══════════════════════════════════════════════════════ */
+.bp-hero {
+  padding: 96px var(--gutter) 8px;
+}
+.bp-hero-inner {
+  max-width: calc(var(--read-measure) + 100px); /* a little wider than the reading column so the display headline gets room */
+}
+.bp-title {
+  font-family: var(--fh);                 /* Bricolage Grotesque — the site's own display face */
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--bp-ink);
+  letter-spacing: -.035em;
+  line-height: 1.08;
+  margin-bottom: 22px;
+}
+/* Long titles (>60 chars) get a smaller display size so they wrap to fewer
+   lines instead of growing to 3+ at the same large size as a short title. */
+.bp-title-long {
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+}
+
+/* Author byline — a touch larger, calmer; hairline divider beneath
+   it (Medium's action-bar separator) before the cover image. */
+.bp-author {
+  margin-top: 24px;
+  padding-bottom: 26px;
+  gap: 13px;
+  border-bottom: 1px solid var(--border-mid);
+}
+.bp-author .bp-author-pic { width: 48px; height: 48px; }
+.bp-author-name { font-size: .98rem; color: var(--bp-ink); }
+.bp-author-role { font-size: .86rem; }
+
+/* Hero cover image — full reading-column width by default (safe on
+   every narrow viewport). Only "breaks out" wider than the text on
+   large screens (>1100px), where there's room to center it cleanly. */
+/* ═══ LAYOUT — centered reading column, TOC in the left gutter ══ */
+.bp-content {
+  padding: 12px var(--gutter) 72px;
+}
+.bp-layout {
+  display: block;
+  max-width: var(--read-measure);
+  margin: 0 auto;
+}
+
+/* ── TOC — collapsed by default (native <details>), sits inline above the
+   article instead of a sticky left-gutter rail. Plain list, no numbers,
+   no highlighted active-section fill — a quiet "Contents" disclosure,
+   not a second nav. Removed 2026-10: readers found the always-open,
+   numbered, sticky-gutter version loud and the narrow article column
+   that it forced felt cramped. */
+.bp-toc {
+  position: static;
+  width: 100%;
+  max-height: none;
+  overflow: visible;
+  margin-bottom: 30px;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-md);
+  background: var(--white);
+}
+.bp-toc-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 18px;
+}
+.bp-toc-title {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  margin: 0;
+  font-family: var(--fb);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.bp-toc-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--off);
+  color: var(--ink-light);
+  font-size: .72rem;
+  font-weight: 700;
+}
+/* First section, previewed inline so the bar never reads as an empty shell
+   before the reader has touched it. */
+.bp-body .bp-toc-first,
+.bp-toc-first {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  flex: 1;
+  min-width: 0;
+  padding-left: 14px;
+  border-left: 1px solid var(--border-mid);
+  font-family: var(--fb);
+  font-size: .85rem;
+  color: var(--ink-light);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color .18s;
+}
+.bp-body .bp-toc-first:hover,
+.bp-toc-first:hover { color: var(--navy); }
+.bp-body .bp-toc-first:visited,
+.bp-toc-first:visited { color: var(--ink-light); }
+.bp-toc-expand {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.bp-toc-expand summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  font-family: var(--fb);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--purple);
+}
+.bp-toc-expand summary::-webkit-details-marker { display: none; }
+.bp-toc-expand-label-open { display: none; }
+.bp-toc-expand[open] .bp-toc-expand-label { display: none; }
+.bp-toc-expand[open] .bp-toc-expand-label-open { display: inline; }
+.bp-toc-expand summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.bp-toc-expand[open] summary::after { transform: rotate(-135deg); }
+/* The list is a sibling of the header row, not nested inside the <details>, so
+   opening/closing it never changes the toggle's own size or position — only
+   this block's visibility changes, controlled by the details' open state. */
+.bp-toc-list {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 10px 18px 14px;
+  border-top: 1px solid var(--border-mid);
+  width: 100%;
+}
+.bp-toc:has(.bp-toc-expand[open]) .bp-toc-list { display: block; }
+.bp-toc-list li { margin-bottom: 1px; }
+.bp-body .bp-toc-list a,
+.bp-toc-list a {
+  font-family: var(--fb);
+  font-size: .85rem;
+  line-height: 1.4;
+  color: var(--ink-light);
+  display: block;
+  padding: 7px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background .18s, color .18s;
+}
+.bp-body .bp-toc-list a:hover,
+.bp-body .bp-toc-list a.active,
+.bp-toc-list a:hover,
+.bp-toc-list a.active {
+  background: var(--off);
+  color: var(--navy);
+  font-weight: 600;
+}
+.bp-body .bp-toc-list a:visited,
+.bp-toc-list a:visited { color: var(--ink-light); }
+/* nested h3 entries: slight indent */
+.bp-toc-list .bp-toc-h3 a { padding-left: 22px; font-size: .8rem; }
+
+/* Article column — centered, the Medium measure */
+.bp-body {
+  grid-column: 2;
+  max-width: var(--read-measure);
+  min-width: 0;                 /* allow the grid track to shrink */
+  margin: 0 auto;
+}
+/* Never let long words / URLs / code push past the column edge */
+.bp-title,
+.bp-body p,
+.bp-body li,
+.bp-body h2,
+.bp-body h3,
+.bp-body .bp-h2,
+.bp-body .bp-h3,
+.bp-body a { overflow-wrap: break-word; }
+
+/* ═══ BODY TYPOGRAPHY ═══════════════════════════════════════════ */
+.bp-body p,
+.bp-body li {
+  font-family: var(--bp-body-font);
+  font-size: var(--bp-fs);
+  line-height: var(--bp-lh);
+  color: var(--bp-ink);
+  letter-spacing: -.003em;
+}
+.bp-body p {
+  margin: 0 0 1.45em;
+}
+/* Collapse the stray empty paragraphs the generator emits, so the
+   rhythm stays even instead of doubling up gaps. */
+.bp-body p:empty { display: none; }
+.bp-body p:blank { display: none; }
+
+.bp-body strong { color: var(--bp-ink); font-weight: 700; }
+
+/* Links — Stripe-blog style: a confident accent color and bold weight,
+   no underline. Checked against Stripe's actual article body (not just
+   their footer/CTA links, which use a brighter indigo + arrow for a
+   different, more "action" purpose). */
+.bp-body a {
+  color: var(--purple);
+  font-weight: 600;
+  text-decoration: none;
+}
+.bp-body a:hover { text-decoration: underline; text-underline-offset: 2px; }
+.bp-body a:visited { color: var(--purple); }
+
+/* ── Headings — Bricolage Grotesque, the site's own display face, not the
+      body face at a bigger size. Weight + tracking carry the hierarchy. ── */
+.bp-body h2,
+.bp-body .bp-h2 {
+  font-family: var(--bp-font);
+  font-size: clamp(1.7rem, 2.9vw, 2.1rem);
+  font-weight: 800;
+  color: var(--bp-ink);
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  margin: 2.1em 0 .6em;
+}
+
+/* Listicle numbering ("1. The Best Teams...") gets a real display numeral
+   instead of reading as plain text — this is the sequence the article
+   itself promises ("7 Best Practices"), so marking each entry this way is
+   information, not decoration. It's also what stops seven back-to-back H2s
+   from reading as one undifferentiated block when scrolling or scanning. */
+.bp-body h2:has(.bp-h2-num) {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 16px;
+}
+.bp-h2-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5em;
+  height: 1.5em;
+  flex-shrink: 0;
+  background: var(--navy);
+  color: var(--yellow);
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: .55em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  margin-right: 12px; /* keeps a gap even without :has() support, where the grid above doesn't apply */
+}
+.bp-h2-text { min-width: 0; }
+@media (max-width: 480px) {
+  .bp-body h2:has(.bp-h2-num) { column-gap: 12px; }
+  .bp-h2-num { font-size: .5em; }
+}
+
+.bp-body h3,
+.bp-body .bp-h3 {
+  font-family: var(--bp-font);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--bp-ink);
+  letter-spacing: -.01em;
+  line-height: 1.3;
+  margin: 1.7em 0 .4em;
+}
+
+/* ── Lists — match body, comfortable indent ── */
+.bp-body ul,
+.bp-body ol {
+  padding-left: 1.4em;
+  margin: 0 0 1.45em;
+}
+.bp-body li { margin-bottom: .55em; }
+.bp-body li::marker { color: var(--ink-light); }
+
+/* ── Blockquote — a real pull-quote moment: brand yellow rule + an oversize
+   quotation mark, not just italicized body text with a line next to it. ── */
+.bp-body blockquote {
+  position: relative;
+  border-left: 2px solid var(--yellow);
+  background: transparent;
+  border-radius: 0;
+  padding: 2px 0 2px 28px;
+  margin: 2em 0;
+}
+.bp-body blockquote p {
+  font-family: var(--fh);
+  font-size: 1.25em;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--bp-ink-soft);
+  letter-spacing: -.005em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── Inline code — slightly larger to ride with bigger body ── */
+.bp-body code:not(pre *) {
+  font-size: .9em;
+}
+
+/* ── Tables — match the larger reading scale ── */
+.blog-table { font-size: .95rem; }
+.blog-table th,
+.blog-table td { padding: 11px 15px; }
+.blog-table-wrap { margin: 2em 0; }
+
+/* FAQ sizing/color is set once, in the base FAQ block above — nothing to
+   re-tune for the wider Medium reading scale, so there is no override here. */
+
+/* ═══ RESPONSIVE ════════════════════════════════════════════════ */
+
+/* ── ≤1100px: drop the side TOC, go to one centered column ──
+   (switches before the side gutter can get too narrow for the TOC) */
+@media (max-width: 1100px) {
+  .bp-content { padding: 12px var(--gutter) 64px; }
+  /* Drop the grid for one column. A plain block can never be pushed
+     wider than its container by a child (e.g. a nowrap table), which
+     a grid item *can* — that was the source of the overflow. */
+  .bp-layout {
+    display: block;
+    max-width: var(--read-measure);
+    margin: 0 auto;
+  }
+  .bp-toc {
+    width: auto;
+    max-width: none;
+    position: static;
+    max-height: 320px;          /* contain the long list … */
+    overflow-y: auto;           /* … scroll the card, never the page */
+    margin-bottom: 30px;
+    padding: 16px 6px 18px;
+    border: 1px solid var(--border-mid);
+    border-radius: var(--r-md);
+    background: var(--white);
+  }
+  .bp-body {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+/* ── ≤768px: tablet / large phone ── */
+@media (max-width: 768px) {
+  :root { --bp-fs: 17px; --bp-lh: 1.7; }
+  .bp-hero { padding: 92px var(--gutter-sm) 4px; }
+  .bp-content { padding: 8px var(--gutter-sm) 52px; }
+  .bp-body h2,
+  .bp-body .bp-h2 { margin-top: 1.7em; }
+  .bp-toc { max-height: 280px; }
+}
+
+/* ── ≤480px: small phone ── */
+@media (max-width: 480px) {
+  .bp-title { letter-spacing: -.02em; }
+  .bp-author { gap: 11px; }
+  .bp-author .bp-author-pic { width: 42px; height: 42px; }
+  .bp-body blockquote { padding-left: 18px; }
+  .bp-body blockquote p { font-size: 1.08em; }
+}
+
+/* ─── Code blocks ────────────────────────────────────────────
+   Multi-line samples promoted out of paragraphs by the generator.
+   <pre> is what preserves the indentation that makes YAML valid to copy.
+   Dark terminal chrome instead of a pale tinted box — this is a DevOps/SRE
+   audience reading kubectl and YAML; a real dark console reads as
+   authentic, and the header dots are brand yellow/blue instead of the
+   generic macOS red/yellow/green. */
+.bp-body .bp-code {
+  margin: 2em 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--navy-deep);
+  box-shadow: 0 8px 28px rgba(13,27,46,.16);
+}
+.bp-body .bp-code-name {
+  display: flex;
+  align-items: center;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: .78rem;
+  color: rgba(255,255,255,.55);
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.03);
+}
+.bp-code-dots {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 14px 0 0 var(--purple), 28px 0 0 rgba(255,255,255,.28);
+  margin-right: 22px;
+  flex-shrink: 0;
+}
+.bp-body .bp-pre {
+  margin: 0;
+  padding: 18px;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 2;
+}
+.bp-body .bp-pre code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: .86rem;
+  line-height: 1.65;
+  color: #E8EEF7;
+  background: none;
+  border: 0;
+  padding: 0;
+  white-space: pre;
+}
+@media (max-width: 760px) {
+  .bp-body .bp-pre { padding: 13px 14px; }
+  .bp-body .bp-pre code { font-size: .8rem; }
+}

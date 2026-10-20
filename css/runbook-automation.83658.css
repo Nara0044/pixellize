@@ -1,0 +1,490 @@
+/* ═══════════════════════════════════════════════════════════════
+   NUDGEBEE RUNBOOK AUTOMATION PAGE
+   Page-scoped styles. Tokens only, no new colours or type scales.
+   Mirrors the ai-sre / ai-finops / kubernetes-operations / cloudops
+   section shells so the four assistant pages and this hub read as
+   one system.
+   Prefix: ra-
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══ HERO ══════════════════════════════════════════════════════ */
+.ra-hero {
+  padding: 90px var(--gutter) var(--sp-2xl);
+  background: var(--white);
+  text-align: center;
+}
+.ra-hero-inner { max-width: 820px; margin: 0 auto; }
+.ra-hero-h {
+  font-family: var(--fh);
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  font-weight: 800; color: var(--ink);
+  letter-spacing: -.035em; line-height: 1.08;
+  margin-bottom: var(--sp-md);
+}
+/* Signature yellow highlight, borrowed from the homepage hero. */
+.ra-hl {
+  color: var(--ink); background: var(--yellow);
+  padding: 0 12px 2px; border-radius: 8px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.ra-hero-eyebrow { margin-left: auto; margin-right: auto; }
+.ra-hero-lead {
+  font-size: 1.05rem; color: var(--ink-light); line-height: 1.7;
+  max-width: 680px; margin: 0 auto;
+}
+.ra-hero-ctas {
+  display: flex; flex-wrap: wrap; gap: var(--sp-md);
+  justify-content: center; margin-top: var(--sp-xl);
+}
+.ra-hero-ctas .btn-outline { padding: 13px 24px; }
+.ra-hero-trust {
+  margin-top: var(--sp-lg);
+  font-size: .85rem; color: var(--muted); line-height: 1.7;
+}
+
+/* ═══ DIRECT-ANSWER BAND ════════════════════════════════════════ */
+.ra-answer-band {
+  padding: 0 var(--gutter) var(--sp-4xl);
+  background: var(--white);
+}
+.ra-answer-inner {
+  max-width: 820px; margin: 0 auto;
+  background: var(--purple-pale);
+  border: 1px solid var(--border-mid);
+  border-left: 4px solid var(--purple);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl);
+}
+.ra-answer-h {
+  font-family: var(--fh); font-size: 1.05rem; font-weight: 700;
+  color: var(--navy); letter-spacing: -.01em;
+  margin-bottom: var(--sp-sm);
+}
+.ra-answer { font-size: 1.05rem; color: var(--text); line-height: 1.75; }
+
+/* ═══ STAT BAND (dark, just below the answer) ═══════════════════ */
+.ra-statband { background: var(--navy-deep); padding: var(--sp-3xl) var(--gutter); }
+.ra-statband-inner { max-width: var(--max-w); margin: 0 auto; text-align: center; }
+.ra-statband-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--fh); font-size: .72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .14em; color: var(--yellow);
+  margin-bottom: var(--sp-2xl);
+}
+.ra-statband-eyebrow svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ra-statband-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+.ra-stat-cell {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 6px var(--sp-lg); border-left: 1px solid rgba(255,255,255,.14);
+}
+.ra-stat-cell:first-child { border-left: none; }
+.ra-stat-n {
+  font-family: var(--fh); font-size: clamp(1.55rem, 3.2vw, 2.2rem); font-weight: 800;
+  color: var(--yellow); letter-spacing: -.02em; line-height: 1.05;
+}
+.ra-stat-l { margin-top: var(--sp-md); font-size: .92rem; color: rgba(255,255,255,.82); line-height: 1.55; max-width: 300px; }
+
+/* ═══ SECTION SHELL ═════════════════════════════════════════════ */
+.ra-section {
+  padding: var(--sp-4xl) var(--gutter);
+  background: var(--white);
+}
+.ra-section--tinted { background: var(--off); }
+.ra-section-inner { max-width: var(--max-w); margin: 0 auto; }
+.ra-section-inner--narrow { max-width: 760px; }
+.ra-section-header { margin-bottom: var(--sp-2xl); }
+.ra-section-h {
+  font-family: var(--fh); font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800; color: var(--ink);
+  letter-spacing: -.03em; line-height: 1.15;
+}
+.ra-section-sub {
+  margin-top: var(--sp-md);
+  font-size: 1rem; color: var(--ink-light); line-height: 1.7;
+  max-width: 700px;
+}
+
+/* Body copy inside sections */
+.ra-lead {
+  font-size: 1.05rem; color: var(--text); line-height: 1.75;
+  margin-bottom: var(--sp-md);
+}
+.ra-p {
+  font-size: .98rem; color: var(--ink-light); line-height: 1.75;
+  margin-bottom: var(--sp-md);
+}
+.ra-p:last-child { margin-bottom: 0; }
+.ra-note {
+  font-size: .88rem; color: var(--muted); line-height: 1.7;
+  margin-top: var(--sp-md);
+}
+.ra-note a, .ra-check a, .ra-table a, .ra-p a, .ra-lead a {
+  color: var(--purple); text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ra-note a:hover, .ra-check a:hover, .ra-table a:hover,
+.ra-p a:hover, .ra-lead a:hover { color: var(--navy); }
+
+/* Inline code */
+.ra-section code,
+.ra-callout code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .88em;
+  background: var(--purple-pale);
+  color: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: 1px 6px;
+}
+
+/* ═══ PROBLEM CARDS ═════════════════════════════════════════════
+   The "pain" section. Muted (off) card faces with a yellow top
+   accent set them apart from the white solution cards further down. */
+.ra-prob-grid {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+}
+.ra-probcard {
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--yellow);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl);
+}
+.ra-section--tinted .ra-probcard { background: var(--white); }
+.ra-probcard-ico {
+  width: 44px; height: 44px; border-radius: var(--r-md);
+  background: var(--white); border: 1px solid var(--border);
+  color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--sp-md);
+}
+.ra-probcard-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ra-probcard-p { font-size: .95rem; color: var(--ink-light); line-height: 1.72; }
+
+/* ═══ THREE BEATS (from trigger to fix) ═════════════════════════
+   The centrepiece: the whole story in three moves. Horizontal on
+   desktop with arrow separators, stacked on narrow viewports.       */
+.ra-beats {
+  list-style: none;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+  align-items: stretch;
+}
+.ra-beat {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl);
+}
+.ra-beat-n {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: var(--r-sm);
+  background: var(--navy); color: var(--yellow);
+  font-family: var(--fh); font-size: .9rem; font-weight: 800;
+  margin-bottom: var(--sp-md);
+}
+.ra-beat-h {
+  font-family: var(--fh); font-size: 1.1rem; font-weight: 800;
+  color: var(--ink); letter-spacing: -.02em;
+  margin-bottom: var(--sp-sm);
+}
+.ra-beat-p { font-size: .95rem; color: var(--ink-light); line-height: 1.72; }
+/* Arrow between beats, desktop only. Decorative. */
+.ra-beat:not(:last-child)::after {
+  content: ""; position: absolute;
+  top: 50%; right: calc(var(--sp-lg) / -2 - 7px);
+  width: 14px; height: 14px; margin-top: -7px;
+  border-top: 2px solid var(--purple);
+  border-right: 2px solid var(--purple);
+  transform: rotate(45deg);
+}
+
+/* ═══ WORKED-EXAMPLE CALLOUT ════════════════════════════════════ */
+.ra-callout {
+  margin: var(--sp-2xl) 0 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--purple);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl);
+  box-shadow: 0 4px 24px rgba(27, 45, 74, .06);
+}
+.ra-callout-label {
+  display: block; font-family: var(--fh); font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+  margin-bottom: var(--sp-sm);
+}
+.ra-callout p { font-size: 1.02rem; color: var(--text); line-height: 1.75; margin: 0; }
+
+/* ═══ PROOF STRIP ═══════════════════════════════════════════════
+   Slim chip row directly under the builder. Depth demoted to trust
+   signals, not pitched as the headline.                             */
+.ra-proofstrip {
+  margin-top: var(--sp-2xl);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid var(--border);
+}
+.ra-proofstrip .ra-chips { justify-content: flex-start; }
+
+/* ═══ SPLIT: MEDIA + TEXT ═══════════════════════════════════════ */
+.ra-split {
+  display: grid;
+  grid-template-columns: 2fr 3fr;   /* text 40% | media 60% */
+  gap: var(--sp-3xl);
+  align-items: center;
+}
+.ra-split--reverse { grid-template-columns: 3fr 2fr; }   /* media 60% | text 40% */
+.ra-split--reverse .ra-split-media { order: 1; }
+.ra-split--reverse .ra-split-text  { order: 2; }
+.ra-split-media { margin: 0; min-width: 0; }
+.ra-split-text  { min-width: 0; }
+.ra-split-text .ra-section-h { margin-bottom: var(--sp-sm); }
+.ra-split-text .ra-section-sub { margin-top: 0; margin-bottom: var(--sp-lg); }
+
+/* ═══ FIGURE ════════════════════════════════════════════════════ */
+.ra-figure-img {
+  width: 100%; height: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 8px 40px rgba(27, 45, 74, .10);
+}
+.ra-figure-cap {
+  margin-top: var(--sp-md);
+  font-size: .82rem; color: var(--muted); line-height: 1.6;
+}
+/* ═══ CHECK LISTS ═══════════════════════════════════════════════ */
+.ra-check-list { list-style: none; display: grid; gap: var(--sp-md); }
+.ra-check {
+  position: relative; padding-left: 30px;
+  font-size: .98rem; color: var(--ink-light); line-height: 1.75;
+}
+.ra-check::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: 12px; height: 12px; border-radius: 3px;
+  background: var(--yellow);
+}
+.ra-check strong { color: var(--ink); font-weight: 700; }
+
+/* ═══ FEATURE GRID (triggers, where-it-runs) ════════════════════ */
+.ra-feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-lg); }
+.ra-feature {
+  display: grid; grid-template-columns: auto 1fr; gap: var(--sp-md); align-items: start;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: var(--sp-lg);
+}
+.ra-feature-ico {
+  width: 38px; height: 38px; border-radius: var(--r-md);
+  background: var(--purple-pale); color: var(--purple);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.ra-feature-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ra-feature-h { font-family: var(--fh); font-size: .98rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; margin-bottom: 4px; }
+.ra-feature-p { font-size: .9rem; color: var(--ink-light); line-height: 1.65; }
+.ra-feature-p a { color: var(--purple); text-decoration: underline; text-underline-offset: 3px; }
+.ra-feature-p a:hover { color: var(--navy); }
+
+/* ═══ CHIPS (approval channels, proof strip) ════════════════════ */
+.ra-chip-row { margin-top: var(--sp-xl); }
+.ra-chip-label { display: block; font-size: .88rem; color: var(--muted); margin-bottom: var(--sp-md); }
+.ra-chips { list-style: none; display: flex; flex-wrap: wrap; gap: var(--sp-sm); }
+.ra-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: .85rem; font-weight: 600; color: var(--mid);
+  background: var(--white); border: 1px solid var(--border-mid);
+  border-radius: var(--r-pill); padding: 7px 15px;
+}
+.ra-chip svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+.ra-chip-logo { width: 16px; height: 16px; object-fit: contain; flex-shrink: 0; }
+
+/* ═══ HIGHLIGHT PANEL (durable execution) ═══════════════════════ */
+.ra-panel {
+  background: var(--white); border: 1px solid var(--border);
+  border-left: 4px solid var(--purple); border-radius: var(--r-lg);
+  padding: var(--sp-xl); box-shadow: 0 4px 24px rgba(27, 45, 74, .06);
+}
+.ra-panel > p { margin-bottom: var(--sp-md); }
+.ra-panel > p:last-of-type { margin-bottom: 0; }
+.ra-badges { display: flex; flex-wrap: wrap; gap: var(--sp-sm); margin-top: var(--sp-lg); }
+.ra-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .8rem; font-weight: 600; color: var(--navy);
+  background: var(--purple-pale); border: 1px solid var(--border-mid);
+  border-radius: var(--r-pill); padding: 6px 13px;
+}
+
+/* ═══ INTEGRATION TAG LIST ══════════════════════════════════════ */
+.ra-int-list { list-style: none; display: flex; flex-wrap: wrap; gap: var(--sp-sm); }
+.ra-int-list a {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .9rem; font-weight: 600; color: var(--mid);
+  background: var(--white);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-pill);
+  padding: 7px 16px 7px 10px;
+  transition: color var(--dur-fast), border-color var(--dur-fast), transform .22s var(--ease-out-expo);
+}
+.ra-int-list a:hover { color: var(--ink); border-color: var(--yellow); transform: translateY(-2px); }
+.ra-int-logo { width: 18px; height: 18px; object-fit: contain; flex-shrink: 0; }
+.ra-int-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--sp-lg); margin-top: var(--sp-2xl);
+  padding-top: var(--sp-lg); border-top: 1px solid var(--border);
+}
+.ra-int-cta-text { font-size: .85rem; color: var(--muted); line-height: 1.6; max-width: 640px; margin: 0; }
+.ra-int-cta-btn { flex-shrink: 0; }
+
+/* ═══ CUSTOMER QUOTE ════════════════════════════════════════════
+   Small trust element above the case-study tile. Mirrors the
+   /ai-sre treatment exactly. Text attribution only, no logo.       */
+.ra-quote {
+  margin: 0 0 var(--sp-2xl);
+  padding-left: var(--sp-lg);
+  border-left: 3px solid var(--yellow);
+  max-width: 860px;
+}
+.ra-quote-bq {
+  margin: 0;
+  font-family: var(--fh);
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  font-weight: 600; color: var(--ink);
+  letter-spacing: -.015em; line-height: 1.5;
+}
+.ra-quote-cite { margin-top: var(--sp-lg); display: flex; align-items: center; gap: 12px; }
+.ra-quote-av {
+  width: 48px; height: 48px; flex-shrink: 0;
+  border-radius: 50%; object-fit: cover; background: var(--off);
+}
+.ra-quote-cite-inner { font-style: normal; display: flex; flex-direction: column; gap: 1px; align-items: flex-start; min-width: 0; }
+.ra-quote-name {
+  font-family: var(--fh); font-size: .95rem; font-weight: 800;
+  color: var(--ink); letter-spacing: -.01em; text-decoration: none;
+  display: inline-flex; align-items: center; min-height: 24px;
+}
+.ra-quote-name:hover { color: var(--purple); text-decoration: underline; text-underline-offset: 3px; }
+.ra-quote-role { font-size: .85rem; color: var(--muted); }
+/* Section break between the quote and the case-study tile. */
+.ra-divider {
+  border: 0; height: 1px;
+  background: var(--border-mid);
+  margin: 0 0 var(--sp-2xl);
+}
+
+/* ═══ USE-CASE TILE (case study) ════════════════════════════════ */
+.ra-usecase {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r-xl); overflow: hidden;
+  transition: transform .22s var(--ease-out-expo), box-shadow .22s, border-color var(--dur-fast);
+}
+.ra-usecase:hover { transform: translateY(-3px); box-shadow: 0 18px 48px rgba(27,45,74,.14); border-color: var(--border-mid); }
+.ra-usecase-media { position: relative; min-height: 280px; }
+.ra-usecase-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ra-usecase-body { padding: var(--sp-2xl); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+.ra-usecase-tag { font-family: var(--fh); font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--purple); margin-bottom: var(--sp-md); }
+.ra-usecase-h { font-family: var(--fh); font-size: clamp(1.3rem, 2.2vw, 1.7rem); font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1.22; margin-bottom: var(--sp-md); }
+.ra-usecase-p { font-size: .98rem; color: var(--ink-light); line-height: 1.7; margin-bottom: var(--sp-lg); }
+.ra-usecase-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--fh); font-weight: 800; font-size: .95rem; color: var(--navy); }
+.ra-usecase-link svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform .22s var(--ease-out-expo); }
+.ra-usecase:hover .ra-usecase-link { color: var(--purple); }
+.ra-usecase:hover .ra-usecase-link svg { transform: translateX(4px); }
+
+/* ═══ COMPARISON TABLE ══════════════════════════════════════════ */
+.ra-table-wrap {
+  overflow-x: auto;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.ra-table-wrap:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+.ra-table {
+  width: 100%; border-collapse: collapse;
+  font-size: .92rem; min-width: 620px;
+}
+.ra-table th, .ra-table td {
+  text-align: left; padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.ra-table thead th {
+  font-family: var(--fh); font-size: .82rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--navy); background: var(--off);
+  white-space: nowrap;
+}
+.ra-table tbody th { font-weight: 600; color: var(--ink); width: 40%; }
+.ra-table td { color: var(--ink-light); }
+.ra-table tbody tr:last-child th,
+.ra-table tbody tr:last-child td { border-bottom: none; }
+.ra-table tbody td:last-of-type { color: var(--ink); font-weight: 600; }
+
+/* ═══ FAQ ═══════════════════════════════════════════════════════
+   Reuses the shared #faq component. Answers here run 40 to 60 words,
+   so the shared max-height needs headroom on narrow viewports.       */
+.ra-faq .faq-a.open { max-height: 480px; }
+
+/* ═══ RELATED ASSISTANTS ════════════════════════════════════════
+   Shared .rel-* grid is three-up; this hub links all four.           */
+.ra-rel-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ═══ CLOSING CTA ═══════════════════════════════════════════════ */
+#cta .cta-free-note a { text-decoration: underline; text-underline-offset: 3px; display: inline-block; min-height: 24px; padding: 4px 2px; }
+/* Honeycomb overlay on the navy CTA card (sits behind .cta-inner). */
+.ra-cta-hc {
+  position: absolute; inset: 0; z-index: 0;
+  opacity: 0.07; pointer-events: none;
+  overflow: hidden; border-radius: inherit;
+}
+
+/* ═══ FOCUS VISIBILITY ══════════════════════════════════════════ */
+.ra-section a:focus-visible,
+.ra-hero a:focus-visible,
+.ra-answer-band a:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* ═══ RESPONSIVE ════════════════════════════════════════════════ */
+@media (max-width: 1080px) {
+  .ra-rel-grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 980px) {
+  .ra-prob-grid { grid-template-columns: 1fr; }
+  .ra-beats { grid-template-columns: 1fr; }
+  .ra-beat:not(:last-child)::after { display: none; }
+  /* Split stacks to one column, text first (heading leads). Cap the
+     media so a portrait screenshot does not tower over the copy.      */
+  .ra-split, .ra-split--reverse { grid-template-columns: 1fr; gap: var(--sp-xl); }
+  .ra-split--reverse .ra-split-media { order: 2; }
+  .ra-split--reverse .ra-split-text  { order: 1; }
+  .ra-split-media { max-width: 560px; margin: 0 auto; width: 100%; }
+}
+
+@media (max-width: 900px) {
+  .ra-rel-grid--4 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .ra-hero { padding: 64px var(--gutter-sm) var(--sp-xl); }
+  .ra-quote { padding-left: var(--sp-md); }
+  .ra-divider { margin-bottom: var(--sp-xl); }
+  .ra-answer-band { padding: 0 var(--gutter-sm) var(--sp-3xl); }
+  .ra-answer-inner { padding: var(--sp-lg); }
+  .ra-statband { padding: var(--sp-2xl) var(--gutter-sm); }
+  .ra-statband-grid { grid-template-columns: 1fr; }
+  .ra-stat-cell { border-left: none; border-top: 1px solid rgba(255,255,255,.14); padding: var(--sp-lg) 0; }
+  .ra-stat-cell:first-child { border-top: none; }
+  .ra-section { padding: var(--sp-3xl) var(--gutter-sm); }
+  .ra-section-header { margin-bottom: var(--sp-xl); }
+  .ra-feature-grid { grid-template-columns: 1fr; }
+  .ra-probcard, .ra-beat, .ra-feature, .ra-panel, .ra-callout { padding: var(--sp-lg); }
+  .ra-usecase { grid-template-columns: 1fr; }
+  .ra-usecase-media { min-height: 200px; height: 200px; }
+  .ra-usecase-body { padding: var(--sp-lg); }
+  .ra-hero-ctas { gap: var(--sp-sm); }
+  .ra-faq .faq-a.open { max-height: 640px; }
+}

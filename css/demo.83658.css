@@ -1,0 +1,226 @@
+/* ═══════════════════════════════════════════════════════════════
+   NUDGEBEE — Book a Demo Page Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══ DEMO HERO ════════════════════════════════════════════════ */
+.demo-hero {
+  padding: 140px var(--gutter) 48px;
+  background: var(--white);
+  text-align: center;
+}
+.demo-hero-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.demo-hero-h {
+  font-family: var(--fh);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.04em;
+  line-height: 1.08;
+  margin-bottom: 16px;
+}
+.demo-hero-h .acc { color: var(--purple); }
+
+/* ═══ DEMO CONTENT GRID ══════════════════════════════════════ */
+.demo-content {
+  padding: 0 var(--gutter) 100px;
+}
+.demo-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* ═══ LEFT: INFO PANEL ═══════════════════════════════════════ */
+.demo-info-h {
+  font-family: var(--fh);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -.03em;
+  margin-bottom: 12px;
+}
+.demo-info-desc {
+  font-size: .95rem;
+  color: #4B5563;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+/* Feature list */
+.demo-features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.demo-feature {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.demo-feature-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--purple-pale);
+  color: var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.demo-feature-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.demo-feature-title {
+  font-family: var(--fh);
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.demo-feature-text {
+  font-size: .85rem;
+  color: #4B5563;
+  line-height: 1.6;
+}
+
+/* Trust badges */
+.demo-trust {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.demo-trust-item {
+  font-size: .78rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+.demo-trust-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ═══ RIGHT: CALENDLY EMBED ══════════════════════════════════ */
+.demo-calendly-wrap {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(56,162,255,.04), 0 12px 36px rgba(56,162,255,.06);
+  min-height: 660px;
+}
+
+/* ═══ TESTIMONIALS (minimal) ═════════════════════════════════ */
+.demo-testimonials {
+  padding: 80px var(--gutter);
+  background: var(--off);
+}
+.demo-test-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.demo-test-head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.demo-test-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.demo-test-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+.demo-test-stars {
+  color: var(--yellow);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.demo-test-quote {
+  font-size: .92rem;
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.demo-test-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.demo-test-av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--purple-pale);
+  color: var(--purple);
+  font-weight: 700;
+  font-size: .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.demo-test-name {
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.demo-test-role {
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+/* ═══ RESPONSIVE ════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .demo-calendly-wrap {
+    order: 1;
+  }
+  .demo-info {
+    order: 2;
+  }
+  .demo-test-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .demo-hero {
+    padding: 120px var(--gutter-sm) 36px;
+  }
+  .demo-content {
+    padding: 0 var(--gutter-sm) 72px;
+  }
+  .demo-testimonials {
+    padding: 64px var(--gutter-sm);
+  }
+  .demo-calendly-wrap {
+    min-height: 580px;
+  }
+}
+@media (max-width: 540px) {
+  .demo-trust {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

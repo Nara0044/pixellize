@@ -1,0 +1,567 @@
+/* ═══════════════════════════════════════════════════════════════
+   NUDGEBEE — Case Study Page Styles
+   Used by: /case-studies/<slug>/index.html
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Hero ── */
+.cs-hero {
+  padding: var(--sp-5xl) 0 var(--sp-3xl);
+  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(56,162,255,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(250,200,53,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: var(--sp-xl);
+  transition: color var(--dur-fast);
+}
+.cs-back:hover { color: rgba(255,255,255,0.9); }
+.cs-back svg {
+  width: 16px; height: 16px;
+  stroke: currentColor;
+}
+
+/* ── Breadcrumb Navigation ── */
+.cs-breadcrumb {
+  margin-bottom: var(--sp-xl);
+}
+.cs-breadcrumb-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.cs-breadcrumb-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.cs-breadcrumb-item:not(:last-child)::after {
+  content: '/';
+  margin-left: 6px;
+  color: rgba(255,255,255,0.4);
+}
+.cs-breadcrumb-link {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color var(--dur-fast);
+}
+.cs-breadcrumb-link:hover {
+  color: rgba(255,255,255,0.9);
+}
+
+.cs-hero-inner {
+  max-width: 760px;
+  position: relative;
+}
+
+.cs-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--sp-lg);
+}
+
+.cs-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--yellow);
+  padding: 4px 12px;
+  border-radius: var(--r-pill);
+}
+
+.cs-tag-sm {
+  font-size: 0.68rem;
+  padding: 3px 10px;
+}
+
+.cs-hero-title {
+  font-family: var(--fh);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin-bottom: var(--sp-lg);
+}
+
+.cs-hero-subtitle {
+  display: block;
+  color: var(--yellow);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.cs-hero-lead {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+/* ── Stats bar ── */
+.cs-stats {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-2xl) 0;
+}
+
+.cs-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-xl);
+  text-align: center;
+}
+
+.cs-stat {
+  padding: var(--sp-lg);
+  border-right: 1px solid var(--border);
+}
+.cs-stat:last-child { border-right: none; }
+
+.cs-stat-num {
+  font-family: var(--fh);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.cs-stat-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ── Body layout ── */
+.cs-body {
+  padding: var(--sp-5xl) 0;
+  background: var(--off);
+}
+
+.cs-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--sp-3xl);
+  align-items: start;
+}
+
+/* ── Sidebar ── */
+.cs-sidebar {
+  position: sticky;
+  top: 90px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.cs-sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-lg);
+}
+
+.cs-sidebar-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.cs-sidebar-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.cs-sidebar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+.cs-sidebar-list li {
+  font-size: 0.9rem;
+  color: var(--mid);
+  padding-left: 14px;
+  position: relative;
+}
+.cs-sidebar-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--purple);
+}
+
+.cs-sidebar-cta {
+  background: var(--navy);
+  border-color: var(--navy);
+}
+.cs-sidebar-cta p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: var(--sp-md);
+  line-height: 1.5;
+}
+
+/* ── Article ── */
+.cs-article {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3xl);
+}
+
+.cs-section {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--sp-2xl) var(--sp-2xl) var(--sp-2xl) var(--sp-xl);
+  display: grid;
+  grid-template-columns: 4px 1fr;
+  gap: var(--sp-xl);
+}
+
+.cs-section-marker {
+  border-radius: var(--r-pill);
+  width: 4px;
+  min-height: 100%;
+  flex-shrink: 0;
+}
+.cs-marker-red   { background: #f87171; }
+.cs-marker-blue  { background: var(--purple); }
+.cs-marker-green { background: #4ade80; }
+
+.cs-section-content {
+  min-width: 0;
+}
+
+.cs-section-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--purple);
+  margin-bottom: 10px;
+}
+
+.cs-section-h {
+  font-family: var(--fh);
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: var(--sp-lg);
+}
+
+.cs-section-content p {
+  font-size: 1rem;
+  color: var(--mid);
+  line-height: 1.75;
+  margin-bottom: var(--sp-md);
+}
+.cs-section-content p:last-child { margin-bottom: 0; }
+
+.cs-quote {
+  margin: var(--sp-xl) 0;
+  padding: var(--sp-lg) var(--sp-xl);
+  border-left: 3px solid var(--yellow);
+  background: var(--off);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--navy);
+  line-height: 1.65;
+}
+
+/* ── Feature list ── */
+.cs-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+  margin-top: var(--sp-xl);
+}
+
+.cs-feature-item {
+  display: flex;
+  gap: var(--sp-lg);
+  align-items: flex-start;
+}
+
+.cs-feature-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-md);
+  background: var(--purple-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cs-feature-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--purple);
+}
+
+.cs-feature-item strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.cs-feature-item p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 0 !important;
+}
+
+/* ── Results grid ── */
+.cs-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+  margin: var(--sp-xl) 0;
+}
+
+.cs-result-card {
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-lg);
+  text-align: center;
+}
+
+.cs-result-num {
+  font-family: var(--fh);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.cs-result-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── More case studies ── */
+.cs-more {
+  padding: var(--sp-5xl) 0;
+  background: var(--white);
+}
+
+.cs-more-h {
+  font-family: var(--fh);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  margin-bottom: var(--sp-2xl);
+  text-align: center;
+}
+
+.cs-more-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+}
+
+.cs-more-card {
+  display: block;
+  background: var(--off);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--sp-xl);
+  transition: border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast);
+}
+.cs-more-card:hover {
+  border-color: var(--purple);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(56,162,255,0.12);
+}
+
+.cs-more-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-md);
+}
+
+.cs-more-card h3 {
+  font-family: var(--fh);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.cs-more-card p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: var(--sp-lg);
+}
+
+.cs-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--purple);
+}
+.cs-more-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* ── CTA section ── */
+.cs-cta {
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+  padding: var(--sp-5xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+.cs-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(250,200,53,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cs-cta-inner {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.cs-cta-h {
+  font-family: var(--fh);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--sp-md);
+  line-height: 1.15;
+}
+
+.cs-cta-lead {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  margin-bottom: var(--sp-2xl);
+}
+
+.cs-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-lg);
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .cs-layout {
+    grid-template-columns: 240px 1fr;
+    gap: var(--sp-2xl);
+  }
+  .cs-results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cs-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-md);
+  }
+  .cs-sidebar-cta {
+    grid-column: 1 / -1;
+  }
+
+  .cs-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cs-stat {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-stat:nth-child(3),
+  .cs-stat:nth-child(4) { border-bottom: none; }
+
+  .cs-more-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-section {
+    grid-template-columns: 4px 1fr;
+    padding: var(--sp-lg) var(--sp-lg) var(--sp-lg) var(--sp-md);
+    gap: var(--sp-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .cs-sidebar {
+    grid-template-columns: 1fr;
+  }
+  .cs-hero {
+    padding: var(--sp-4xl) 0 var(--sp-2xl);
+  }
+}

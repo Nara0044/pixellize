@@ -1,0 +1,299 @@
+/* ═══════════════════════════════════════════════════════════════
+   NUDGEBEE — Personalized Briefing (/briefing)
+   Page-specific styles. Relies on tokens from design-system.css.
+   All classes are namespaced .brf-* to avoid clashing with styles.css.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Embed mode (iframed into the homepage popup) ──────────── */
+/* Hide the site chrome so only the form shows inside the popup. */
+.nb-embed #navbar,
+.nb-embed #footer,
+.nb-embed .brf-hero { display: none !important; }
+.nb-embed .brf-form-section { padding: 24px 0 40px; }
+.nb-embed body { background: var(--white); }
+/* Tighter card rhythm inside the popup, where vertical space is scarce. */
+.nb-embed .brf-block { padding: 22px; margin-bottom: 16px; }
+.nb-embed .brf-block-head { margin-bottom: 18px; }
+
+/* ── Hero ──────────────────────────────────────────────────── */
+/* Quieter than the site-wide hero scale: the form is the star here,
+   so the heading, kicker and lead are all shrunk proportionally. */
+.brf-hero {
+  /* #nav is fixed at 72px with no body offset — the top padding has to clear
+     it, plus breathing room, or the heading butts against the nav border. */
+  padding: 128px 0 18px;
+  text-align: center;
+  background:
+    radial-gradient(60% 90% at 50% -10%, rgba(56, 162, 255, .10), transparent 70%),
+    var(--white);
+}
+.brf-hero .section-kicker { font-size: .64rem; margin-bottom: 14px; }
+/* Sized to hold the full headline on one line across the .wrap (1104px of
+   content at --max-w); it only falls to two lines on narrow screens. */
+.brf-hero-h {
+  font-family: var(--fh);
+  font-size: clamp(1.3rem, 2.95vw, 2.05rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.12;
+  color: var(--ink);
+  max-width: none;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+.brf-hero-h .acc { color: var(--purple); }
+.brf-hero .section-lead { font-size: .95rem; max-width: 620px; margin: 12px auto 0; }
+
+/* ── Form shell ────────────────────────────────────────────── */
+.brf-form-section { padding: 22px 0 120px; }
+.brf-form-wrap { max-width: 1040px; }
+
+.brf-block {
+  background: var(--white);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--r-lg);
+  padding: 26px 44px 36px;
+  margin-bottom: 30px;
+  box-shadow:
+    0 20px 44px rgba(27, 45, 74, .10),
+    0 6px 16px rgba(27, 45, 74, .06),
+    0 1px 0 rgba(255, 255, 255, .6) inset;
+}
+.brf-block-head { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+.brf-step {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--r-pill);
+  background: var(--navy); color: var(--yellow);
+  font-family: var(--fh); font-weight: 800; font-size: 18px;
+}
+.brf-block-h { font-family: var(--fh); font-size: 1.15rem; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+.brf-block-sub { font-size: .84rem; color: var(--muted); margin-top: 0px; }
+.brf-block-sub .brf-optional { color: var(--yellow-deep); font-weight: 600; }
+
+/* ── Question groups (vertical rows of chips) ──────────────── */
+/* One question per row, stacked vertically. The label sits in a fixed-width
+   column on the left so every question aligns; the chips flow on the right.
+   Thin dividers keep the rows distinct without adding visual clutter. */
+[data-groups] { display: flex; flex-direction: column; }
+.brf-q {
+  display: flex; align-items: flex-start; gap: 28px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+}
+.brf-q:first-child { padding-top: 0; border-top: none; }
+.brf-q:last-child { padding-bottom: 0; }
+
+/* Fixed-width label column — identical width across every question. */
+.brf-q-label {
+  flex: 0 0 210px; width: 210px; min-width: 0;
+  display: flex; flex-direction: column; gap: 3px;
+  padding-top: 7px;
+}
+.brf-q-title { font-size: .92rem; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.brf-req { color: var(--purple); font-weight: 700; }
+.brf-q-help { font-size: .76rem; color: var(--muted); }
+.brf-max-hint {
+  font-size: .76rem; font-weight: 600; color: var(--yellow-deep); margin-top: 2px;
+  opacity: 0; transform: translateY(-2px); transition: opacity .2s, transform .2s;
+}
+.brf-max-hint.show { opacity: 1; transform: none; }
+
+/* Chip field */
+.brf-q-field { flex: 1 1 auto; min-width: 0; }
+.brf-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.brf-chips.shake { animation: brf-shake .38s var(--ease-out-expo); }
+
+.brf-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--fb); font-size: .72rem; font-weight: 500; line-height: 1;
+  color: var(--mid);
+  background: var(--white);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--r-pill);
+  padding: 6px 10px 6px 8px;
+  cursor: pointer;
+  transition: color var(--dur-fast), border-color var(--dur-fast),
+              background var(--dur-fast), box-shadow var(--dur-fast), transform var(--dur-fast);
+}
+.brf-chip:hover {
+  color: var(--ink); border-color: var(--purple-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(56, 162, 255, .14);
+}
+.brf-chip:focus-visible { outline: none; border-color: var(--purple); box-shadow: 0 0 0 3px rgba(56, 162, 255, .18); }
+/* Icon carries the brand blue so it reads as an accent, not just grey type;
+   it flips to yellow once the chip is selected (navy fill). */
+.brf-chip-ic { flex-shrink: 0; width: 12px; height: 12px; color: var(--purple); transition: color var(--dur-fast); }
+.brf-chip-ic svg { width: 100%; height: 100%; display: block; }
+
+/* Selected chip — filled navy with a yellow icon accent. */
+.brf-chip[aria-pressed="true"] {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+  box-shadow: 0 4px 12px rgba(27, 45, 74, .24);
+}
+.brf-chip[aria-pressed="true"]:hover { background: #22375c; transform: translateY(-1px); }
+.brf-chip[aria-pressed="true"] .brf-chip-ic { color: var(--yellow); }
+
+/* Error state on a group */
+.brf-q.has-error .brf-chips { border-radius: var(--r-md); }
+.brf-q.has-error .brf-chip:not([aria-pressed="true"]) { border-color: rgba(239, 68, 68, .5); }
+.brf-q-error { font-size: .8rem; color: #dc2626; margin-top: 10px; font-weight: 500; }
+
+/* ── Labelled chip bands ───────────────────────────────────── */
+/* Two uses, same shape: one question split into labelled bands sharing a
+   single selection (Observability), and a row-group's independent
+   single-select lines ("How big is the thing you're running?"). */
+.brf-band,
+.brf-subrow { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+.brf-band:last-child,
+.brf-subrow:last-child { margin-bottom: 0; }
+.brf-band-l,
+.brf-subrow-l {
+  flex: 0 0 96px; width: 96px; padding-top: 7px;
+  font-size: .67rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--muted);
+}
+.brf-band .brf-chips,
+.brf-subrow .brf-chips { flex: 1 1 auto; min-width: 0; }
+
+/* ── Free text (section 3) ─────────────────────────────────── */
+.brf-textarea {
+  width: 100%; resize: vertical; min-height: 88px;
+  font-family: var(--fb); font-size: .85rem; line-height: 1.55; color: var(--ink);
+  background: var(--white);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.brf-textarea::placeholder { color: #9AA8B8; }
+.brf-textarea:focus {
+  outline: none; border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(56, 162, 255, .14);
+}
+
+/* ── Contact fields ────────────────────────────────────────── */
+.brf-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 32px; }
+.brf-field { margin-bottom: 16px; }
+.brf-field:last-child { margin-bottom: 0; }
+.brf-label { display: block; font-size: .85rem; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+.brf-label .brf-req { margin-left: 2px; }
+.brf-input {
+  width: 100%;
+  font-family: var(--fb); font-size: .9rem; color: var(--ink);
+  background: var(--white);
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.brf-input::placeholder { color: #9AA8B8; }
+.brf-input:focus { outline: none; border-color: var(--purple); box-shadow: 0 0 0 3px rgba(56, 162, 255, .14); }
+.brf-field.has-error .brf-input { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, .12); }
+
+/* ── Actions ───────────────────────────────────────────────── */
+.brf-actions { text-align: center; margin-top: 20px; }
+.brf-submit { font-size: 1rem; }
+.brf-submit.is-loading { opacity: .7; pointer-events: none; }
+.brf-note { font-size: .82rem; color: var(--muted); margin-top: 14px; }
+.brf-note a { color: var(--purple); font-weight: 600; }
+
+/* ── Brief modal (popup) ───────────────────────────────────── */
+.brf-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.brf-modal[hidden] { display: none; }
+/* The `hidden` attribute must win over the modal parts' own display rules
+   (author `display:flex/block` otherwise beats the UA `[hidden]` rule). */
+.brf-modal [hidden] { display: none !important; }
+.brf-modal-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(13, 27, 46, .62);
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  animation: brf-fade .2s var(--ease-out-expo);
+}
+.brf-modal-card {
+  position: relative;
+  width: min(940px, 100%); height: min(88vh, 100%);
+  background: var(--white);
+  border-radius: var(--r-lg); overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 24px 80px rgba(13, 27, 46, .42);
+  animation: brf-pop .28s var(--ease-out-expo);
+}
+.brf-modal-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 12px 12px 20px;
+  border-bottom: 1px solid var(--border-mid); background: var(--off);
+}
+.brf-modal-title { font-family: var(--fh); font-weight: 800; color: var(--ink); font-size: 1rem; }
+.brf-modal-actions { display: flex; align-items: center; gap: 8px; }
+.brf-modal-open {
+  font-size: .82rem; font-weight: 700; text-decoration: none;
+  padding: 8px 14px; border-radius: var(--r-sm);
+}
+.brf-modal-open { color: var(--navy); border: 1.5px solid var(--border-mid); background: #fff; }
+.brf-modal-open:hover { border-color: var(--yellow); }
+.brf-modal-close {
+  font-size: 1.5rem; line-height: 1; color: var(--muted);
+  background: transparent; border: none;
+  width: 36px; height: 36px; border-radius: 50%;
+}
+.brf-modal-close:hover { background: rgba(0, 0, 0, .06); color: var(--ink); }
+.brf-modal-body { position: relative; flex: 1; overflow: hidden; }
+.brf-modal-frame { width: 100%; height: 100%; border: 0; display: block; }
+.brf-modal-preview {
+  margin: 0; height: 100%; overflow: auto; padding: 18px;
+  background: var(--navy-deep); color: #cfe3ff;
+  font: .8rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre;
+}
+.brf-modal-loading {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  color: var(--muted); background: var(--white);
+}
+.brf-spinner {
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 3px solid var(--border-mid); border-top-color: var(--blue);
+  animation: brf-spin .8s linear infinite;
+}
+.brf-modal-error { padding: 32px; text-align: center; color: #dc2626; font-weight: 500; }
+@keyframes brf-spin { to { transform: rotate(360deg); } }
+@keyframes brf-fade { from { opacity: 0; } }
+@keyframes brf-pop { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+
+@keyframes brf-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+/* Narrower label column on mid widths so chips keep room to breathe. */
+@media (max-width: 860px) {
+  .brf-q-label { flex-basis: 168px; width: 168px; }
+}
+/* Stack the label above its chips on small screens. */
+@media (max-width: 640px) {
+  .brf-hero { padding: 104px 0 16px; }
+  .brf-block { padding: 24px 20px; }
+  .brf-q { flex-direction: column; gap: 12px; padding: 20px 0; }
+  .brf-q-label { flex-basis: auto; width: auto; padding-top: 0; }
+  .brf-band, .brf-subrow { flex-direction: column; gap: 7px; }
+  .brf-band-l, .brf-subrow-l { flex-basis: auto; width: auto; padding-top: 0; }
+  /* Bump the chips back up on touch — the desktop size is too small to tap. */
+  .brf-chip { font-size: .78rem; padding: 9px 13px 9px 11px; gap: 6px; }
+  .brf-chip-ic { width: 14px; height: 14px; }
+  .brf-field-row { grid-template-columns: 1fr; gap: 0; }
+  .brf-modal { padding: 0; }
+  .brf-modal-card { width: 100%; height: 100%; border-radius: 0; }
+}

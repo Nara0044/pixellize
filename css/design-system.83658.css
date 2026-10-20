@@ -1,0 +1,272 @@
+/* ═══════════════════════════════════════════════════════════════
+   NUDGEBEE DESIGN SYSTEM
+   Version: 1.0
+   Source of truth for all design tokens, typography, and reusable
+   component styles across the Nudgebee website.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══ DESIGN TOKENS (CSS Custom Properties) ════════════════════ */
+:root {
+  /* ── Brand Colors ── */
+  --purple:      #38A2FF;
+  --purple-mid:  #5CB4FF;
+  --purple-pale: #EDF5FF;
+  --blue:        #38A2FF;
+  --yellow:      #FAC835;
+  --yellow-deep: #C89E00;
+
+  /* ── Neutral / Dark ── */
+  --navy:        #1B2D4A;
+  --navy-deep:   #0D1B2E;
+  --ink:         #111827;
+  --ink-light:   #4B5563;
+  --white:       #FFFFFF;
+  --off:         #F7F9FC;
+
+  /* ── Borders ── */
+  --border:      rgba(56,162,255,0.1);
+  --border-mid:  rgba(56,162,255,0.18);
+
+  /* ── Text ── */
+  --text:        #0F1B2D;
+  --mid:         #2A3F56;
+  --muted:       #4A6178;
+
+  /* ── Typography ── */
+  --fh: 'Bricolage Grotesque', sans-serif;   /* Headings */
+  --fb: 'Instrument Sans', system-ui, sans-serif; /* Body */
+
+  /* ── Spacing Scale (rem) ── */
+  --sp-xs:  4px;
+  --sp-sm:  8px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 64px;
+  --sp-4xl: 80px;
+  --sp-5xl: 100px;
+  --sp-6xl: 120px;
+
+  /* ── Layout ── */
+  --max-w:     1200px;
+  --max-w-lg:  1280px;
+  --gutter:    48px;
+  --gutter-sm: 20px;
+
+  /* ── Border Radius ── */
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   18px;
+  --r-xl:   22px;
+  --r-pill: 100px;
+
+  /* ── Transitions ── */
+  --ease-out-expo: cubic-bezier(0.22, 0.68, 0.35, 1);
+  --dur-fast:  0.32s;
+  --dur-med:   0.45s;
+  --dur-slow:  0.75s;
+}
+
+/* ═══ RESET ════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+
+body {
+  font-family: var(--fb);
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: clip;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+.sr-only { position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap; }
+
+/* ═══ LAYOUT UTILITIES ═════════════════════════════════════════ */
+.wrap { max-width: var(--max-w); width: 100%; margin: 0 auto; padding: 0 var(--gutter); box-sizing: border-box; }
+
+/* ═══ TYPOGRAPHY ═══════════════════════════════════════════════ */
+
+/* Section kicker — small uppercase label above section headings */
+.section-kicker {
+  display: block; font-family: var(--fh); font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--purple); margin-bottom: 18px;
+}
+
+/* Section heading */
+.section-h {
+  font-family: var(--fh); font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 800; color: var(--ink); letter-spacing: -.035em;
+  line-height: 1.1;
+}
+.section-h .acc { color: var(--purple); }
+
+/* Section lead paragraph */
+.section-lead { font-size: 1.1rem; color: #4B5563; line-height: 1.7; max-width: 600px; margin: 18px auto 0; }
+
+/* ═══ SCROLL REVEAL (CSS-only) ═════════════════════════════════ */
+/* Hidden state is gated on html.js so content stays visible without JS
+   (progressive enhancement); the inline head script adds .js before paint. */
+.reveal {
+  transition: opacity var(--dur-slow) var(--ease-out-expo),
+              transform var(--dur-slow) var(--ease-out-expo);
+}
+.js .reveal { opacity: 0; transform: translateY(28px); }
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+.reveal.d4 { transition-delay: 0.32s; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-left {
+  transition: opacity var(--dur-slow) var(--ease-out-expo), transform var(--dur-slow) var(--ease-out-expo);
+}
+.js .reveal-left { opacity: 0; transform: translateX(-24px); }
+.reveal-left.visible { opacity: 1; transform: none; }
+
+/* ═══ BUTTONS ══════════════════════════════════════════════════ */
+
+/* Primary button (navy background, yellow arrow) */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0;
+  background: var(--navy); color: #fff;
+  font-family: var(--fb); font-size: .95rem; font-weight: 700;
+  padding: 6px 6px 6px 22px; border-radius: var(--r-md); border: none;
+  box-shadow: 0 2px 12px rgba(27,45,74,.28), inset 0 1px 0 rgba(255,255,255,.06);
+  transition: transform .22s var(--ease-out-expo), box-shadow .22s;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 22px rgba(27,45,74,.38); }
+.btn-arr {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: var(--yellow); color: var(--navy);
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-left: 14px;
+  flex-shrink: 0;
+  transition: background var(--dur-fast);
+}
+.btn-arr svg {
+  width: 22px; height: 22px;
+  stroke: var(--navy); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+  fill: none;
+}
+.btn-primary:hover .btn-arr { background: #ffe066; }
+
+/* Outline button */
+.btn-outline {
+  display: inline-flex; align-items: center;
+  font-size: .95rem; font-weight: 600; color: var(--mid);
+  border: 1.5px solid #D1D5DB; padding: 12px 22px;
+  border-radius: var(--r-md); background: transparent;
+  transition: all var(--dur-fast);
+}
+.btn-outline:hover { color: var(--ink); border-color: var(--yellow); background: transparent; }
+
+/* Ghost button (small, used in nav) */
+.btn-ghost-sm {
+  display: inline-flex; align-items: center;
+  font-family: var(--fb); font-size: 0.88rem; font-weight: 600; color: var(--mid);
+  padding: 7px 18px; border-radius: var(--r-sm);
+  border: 1.5px solid #D1D5DB;
+  background: transparent;
+  transition: color var(--dur-fast), border-color var(--dur-fast), background var(--dur-fast);
+}
+.btn-ghost-sm:hover {
+  color: var(--ink);
+  border-color: var(--yellow);
+  background: transparent;
+}
+/* GitHub Repo link in the nav (replaces the old Login button) */
+.nav-github { gap: 7px; color: var(--ink); }
+.nav-github svg { width: 16px; height: 16px; display: block; flex-shrink: 0; }
+
+/* Nav CTA button — matches btn-primary design system */
+.btn-nav {
+  display: inline-flex; align-items: center; gap: 0;
+  background: var(--navy); color: #fff;
+  font-family: var(--fb); font-size: .88rem; font-weight: 700;
+  padding: 4px 4px 4px 16px; border-radius: var(--r-md); border: none;
+  box-shadow: 0 2px 12px rgba(27,45,74,.28), inset 0 1px 0 rgba(255,255,255,.06);
+  transition: transform .22s var(--ease-out-expo), box-shadow .22s;
+}
+.btn-nav:hover { transform: translateY(-3px); box-shadow: 0 6px 22px rgba(27,45,74,.38); }
+.nav-arr {
+  width: 28px; height: 28px; border-radius: 7px;
+  background: var(--yellow); color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  margin-left: 10px; flex-shrink: 0;
+  transition: background var(--dur-fast);
+}
+.nav-arr svg {
+  width: 17px; height: 17px;
+  stroke: var(--navy); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+  fill: none;
+}
+.btn-nav:hover .nav-arr { background: #ffe066; }
+
+/* Yellow CTA button */
+.btn-yellow {
+  display: inline-flex; align-items: center; gap: 0;
+  background: var(--yellow); color: var(--navy);
+  font-family: var(--fb); font-size: .95rem; font-weight: 800;
+  padding: 6px 6px 6px 22px; border-radius: var(--r-md); border: none;
+  box-shadow:
+    0 2px 8px rgba(250,200,53,.35),
+    0 8px 24px rgba(250,200,53,.22);
+  transition: transform .22s var(--ease-out-expo), box-shadow .22s;
+}
+.btn-yellow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(250,200,53,.5), 0 20px 44px rgba(250,200,53,.28);
+}
+.btn-y-arr {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: var(--navy); color: var(--yellow);
+  display: flex; align-items: center; justify-content: center;
+  margin-left: 14px; flex-shrink: 0;
+  transition: background var(--dur-fast);
+}
+.btn-y-arr svg {
+  width: 22px; height: 22px;
+  stroke: var(--yellow); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+  fill: none;
+}
+.btn-yellow:hover .btn-y-arr { background: #1a2640; }
+
+/* Inverse button (on dark backgrounds) */
+.btn-inv {
+  display: inline-flex; align-items: center; gap: 7px;
+  color: white; font-size: .875rem; font-weight: 600;
+  border: 1.5px solid rgba(255,255,255,.22);
+  padding: 10px 20px; border-radius: 10px;
+  background: transparent; transition: all .2s;
+  position: relative;
+}
+.btn-inv:hover { border-color: rgba(255,255,255,.55); background: rgba(255,255,255,.06); }
+
+.btn-inv-sm {
+  display: inline-flex; align-items: center;
+  color: rgba(255,255,255,.78); font-family: var(--fb); font-size: .95rem; font-weight: 600;
+  border: 1.5px solid rgba(255,255,255,.2); padding: 13px 24px; border-radius: var(--r-md);
+  background: transparent; transition: all .2s;
+}
+.btn-inv-sm:hover { border-color: rgba(255,255,255,.5); color: white; }
+
+/* ═══ ANIMATIONS ═══════════════════════════════════════════════ */
+@keyframes pulseAnim {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,.5); }
+  70%  { box-shadow: 0 0 0 9px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+@keyframes drawLine { to { transform: scaleX(1); } }
+
+/* ═══ REDUCED MOTION ════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
