@@ -1,0 +1,1715 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  'ad_storage':'denied',
+  'ad_user_data':'denied',
+  'ad_personalization':'denied',
+  'analytics_storage':'denied',
+  'wait_for_update':500
+});
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ9TMSSH');</script>
+<script id="x-c-script" src="https://nudgebee.com/ceana-tracking/script?public_key=8fe4b36b-33c4-481f-b5df-b588675d0804e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" attr-pk="8fe4b36b-33c4-481f-b5df-b588675d0804e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" async=""></script>
+  <meta charset="UTF-8">
+  <script>document.documentElement.classList.add('js')</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NudgeBee - Automation Builder Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="../../css2-2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: #0d1b2e;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    .stage {
+      width: 1280px; height: 740px;
+      position: relative; overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+      background: #f3f4f6;
+      flex-shrink: 0;
+    }
+
+    /* ════════════════════════
+       TITLE CARD
+    ════════════════════════ */
+    #titleCard {
+      position: absolute;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(180,160,255,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 80%, rgba(255,220,80,0.22) 0%, transparent 50%),
+        linear-gradient(135deg, #5a4fa0 0%, #7b4b8c 25%, #c84b3c 60%, #e07a30 80%, #d4a835 100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease;
+    }
+    #titleCard::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    #titleCard.tc-show {
+      opacity: 1;
+      pointer-events: none;
+    }
+    .tc-logo {
+      position: absolute;
+      top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1;
+    }
+    .tc-headline {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 3.6rem;
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      z-index: 1;
+      max-width: 900px;
+      padding: 0 60px;
+    }
+
+    /* Layer system */
+    .layer {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      opacity: 0; pointer-events: none;
+    }
+    .layer.show { opacity: 1; }
+
+
+    /* ════════════════════════
+       SCREEN 1 - Automation List
+    ════════════════════════ */
+    #s1 { background: #fff; }
+
+    .chrome-bar {
+      height: 52px; background: #fff; border-bottom: 1px solid #e5e7eb;
+      display: flex; align-items: center; padding: 0 28px; gap: 14px; flex-shrink: 0;
+    }
+    .chrome-icon {
+      width: 34px; height: 34px; background: #1e293b; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .chrome-icon svg { width: 18px; height: 18px; display: block; }
+    .chrome-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1rem; font-weight: 700; color: #111827; }
+    .chrome-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .env-badge {
+      display: flex; align-items: center; gap: 6px;
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 5px 12px; font-size: .78rem; font-weight: 600; color: #374151;
+    }
+    .dot-g { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+    .btn-outline-sm {
+      font-size: .78rem; font-weight: 600; color: #38A2FF;
+      border: 1px solid #38A2FF; border-radius: 7px; padding: 5px 12px; background: transparent;
+    }
+
+    .tab-strip {
+      height: 44px; background: #fff; border-bottom: 1px solid #e5e7eb;
+      display: flex; align-items: flex-end; padding: 0 28px; flex-shrink: 0;
+    }
+    .t-tab { padding: 0 16px 10px; font-size: .84rem; font-weight: 600; color: #9ca3af; border-bottom: 2px solid transparent; white-space: nowrap; }
+    .t-tab.on { color: #111827; border-bottom-color: #111827; }
+
+    .action-bar {
+      height: 54px; background: #fff; border-bottom: 1px solid #f0f0f0;
+      display: flex; align-items: center; padding: 0 28px; gap: 10px; flex-shrink: 0;
+    }
+    .s-box {
+      display: flex; align-items: center; gap: 7px;
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 6px 14px; font-size: .78rem; color: #9ca3af; width: 195px; flex-shrink: 0;
+    }
+    .chip {
+      display: flex; align-items: center; gap: 5px;
+      border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 5px 11px; font-size: .76rem; font-weight: 500; color: #374151;
+      background: #fff; white-space: nowrap; flex-shrink: 0;
+    }
+    .chip strong { font-weight: 700; }
+    .chip-x { color: #9ca3af; font-size: .68rem; margin-left: 2px; }
+    .ab-right { margin-left: auto; display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+    .btn-cfg {
+      display: flex; align-items: center; gap: 6px; background: #fff;
+      border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 6px 14px; font-size: .8rem; font-weight: 600; color: #374151;
+    }
+    .btn-new {
+      display: flex; align-items: center; gap: 6px; background: #2563eb; color: #fff;
+      border: none; border-radius: 9px; padding: 8px 18px;
+      font-size: .82rem; font-weight: 700; white-space: nowrap;
+      transition: background .18s, box-shadow .18s, transform .12s;
+    }
+    .btn-new.hov { background: #1d4ed8; box-shadow: 0 4px 16px rgba(37,99,235,.45); transform: scale(1.02); }
+
+    .tbl-head {
+      height: 40px; background: #f9fafb; border-bottom: 1px solid #e5e7eb;
+      display: flex; align-items: center; padding: 0 28px; flex-shrink: 0;
+    }
+    .th { font-size: .72rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: .05em; }
+    .th-n { flex: 1; } .th-e { width: 190px; } .th-tr { width: 150px; } .th-tg { width: 120px; } .th-st { width: 90px; text-align: right; }
+
+    .tbl-body { flex: 1; display: flex; align-items: center; justify-content: center; background: #fff; }
+    .tbl-foot {
+      height: 44px; background: #fff; border-top: 1px solid #e5e7eb;
+      display: flex; align-items: center; padding: 0 28px; flex-shrink: 0;
+    }
+    .foot-l { font-size: .78rem; color: #9ca3af; }
+    .foot-r { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .pg-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #e5e7eb; background: #fff; display: flex; align-items: center; justify-content: center; font-size: .72rem; color: #6b7280; }
+    .rows-lbl { font-size: .78rem; color: #374151; display: flex; align-items: center; gap: 5px; }
+
+    /* ════════════════════════
+       MODAL OVERLAYS
+    ════════════════════════ */
+    .overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,.42);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 600;
+    }
+    .overlay.show { opacity: 1; }
+
+    .modal-box {
+      background: #fff; border-radius: 20px; padding: 34px 38px 38px;
+      width: 680px; box-shadow: 0 28px 72px rgba(0,0,0,.2);
+      transform: scale(.93) translateY(14px);
+      transition: transform .35s cubic-bezier(0.22,0.68,0.35,1);
+      position: relative;
+    }
+    .overlay.show .modal-box { transform: scale(1) translateY(0); }
+
+    .modal-ttl { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.2rem; font-weight: 700; color: #111827; }
+    .modal-sub { font-size: .82rem; color: #6b7280; margin-top: 5px; }
+    .modal-x {
+      position: absolute; top: 18px; right: 18px; width: 28px; height: 28px;
+      border-radius: 50%; background: #f3f4f6; border: none;
+      font-size: .9rem; color: #6b7280; display: flex; align-items: center; justify-content: center;
+    }
+
+    .modal-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 24px; }
+    .m-card {
+      border: 1.5px solid #e5e7eb; border-radius: 14px; overflow: hidden;
+      background: #fff; cursor: pointer;
+      transition: border-color .2s, box-shadow .2s, transform .18s;
+    }
+    .m-card.hov { border-color: #38A2FF; box-shadow: 0 4px 18px rgba(56,162,255,.22); transform: translateY(-2px); }
+    .m-card.sel { border-color: #2563eb; box-shadow: 0 4px 22px rgba(37,99,235,.25); }
+    .m-card.pre-sel { border-color: #7c3aed; box-shadow: 0 4px 18px rgba(124,58,237,.18); }
+
+    .m-prev { height: 130px; display: flex; align-items: center; justify-content: center; }
+    .prev-blue   { background: linear-gradient(135deg,#eff6ff,#dbeafe); width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+    .prev-purple { background: linear-gradient(135deg,#f5f3ff,#ede9fe); width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+    .prev-green  { background: linear-gradient(135deg,#f0fdf4,#dcfce7); width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+
+    .m-lbl { font-size: .92rem; font-weight: 700; color: #111827; padding: 13px 16px 4px; display:flex; align-items:center; gap:7px; }
+    .m-desc { font-size: .76rem; color: #6b7280; padding: 0 16px 18px; line-height: 1.5; }
+    .beta-pill { background: #ede9fe; color: #7c3aed; font-size: .62rem; font-weight: 700; padding: 2px 7px; border-radius: 5px; }
+
+    /* ════════════════════════
+       TEMPLATE GALLERY MODAL
+    ════════════════════════ */
+    .tmpl-box {
+      background: #fff; border-radius: 20px;
+      width: 1060px; max-height: 640px;
+      box-shadow: 0 28px 72px rgba(0,0,0,.2);
+      transform: scale(.93) translateY(14px);
+      transition: transform .35s cubic-bezier(0.22,0.68,0.35,1);
+      position: relative; display: flex; flex-direction: column; overflow: hidden;
+    }
+    .overlay.show .tmpl-box { transform: scale(1) translateY(0); }
+
+    .tmpl-header { padding: 28px 32px 0; flex-shrink: 0; }
+    .tmpl-ttl { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.25rem; font-weight: 700; color: #111827; }
+    .tmpl-x {
+      position: absolute; top: 20px; right: 20px; width: 28px; height: 28px;
+      border-radius: 50%; background: #f3f4f6; border: none;
+      font-size: .9rem; color: #6b7280; display: flex; align-items: center; justify-content: center;
+    }
+    .tmpl-cats { display: flex; gap: 6px; padding: 16px 32px 0; flex-shrink: 0; flex-wrap: wrap; }
+    .tcat {
+      padding: 6px 16px; border-radius: 8px; font-size: .78rem; font-weight: 600;
+      border: 1.5px solid #e5e7eb; color: #6b7280; background: #fff;
+      transition: all .15s;
+    }
+    .tcat.active { background: #1e293b; color: #fff; border-color: #1e293b; }
+
+    .tmpl-scroll { flex: 1; overflow-y: auto; padding: 20px 32px 28px; }
+    .tmpl-scroll::-webkit-scrollbar { width: 4px; }
+    .tmpl-scroll::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
+
+    .tmpl-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .tc {
+      border: 1.5px solid #e5e7eb; border-radius: 14px; padding: 18px 18px 16px;
+      background: #fff; cursor: pointer;
+      transition: border-color .2s, box-shadow .2s, transform .18s;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .tc.hov { border-color: #38A2FF; box-shadow: 0 4px 16px rgba(56,162,255,.18); transform: translateY(-2px); }
+    .tc.sel { border-color: #2563eb; box-shadow: 0 4px 20px rgba(37,99,235,.2); }
+
+    .tc-tag {
+      display: inline-flex; align-items: center;
+      padding: 3px 10px; border-radius: 20px; font-size: .68rem; font-weight: 700;
+      border: 1px solid currentColor; align-self: flex-start;
+    }
+    .tag-incident { color: #ef4444; background: #fef2f2; border-color: #fecaca; }
+    .tag-automation { color: #8b5cf6; background: #f5f3ff; border-color: #ddd6fe; }
+    .tag-deployment { color: #10b981; background: #f0fdf4; border-color: #bbf7d0; }
+    .tag-k8s { color: #2563eb; background: #eff6ff; border-color: #bfdbfe; }
+    .tag-monitoring { color: #f59e0b; background: #fffbeb; border-color: #fde68a; }
+
+    .tc-name { font-size: .88rem; font-weight: 700; color: #111827; line-height: 1.35; }
+    .tc-desc { font-size: .73rem; color: #6b7280; line-height: 1.5; flex: 1; }
+    .tc-icons { display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+    .tc-ico {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: .7rem;
+    }
+    .tc-ico.purple { background: linear-gradient(135deg,#ede9fe,#c7d2fe); }
+    .tc-ico.blue   { background: linear-gradient(135deg,#dbeafe,#bfdbfe); }
+    .tc-ico.green  { background: linear-gradient(135deg,#dcfce7,#bbf7d0); }
+    .tc-ico.orange { background: linear-gradient(135deg,#ffedd5,#fed7aa); }
+    .tc-ico.pink   { background: linear-gradient(135deg,#fce7f3,#fbcfe8); }
+    .tc-more { font-size: .68rem; color: #9ca3af; margin-left: 2px; }
+    .tc-btn {
+      margin-top: 6px; width: 100%;
+      padding: 8px; border: 1.5px solid #e5e7eb; border-radius: 9px;
+      font-size: .78rem; font-weight: 600; color: #374151; background: #fff;
+    }
+    .tc.hov .tc-btn, .tc.sel .tc-btn { border-color: #2563eb; color: #2563eb; }
+
+    /* ════════════════════════
+       TRIGGER SELECTION SCREEN
+    ════════════════════════ */
+    #s3 {
+      background: #f3f4f6;
+      background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .trig-chrome {
+      height: 52px; background: rgba(255,255,255,.95); border-bottom: 1px solid #e5e7eb;
+      display: flex; align-items: center; padding: 0 28px; flex-shrink: 0;
+    }
+    .trig-ttl { font-family: 'Bricolage Grotesque', sans-serif; font-size: .98rem; font-weight: 700; color: #111827; display:flex; align-items:center; gap:8px; }
+    .pen { font-size: .78rem; color: #9ca3af; }
+    .trig-body { flex: 1; display: flex; align-items: center; justify-content: center; }
+    .trig-card {
+      background: #fff; border-radius: 20px; padding: 44px 52px 50px;
+      width: 780px; box-shadow: 0 12px 44px rgba(0,0,0,.1);
+      display: flex; flex-direction: column; align-items: center; gap: 24px;
+    }
+    .trig-icon {
+      width: 62px; height: 62px;
+      background: linear-gradient(135deg,#16a34a,#22c55e);
+      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+    }
+    .trig-icon svg { width: 30px; height: 30px; }
+    .trig-h { font-family:'Bricolage Grotesque',sans-serif; font-size:1.4rem; font-weight:700; color:#111827; text-align:center; }
+    .trig-s { font-size:.82rem; color:#6b7280; text-align:center; }
+    .trig-opts { display:flex; gap:12px; }
+    .trig-opt {
+      display:flex; flex-direction:column; align-items:center; gap:9px;
+      border: 1.5px solid #e5e7eb; border-radius: 14px; padding: 18px 20px 15px;
+      width: 118px; cursor: pointer; background: #fff;
+      transition: border-color .2s, box-shadow .2s, transform .18s;
+    }
+    .trig-opt.hov { border-color: #38A2FF; box-shadow: 0 4px 14px rgba(56,162,255,.2); transform: translateY(-2px); }
+    .trig-opt.sel { border-color: #f97316; background: #fff7ed; }
+    .trig-ico { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .ico-manual   { background: #dcfce7; }
+    .ico-webhook  { background: #ffedd5; }
+    .ico-schedule { background: #dbeafe; }
+    .ico-event    { background: #fef9c3; }
+    .ico-optim    { background: #f3e8ff; }
+    .trig-lbl { font-size: .76rem; font-weight: 700; color: #374151; text-align: center; }
+    .trig-dsc { font-size: .66rem; color: #9ca3af; text-align: center; line-height: 1.4; }
+
+    /* ════════════════════════
+       CANVAS SCREEN - PART 1 (s4p1)
+    ════════════════════════ */
+    #s4p1 {
+      background: #f3f4f6;
+      background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .cv-chrome {
+      height: 52px; background: rgba(255,255,255,.95); border-bottom: 1px solid #e5e7eb;
+      display: flex; align-items: center; padding: 0 28px; gap: 12px;
+      flex-shrink: 0; position: relative; z-index: 10;
+    }
+    .cv-ttl { font-family:'Bricolage Grotesque',sans-serif; font-size:.98rem; font-weight:700; color:#111827; display:flex; align-items:center; gap:8px; }
+    .cv-right { margin-left:auto; display:flex; align-items:center; gap:8px; }
+    .cv-btn { font-size:.78rem; font-weight:600; border:1px solid #e5e7eb; border-radius:7px; padding:5px 14px; background:#fff; color:#374151; }
+    .cv-btn-p { font-size:.78rem; font-weight:700; border:none; border-radius:7px; padding:6px 16px; background:#2563eb; color:#fff; }
+
+    .cv-body { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+    /* Part 1 flow - flex column centered */
+    .flow-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+      opacity: 0; transform: scale(.88);
+      transition: opacity .45s, transform .45s;
+    }
+    .flow-wrap.show { opacity:1; transform:scale(1); }
+
+    .f-node {
+      position: relative; background: #fff; border: 2px solid #e5e7eb;
+      border-radius: 14px; padding: 14px 18px; width: 256px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.08);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .f-node.wh { border-color: #f97316; }
+    .f-badge {
+      position: absolute; top: -11px; left: 14px;
+      background: #f97316; color: #fff;
+      font-size: .6rem; font-weight: 700; letter-spacing: .07em;
+      padding: 2px 8px; border-radius: 5px; text-transform: uppercase;
+    }
+    .f-ico { width: 38px; height: 38px; border-radius: 9px; background: #f97316; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .f-ico svg { width: 19px; height: 19px; }
+    .f-name { font-size: .88rem; font-weight: 700; color: #111827; }
+    .f-desc { font-size: .73rem; color: #6b7280; margin-top: 2px; }
+    .f-warn { margin-left:auto; color:#f59e0b; font-size:.95rem; }
+    .f-line {
+      width: 2px; height: 26px;
+      background: linear-gradient(to bottom, #e5e7eb, #38A2FF); position: relative;
+    }
+    .f-line::after {
+      content:''; position:absolute; bottom:-1px; left:50%; transform:translateX(-50%);
+      width:8px; height:8px; border-radius:50%; background:#38A2FF;
+    }
+    .f-add {
+      display: flex; align-items: center; gap: 7px;
+      border: 1.5px dashed #a5b4fc; border-radius: 20px;
+      padding: 7px 18px; font-size: .8rem; font-weight: 600; color: #6366f1;
+      background: rgba(99,102,241,.05); cursor: pointer; margin-top: 4px;
+      transition: background .18s, border-color .18s, transform .12s;
+    }
+    .f-add.hov { background: rgba(99,102,241,.12); border-color: #6366f1; transform: scale(1.04); }
+
+    /* Side panel - Part 1 */
+    .sp {
+      position: absolute; top: 0; right: 0; bottom: 0; width: 400px;
+      background: #fff; border-left: 1.5px solid #e5e7eb;
+      display: flex; flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .4s cubic-bezier(0.22,0.68,0.35,1);
+      z-index: 200; overflow: hidden;
+    }
+    .sp.show { transform: translateX(0); }
+    .sp-top {
+      padding: 18px 20px 13px; border-bottom: 1px solid #e5e7eb;
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .sp-ttl { font-family:'Bricolage Grotesque',sans-serif; font-size:1rem; font-weight:700; color:#111827; }
+    .sp-x { width:26px; height:26px; border-radius:50%; background:#f3f4f6; border:none; display:flex; align-items:center; justify-content:center; font-size:.85rem; color:#6b7280; }
+    .sp-srch {
+      margin: 10px 20px 6px; display: flex; align-items: center; gap: 8px;
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 9px;
+      padding: 7px 13px; font-size: .8rem; color: #9ca3af; flex-shrink: 0;
+    }
+    .sp-scroll { flex: 1; overflow-y: auto; padding-bottom: 16px; }
+    .sp-scroll::-webkit-scrollbar { width: 4px; }
+    .sp-scroll::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
+    .sp-cat {
+      padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid #f3f4f6; cursor: pointer;
+    }
+    .sp-cat.exp { background: #f0f7ff; }
+    .sp-cat-l { display: flex; align-items: center; gap: 10px; }
+    .sp-cico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sp-cname { font-size: .85rem; font-weight: 700; color: #111827; }
+    .sp-cdesc { font-size: .7rem; color: #9ca3af; }
+    .sp-chev { font-size: .65rem; color: #9ca3af; }
+    .sp-sub { overflow: hidden; }
+    .sp-sub-item { padding: 9px 20px 9px 64px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f9fafb; }
+    .sp-sico { width: 26px; height: 26px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sico-k { background: #dbeafe; }
+    .sico-a { background: #fef3c7; }
+    .sp-sname { font-size: .8rem; font-weight: 600; color: #111827; }
+    .sp-sdesc { font-size: .69rem; color: #9ca3af; }
+
+    /* ════════════════════════
+       CANVAS SCREEN - PART 2 (s4p2)
+    ════════════════════════ */
+    #s4p2 {
+      background: #f3f4f6;
+      background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* Part 2 flow - absolute positioning */
+    .flow-wrap2 {
+      position: absolute; inset: 0;
+      opacity: 0; transform: scale(.92);
+      transition: opacity .5s, transform .5s;
+    }
+    .flow-wrap2.show { opacity: 1; transform: scale(1); }
+
+    .cv-svg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 1;
+    }
+
+    .fn {
+      position: absolute; background: #fff; border: 1.5px solid #e5e7eb;
+      border-radius: 14px; padding: 14px 18px; width: 240px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.08);
+      display: flex; align-items: center; gap: 12px; cursor: pointer;
+      transition: border-color .22s, box-shadow .22s; z-index: 2;
+    }
+    .fn.trigger { border-color: #f97316; }
+    .fn.active-node {
+      border-color: #2563eb !important;
+      box-shadow: 0 0 0 3px rgba(37,99,235,.18), 0 4px 20px rgba(37,99,235,.18) !important;
+    }
+    .fn-badge {
+      position: absolute; top: -11px; left: 14px;
+      padding: 2px 9px; border-radius: 5px;
+      font-size: .6rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #fff;
+    }
+    .badge-trigger { background: #f97316; }
+    .fn-ico { width: 38px; height: 38px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ico-orange { background: #f97316; }
+    .ico-purple { background: #6366f1; }
+    .ico-bell   { background: #7c3aed; }
+    .ico-email  { background: #2563eb; }
+    .ico-ticket { background: #ec4899; }
+    .fn-ico svg { width: 19px; height: 19px; }
+    .fn-name { font-size: .88rem; font-weight: 700; color: #111827; }
+    .fn-sub  { font-size: .68rem; color: #6b7280; font-weight: 500; }
+    .fn-desc { font-size: .73rem; color: #9ca3af; margin-top: 3px; line-height: 1.4; }
+
+    .add-btn {
+      position: absolute; display: flex; align-items: center; gap: 6px;
+      border: 1.5px dashed #d1d5db; border-radius: 20px;
+      padding: 6px 16px; font-size: .75rem; font-weight: 600; color: #9ca3af;
+      background: rgba(255,255,255,.7); white-space: nowrap; z-index: 2;
+    }
+
+    .cv-toolbar {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; background: #fff;
+      border: 1px solid #e5e7eb; border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.1); overflow: hidden; z-index: 10;
+    }
+    .cv-tbtn {
+      display: flex; align-items: center; gap: 7px;
+      padding: 10px 20px; font-size: .82rem; font-weight: 600; color: #374151;
+      border: none; background: #fff; border-right: 1px solid #e5e7eb;
+    }
+    .cv-tbtn:last-child { border-right: none; }
+    .cv-tbtn svg { width: 15px; height: 15px; }
+    .cv-tbtn.icon-only { padding: 10px 14px; }
+
+    /* Config panel - Part 2 */
+    .cfg-panel {
+      position: absolute; top: 0; right: 0; bottom: 0; width: 520px;
+      background: #f8faff; border-left: 2px solid #c7d2fe;
+      display: flex; flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .42s cubic-bezier(0.22,0.68,0.35,1);
+      z-index: 100; overflow: hidden;
+    }
+    .cfg-panel.show { transform: translateX(0); }
+    .cfg-header {
+      padding: 22px 24px 18px; border-bottom: 1px solid #e5e7eb;
+      display: flex; align-items: center; justify-content: space-between;
+      background: #fff; flex-shrink: 0;
+    }
+    .cfg-ttl { font-family:'Bricolage Grotesque',sans-serif; font-size:1.05rem; font-weight:700; color:#111827; }
+    .cfg-x {
+      width: 28px; height: 28px; border-radius: 50%; background: #f3f4f6; border: none;
+      display: flex; align-items: center; justify-content: center; font-size: .9rem; color: #6b7280;
+    }
+    .cfg-body { flex: 1; overflow-y: auto; padding: 22px 24px; }
+    .cfg-body::-webkit-scrollbar { width: 4px; }
+    .cfg-body::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
+    .cfg-section {
+      background: #fff; border-radius: 12px; padding: 20px 20px 22px;
+      margin-bottom: 16px; border: 1px solid #e5e7eb;
+    }
+    .cfg-sec-num {
+      width: 24px; height: 24px; border-radius: 50%; background: #1e293b; color: #fff;
+      font-size: .72rem; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center; margin-right: 8px;
+    }
+    .cfg-sec-ttl { font-size: .95rem; font-weight: 700; color: #111827; display: flex; align-items: center; }
+    .cfg-sec-desc { font-size: .75rem; color: #9ca3af; margin-top: 5px; margin-left: 32px; }
+    .cfg-field { margin-top: 18px; }
+    .cfg-label { font-size: .8rem; font-weight: 600; color: #374151; margin-bottom: 5px; display: flex; align-items: center; gap: 4px; }
+    .cfg-label .req { color: #ef4444; }
+    .cfg-sub-label { font-size: .72rem; color: #9ca3af; margin-bottom: 8px; }
+    .cfg-input {
+      width: 100%; border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 9px 13px; font-size: .82rem; color: #111827; background: #fff;
+      font-family: 'Instrument Sans', sans-serif;
+    }
+    .cfg-textarea {
+      width: 100%; border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 9px 13px; font-size: .78rem; color: #374151; background: #fff;
+      resize: none; height: 72px; font-family: 'Instrument Sans', monospace; line-height: 1.6;
+    }
+    .cfg-info { background: #f0f7ff; border-radius: 10px; padding: 14px 16px; margin-top: 16px; }
+    .cfg-info-ttl { font-size: .8rem; font-weight: 700; color: #1e40af; margin-bottom: 8px; }
+    .cfg-info-item { font-size: .73rem; color: #374151; line-height: 1.7; }
+    .cfg-info-item::before { content: '- '; }
+
+    /* ════════════════════════
+       NODE-BUILD HELPERS
+    ════════════════════════ */
+    .f-ico-blue   { background: #4f46e5; }
+    .f-ico-purple { background: #7c3aed; }
+    .f-node.transform { border-color: #4f46e5; }
+    .f-node.ai        { border-color: #7c3aed; }
+    .sp-sub-item.hov-item { background: #f0f7ff; }
+    @keyframes nodePop {
+      0%   { opacity:0; transform:scale(.82) translateY(10px); }
+      70%  { transform:scale(1.04) translateY(-2px); }
+      100% { opacity:1; transform:scale(1) translateY(0); }
+    }
+    .node-anim { animation: nodePop .38s cubic-bezier(0.22,0.68,0.35,1) forwards; }
+
+    /* ════════════════════════
+       CURSOR + RIPPLE + PROGRESS
+    ════════════════════════ */
+    .cursor {
+      position: absolute; pointer-events: none; z-index: 9999;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,.4));
+      transition: left .55s cubic-bezier(0.22,0.68,0.35,1), top .55s cubic-bezier(0.22,0.68,0.35,1);
+    }
+    .cursor svg { display: block; }
+
+    .ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(37,99,235,.16); border: 2px solid rgba(37,99,235,.35);
+      width: 0; height: 0; transform: translate(-50%,-50%);
+      pointer-events: none; z-index: 9998; opacity: 0;
+    }
+    .ripple.go { animation: rPop .5s ease-out forwards; }
+    @keyframes rPop { 0%{ width:0;height:0;opacity:1; } 100%{ width:46px;height:46px;opacity:0; } }
+
+  </style>
+</head>
+<body>
+<script src="../js/cookie-consent.js" defer=""></script>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9TMSSH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div class="stage" id="stage">
+
+  <!-- Part label indicator -->
+
+  <!-- ══ SCREEN 1: Automation List (shared) ══ -->
+  <div class="layer" id="s1">
+    <div class="chrome-bar">
+      <div class="chrome-icon">
+        <svg viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
+        </svg>
+      </div>
+      <span class="chrome-title">Automation</span>
+      <div class="chrome-right">
+        <div class="env-badge"><span class="dot-g"></span><span style="color:#6b7280">aws</span><strong>dev-aws</strong><span style="color:#9ca3af;font-size:.7rem;">&#9660;</span></div>
+        <button class="btn-outline-sm">&#8599; Detail View</button>
+      </div>
+    </div>
+    <div class="tab-strip">
+      <div class="t-tab on">Automation</div>
+      <div class="t-tab">Auto Optimize &nbsp;&#9660;</div>
+    </div>
+    <div class="action-bar">
+      <div class="s-box">
+        <svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Search by Automation Name
+      </div>
+      <div class="s-box" style="width:170px;">
+        <svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        Search by Tags
+      </div>
+      <div class="chip">Status <strong>All</strong> <span class="chip-x">&#10005;</span></div>
+      <div class="chip">Last Exec. Status <strong>All</strong> <span class="chip-x">&#10005;</span></div>
+      <div class="chip">Trigger Type <strong>All</strong> <span class="chip-x">&#10005;</span></div>
+      <div class="ab-right">
+        <button class="btn-cfg">
+          <svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.5"></circle><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path></svg>
+          Configs
+        </button>
+        <button class="btn-new" id="btnNew">+ Create Automation</button>
+      </div>
+    </div>
+    <div class="tbl-head">
+      <span class="th th-n">Name</span>
+      <span class="th th-e">Last Execution</span>
+      <span class="th th-tr">Trigger Type</span>
+      <span class="th th-tg">Tags</span>
+      <span class="th th-st">Status</span>
+    </div>
+    <div class="tbl-body"></div>
+    <div class="tbl-foot">
+      <span class="foot-l">No results found</span>
+      <div class="foot-r">
+        <button class="pg-btn">&#8249;</button>
+        <button class="pg-btn">&#8250;</button>
+        <div class="rows-lbl">Rows <strong>10</strong> &#9660;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL 1: Create a New Automation (shared) ══ -->
+  <div class="overlay" id="modal1">
+    <div class="modal-box">
+      <div class="modal-ttl">Create a New Automation</div>
+      <div class="modal-sub">Choose how you would like to get started</div>
+      <button class="modal-x">&#10005;</button>
+      <div class="modal-grid">
+        <div class="m-card" id="cScratch">
+          <div class="m-prev"><div class="prev-blue">
+            <svg width="80" height="80" viewbox="0 0 100 100">
+              <circle cx="15" cy="15" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="40" cy="15" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="65" cy="15" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="90" cy="15" r="2" fill="#93c5fd" opacity=".6"></circle>
+              <circle cx="15" cy="40" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="40" cy="40" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="65" cy="40" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="90" cy="40" r="2" fill="#93c5fd" opacity=".6"></circle>
+              <circle cx="15" cy="65" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="40" cy="65" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="65" cy="65" r="2" fill="#93c5fd" opacity=".6"></circle><circle cx="90" cy="65" r="2" fill="#93c5fd" opacity=".6"></circle>
+              <line x1="15" y1="28" x2="36" y2="38" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="3,2"></line>
+              <line x1="90" y1="28" x2="68" y2="38" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="3,2"></line>
+              <circle cx="52" cy="48" r="17" fill="#2563eb"></circle>
+              <line x1="52" y1="41" x2="52" y2="55" stroke="white" stroke-width="2.8" stroke-linecap="round"></line>
+              <line x1="45" y1="48" x2="59" y2="48" stroke="white" stroke-width="2.8" stroke-linecap="round"></line>
+            </svg>
+          </div></div>
+          <div class="m-lbl">Make an Automation</div>
+          <div class="m-desc">Start with an empty canvas and add steps manually</div>
+        </div>
+        <div class="m-card pre-sel" id="cTemplate">
+          <div class="m-prev"><div class="prev-purple">
+            <svg width="80" height="80" viewbox="0 0 100 100">
+              <rect x="10" y="34" width="70" height="48" rx="5" fill="#ddd6fe" opacity=".6"></rect>
+              <rect x="16" y="14" width="32" height="28" rx="4" fill="#7c3aed" opacity=".85"></rect>
+              <rect x="54" y="20" width="22" height="18" rx="3" fill="#a78bfa" opacity=".85"></rect>
+              <circle cx="32" cy="28" r="6" fill="white" opacity=".9"></circle>
+              <line x1="32" y1="42" x2="32" y2="58" stroke="#7c3aed" stroke-width="2"></line>
+              <line x1="32" y1="58" x2="64" y2="58" stroke="#7c3aed" stroke-width="2"></line>
+              <circle cx="64" cy="58" r="4" fill="#7c3aed"></circle>
+            </svg>
+          </div></div>
+          <div class="m-lbl">Start from Template</div>
+          <div class="m-desc">Pre-built automations for common infra tasks</div>
+        </div>
+        <div class="m-card" id="cNubi">
+          <div class="m-prev"><div class="prev-green">
+            <div style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #e5e7eb;border-radius:11px;padding:9px 14px;">
+              <div style="width:30px;height:30px;background:#1e293b;border-radius:7px;display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M6 20v-2a6 6 0 0112 0v2"></path></svg></div>
+              <span style="font-size:.78rem;color:#9ca3af;">Ask nubi...</span>
+              <svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg>
+            </div>
+          </div></div>
+          <div class="m-lbl">Generate with nubi <span class="beta-pill">BETA</span></div>
+          <div class="m-desc">Describe what you need in plain English</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 3: Trigger Selection (Part 1 only) ══ -->
+  <div class="layer" id="s3">
+    <div class="trig-chrome">
+      <div class="trig-ttl">New Automation <span class="pen">&#9998;</span></div>
+    </div>
+    <div class="trig-body">
+      <div class="trig-card">
+        <div class="trig-icon">
+          <svg viewbox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="10" fill="white" opacity=".15"></circle>
+            <polyline points="13,11 21,16 13,21" fill="none" stroke="white" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          </svg>
+        </div>
+        <div style="text-align:center;">
+          <div class="trig-h">How should your Automation begin?</div>
+          <div class="trig-s" style="margin-top:6px;">Pick a trigger to kick things off. You can always change it later</div>
+        </div>
+        <div class="trig-opts">
+          <div class="trig-opt" id="tManual">
+            <div class="trig-ico ico-manual"><svg width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M6 20v-2a6 6 0 0112 0v2"></path></svg></div>
+            <div class="trig-lbl">Manual Trigger</div>
+            <div class="trig-dsc">Start automation manually</div>
+          </div>
+          <div class="trig-opt" id="tWebhook">
+            <div class="trig-ico ico-webhook"><svg width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path></svg></div>
+            <div class="trig-lbl">Webhook</div>
+            <div class="trig-dsc">HTTP endpoint trigger</div>
+          </div>
+          <div class="trig-opt" id="tSchedule">
+            <div class="trig-ico ico-schedule"><svg width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
+            <div class="trig-lbl">Schedule</div>
+            <div class="trig-dsc">Time-based trigger</div>
+          </div>
+          <div class="trig-opt" id="tEvent">
+            <div class="trig-ico ico-event"><svg width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+            <div class="trig-lbl">Event Trigger</div>
+            <div class="trig-dsc">Event-based trigger</div>
+          </div>
+          <div class="trig-opt" id="tOptim">
+            <div class="trig-ico ico-optim"><svg width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="1.8"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg></div>
+            <div class="trig-lbl">Optimization</div>
+            <div class="trig-dsc">Triggered by new recommendations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 4p1: Canvas - Part 1 ══ -->
+  <div class="layer" id="s4p1">
+    <div class="cv-chrome">
+      <div class="cv-ttl">New Automation <span class="pen">&#9998;</span></div>
+      <div class="cv-right">
+        <button class="cv-btn">Discard</button>
+        <button class="cv-btn-p">Save</button>
+      </div>
+    </div>
+    <div class="cv-body">
+      <div class="flow-wrap" id="flowWrap">
+        <div class="f-node wh">
+          <span class="f-badge">TRIGGER</span>
+          <div class="f-ico">
+            <svg viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path></svg>
+          </div>
+          <div>
+            <div class="f-name">Webhook</div>
+            <div class="f-desc">HTTP endpoint trigger</div>
+          </div>
+          <span class="f-warn">&#9888;</span>
+        </div>
+        <div id="addedNodes1" style="display:flex;flex-direction:column;align-items:center;"></div>
+        <div class="f-line"></div>
+        <button class="f-add" id="btnAdd">+ Add Action</button>
+      </div>
+
+      <!-- Side panel (Part 1) -->
+      <div class="sp" id="spPanel">
+        <div class="sp-top">
+          <div class="sp-ttl">Add Node to Automation</div>
+          <button class="sp-x">&#10005;</button>
+        </div>
+        <div class="sp-srch">
+          <svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Search actions...
+        </div>
+        <div class="sp-scroll" id="spScroll">
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#dcfce7;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.8"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2"></path></svg></div>
+              <div><div class="sp-cname">Triggers</div><div class="sp-cdesc">Triggers are the starting points of an automation.</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#dbeafe;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 01-3.46 0"></path></svg></div>
+              <div><div class="sp-cname">Notifications</div><div class="sp-cdesc">Send messages via Slack, Teams, email, and more</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#f3e8ff;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
+              <div><div class="sp-cname">AI/LLM</div><div class="sp-cdesc">Use AI to summarize, investigate, and route decisions</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#dcfce7;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.8"><rect x="2" y="7" width="6" height="4" rx="1"></rect><rect x="16" y="7" width="6" height="4" rx="1"></rect><rect x="9" y="13" width="6" height="4" rx="1"></rect><line x1="8" y1="9" x2="16" y2="9"></line><line x1="12" y1="9" x2="12" y2="13"></line></svg></div>
+              <div><div class="sp-cname">Networking</div><div class="sp-cdesc">Diagnose connectivity with DNS, ping, SSL checks, and more</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#fef9c3;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="1.8"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 014-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 01-4 4H3"></path></svg></div>
+              <div><div class="sp-cname">Data</div><div class="sp-cdesc">Transform, filter, and reshape data between steps</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#fff;border:1px solid #f3f4f6;">
+                <svg width="18" height="18" viewbox="0 0 24 24"><path d="M6 15a2 2 0 01-2 2 2 2 0 01-2-2 2 2 0 012-2h2v2zM7 15a2 2 0 012-2 2 2 0 012 2v5a2 2 0 01-2 2 2 2 0 01-2-2v-5z" fill="#E01E5A"></path><path d="M9 6a2 2 0 01-2-2 2 2 0 012-2h2V6a2 2 0 01-2 0zM9 7a2 2 0 012 2 2 2 0 01-2 2H4a2 2 0 01-2-2 2 2 0 012-2h5z" fill="#36C5F0"></path><path d="M18 9a2 2 0 012 2 2 2 0 012 2 2 2 0 01-2-2h-2V9zM17 9a2 2 0 01-2-2 2 2 0 012-2h5a2 2 0 012 2 2 2 0 01-2 2h-5z" fill="#2EB67D"></path><path d="M15 18a2 2 0 012 2 2 2 0 01-2 2h-2v-2a2 2 0 012 0zM15 17a2 2 0 01-2-2 2 2 0 012-2v-5a2 2 0 012-2 2 2 0 012 2v5a2 2 0 01-2 2z" fill="#ECB22E"></path></svg>
+              </div>
+              <div><div class="sp-cname">Slack</div><div class="sp-cdesc">Slack messaging and channel management</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#fce7f3;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="1.8"><path d="M2 9a3 3 0 110 6v2a2 2 0 002 2h16a2 2 0 002-2v-2a3 3 0 110-6V7a2 2 0 00-2-2H4a2 2 0 00-2 2v2z"></path></svg></div>
+              <div><div class="sp-cname">Tickets</div><div class="sp-cdesc">Create, update, and manage incidents and tickets</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#dbeafe;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"></path><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"></path></svg></div>
+              <div><div class="sp-cname">Database</div><div class="sp-cdesc">Query databases and manage data stores</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#ffedd5;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path></svg></div>
+              <div><div class="sp-cname">Integrations</div><div class="sp-cdesc">Connect to external services via HTTP or SSH</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <!-- Kubernetes (expanded) -->
+          <div class="sp-cat exp">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#dbeafe;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
+              <div><div class="sp-cname">Kubernetes</div><div class="sp-cdesc">Run kubectl commands against your Kubernetes cluster</div></div>
+            </div>
+            <span class="sp-chev" style="transform:rotate(180deg);">&#9660;</span>
+          </div>
+          <div class="sp-sub">
+            <div class="sp-sub-item"><div class="sp-sico sico-k"><svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div><div><div class="sp-sname">Horizontal Rightsize</div><div class="sp-sdesc">Scale the number of replicas for a Kubernetes workload up or down.</div></div></div>
+            <div class="sp-sub-item"><div class="sp-sico sico-k"><svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div><div><div class="sp-sname">PV Rightsize</div><div class="sp-sdesc">Resize a Kubernetes Persistent Volume to match actual usage.</div></div></div>
+            <div class="sp-sub-item"><div class="sp-sico sico-k"><svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div><div><div class="sp-sname">Workload Restart</div><div class="sp-sdesc">Rolling restart a Kubernetes workload to apply changes or recover.</div></div></div>
+            <div class="sp-sub-item"><div class="sp-sico sico-k"><svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div><div><div class="sp-sname">CLI</div><div class="sp-sdesc">Run kubectl commands against your Kubernetes cluster.</div></div></div>
+            <div class="sp-sub-item"><div class="sp-sico sico-k"><svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div><div><div class="sp-sname">Vertical Rightsize</div><div class="sp-sdesc">Optimize CPU and memory requests/limits for a Kubernetes workload.</div></div></div>
+            <div class="sp-sub-item"><div class="sp-sico sico-k"><svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div><div><div class="sp-sname">Node Graceful Shutdown</div><div class="sp-sdesc">Safely drain and remove a Kubernetes node from the cluster.</div></div></div>
+            <div class="sp-sub-item"><div class="sp-sico sico-k"><svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div><div><div class="sp-sname">Continuous Rightsize</div><div class="sp-sdesc">Continuously monitor and auto-adjust resources for Kubernetes workloads.</div></div></div>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#f3f4f6;"><svg width="17" height="17" viewbox="0 0 24 24" fill="#374151"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg></div>
+              <div><div class="sp-cname">Source Control</div><div class="sp-cdesc">Manage GitHub repos, issues, and pull requests</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <!-- AWS (expanded) -->
+          <div class="sp-cat exp">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#fff7ed;"><svg width="20" height="14" viewbox="0 0 80 50"><text y="38" font-size="38" font-family="Arial" fill="#f97316">&#9729;</text></svg></div>
+              <div><div class="sp-cname">AWS</div><div class="sp-cdesc">Run AWS CLI commands against your AWS account</div></div>
+            </div>
+            <span class="sp-chev" style="transform:rotate(180deg);">&#9660;</span>
+          </div>
+          <div class="sp-sub">
+            <div class="sp-sub-item"><div class="sp-sico sico-a"><svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 11-.08-8.12"></path></svg></div><div><div class="sp-sname">CLI</div><div class="sp-sdesc">Run AWS CLI commands against your AWS account.</div></div></div>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#dbeafe;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
+              <div><div class="sp-cname">Azure</div><div class="sp-cdesc">Run Azure CLI commands against your Azure subscription</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+          <div class="sp-cat">
+            <div class="sp-cat-l">
+              <div class="sp-cico" style="background:#f0fdf4;"><svg width="17" height="17" viewbox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
+              <div><div class="sp-cname">Scripting</div><div class="sp-cdesc">Run custom shell scripts and automation code</div></div>
+            </div>
+            <span class="sp-chev">&#9660;</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL 2: Template Gallery (Part 2 only) ══ -->
+  <div class="overlay" id="modal2">
+    <div class="tmpl-box">
+      <div class="tmpl-header">
+        <div class="tmpl-ttl">Automate using pre-built templates</div>
+      </div>
+      <button class="tmpl-x">&#10005;</button>
+      <div class="tmpl-cats">
+        <div class="tcat active">All</div>
+        <div class="tcat">Incident Management</div>
+        <div class="tcat">Kubernetes</div>
+        <div class="tcat">Monitoring</div>
+        <div class="tcat">Deployment</div>
+        <div class="tcat">Security</div>
+        <div class="tcat">Cloud Cost</div>
+        <div class="tcat">Automation</div>
+      </div>
+      <div class="tmpl-scroll">
+        <div class="tmpl-grid">
+          <div class="tc">
+            <span class="tc-tag tag-incident">Incident Management</span>
+            <div class="tc-name">War Room Bootstrapper</div>
+            <div class="tc-desc">Instantly sets up an incident war room - creates a dedicated Slack channel...</div>
+            <div class="tc-icons">
+              <div class="tc-ico purple"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+              <div class="tc-ico purple"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
+              <div class="tc-ico blue"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path></svg></div>
+              <span class="tc-more">+1 more</span>
+            </div>
+            <button class="tc-btn">Use Template</button>
+          </div>
+          <div class="tc" id="tcWebhookRelay">
+            <span class="tc-tag tag-automation">Automation</span>
+            <div class="tc-name">Webhook Relay to Multi-Channel</div>
+            <div class="tc-desc">Receives a webhook payload, transforms it into a human-readable summary...</div>
+            <div class="tc-icons">
+              <div class="tc-ico purple"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
+              <div class="tc-ico blue"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path></svg></div>
+              <div class="tc-ico blue"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path></svg></div>
+              <div class="tc-ico pink"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="2"><path d="M2 9a3 3 0 110 6v2a2 2 0 002 2h16a2 2 0 002-2v-2a3 3 0 110-6V7a2 2 0 00-2-2H4a2 2 0 00-2 2v2z"></path></svg></div>
+            </div>
+            <button class="tc-btn">Use Template</button>
+          </div>
+          <div class="tc">
+            <span class="tc-tag tag-automation">Automation</span>
+            <div class="tc-name">Scheduled Report Generator</div>
+            <div class="tc-desc">Pulls data from an HTTP API and database on a schedule, uses AI...</div>
+            <div class="tc-icons">
+              <div class="tc-ico orange"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path></svg></div>
+              <div class="tc-ico blue"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"></path></svg></div>
+              <span class="tc-more">+2 more</span>
+            </div>
+            <button class="tc-btn">Use Template</button>
+          </div>
+          <div class="tc">
+            <span class="tc-tag tag-deployment">Deployment</span>
+            <div class="tc-name">ArgoCD Sync with Validation</div>
+            <div class="tc-desc">Triggers an ArgoCD application sync, monitors the sync status...</div>
+            <div class="tc-icons">
+              <div class="tc-ico purple"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline></svg></div>
+              <span class="tc-more">+6 more</span>
+            </div>
+            <button class="tc-btn">Use Template</button>
+          </div>
+          <div class="tc">
+            <span class="tc-tag tag-k8s">Kubernetes</span>
+            <div class="tc-name">K8s Namespace Quota Monitor</div>
+            <div class="tc-desc">Checks resource quota usage across Kubernetes namespaces...</div>
+            <div class="tc-icons">
+              <div class="tc-ico blue"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
+              <div class="tc-ico blue"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path></svg></div>
+            </div>
+            <button class="tc-btn">Use Template</button>
+          </div>
+          <div class="tc">
+            <span class="tc-tag tag-monitoring">Monitoring</span>
+            <div class="tc-name">SSL Certificate Monitor</div>
+            <div class="tc-desc">Runs daily to check SSL certificate expiry across a list of domains...</div>
+            <div class="tc-icons">
+              <div class="tc-ico orange"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 014-4h14"></path></svg></div>
+              <div class="tc-ico green"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg></div>
+              <span class="tc-more">+2 more</span>
+            </div>
+            <button class="tc-btn">Use Template</button>
+          </div>
+          <div class="tc">
+            <span class="tc-tag tag-k8s">Kubernetes</span>
+            <div class="tc-name">K8s Right-Sizing with Approval</div>
+            <div class="tc-desc">Generates vertical right-sizing recommendations for a workload...</div>
+            <div class="tc-icons">
+              <div class="tc-ico blue"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
+              <span class="tc-more">+2 more</span>
+            </div>
+            <button class="tc-btn">Use Template</button>
+          </div>
+          <div class="tc">
+            <span class="tc-tag tag-monitoring">Monitoring</span>
+            <div class="tc-name">Multi-Endpoint Health Check</div>
+            <div class="tc-desc">Performs concurrent health checks across HTTP endpoints...</div>
+            <div class="tc-icons">
+              <div class="tc-ico orange"><svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07"></path></svg></div>
+              <span class="tc-more">+1 more</span>
+            </div>
+            <button class="tc-btn">Use Template</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SCREEN 4p2: Canvas - Part 2 ══ -->
+  <div class="layer" id="s4p2">
+    <div class="cv-chrome">
+      <div class="cv-ttl">Webhook Relay to Multi-Channel <span class="pen">&#9998;</span></div>
+      <div class="cv-right">
+        <button class="cv-btn">Discard</button>
+        <button class="cv-btn-p">Save</button>
+      </div>
+    </div>
+    <div class="cv-body">
+      <div class="flow-wrap2" id="flowWrap2">
+        <svg class="cv-svg">
+          <!-- Webhook bottom-center (640,104) to Summary top (640,180) -->
+          <line x1="640" y1="104" x2="640" y2="180" stroke="#d1d5db" stroke-width="1.5"></line>
+          <!-- Summary bottom (640,260) to fork (640,310) -->
+          <line x1="640" y1="260" x2="640" y2="310" stroke="#d1d5db" stroke-width="1.5"></line>
+          <!-- Horizontal bar across all branches -->
+          <line x1="410" y1="310" x2="870" y2="310" stroke="#d1d5db" stroke-width="1.5"></line>
+          <!-- Left branch down -->
+          <line x1="410" y1="310" x2="410" y2="380" stroke="#d1d5db" stroke-width="1.5"></line>
+          <!-- Center branch down -->
+          <line x1="640" y1="310" x2="640" y2="380" stroke="#d1d5db" stroke-width="1.5"></line>
+          <!-- Right branch down (green = if true) -->
+          <line x1="870" y1="310" x2="870" y2="380" stroke="#22c55e" stroke-width="1.5" stroke-opacity="0.7"></line>
+          <!-- Conditional label -->
+          <rect x="590" y="300" width="100" height="20" rx="10" fill="white" stroke="#ddd6fe" stroke-width="1.5"></rect>
+          <text x="640" y="314" text-anchor="middle" font-size="9" font-weight="700" fill="#7c3aed" font-family="Instrument Sans,sans-serif">conditional</text>
+          <!-- If true label -->
+          <rect x="844" y="296" width="52" height="18" rx="9" fill="white" stroke="#bbf7d0" stroke-width="1.5"></rect>
+          <text x="870" y="309" text-anchor="middle" font-size="8.5" font-weight="700" fill="#16a34a" font-family="Instrument Sans,sans-serif">if true</text>
+        </svg>
+
+        <!-- Webhook Trigger node -->
+        <div class="fn trigger" id="nodeWebhook" style="left:520px; top:24px;">
+          <span class="fn-badge badge-trigger">TRIGGER</span>
+          <div class="fn-ico ico-orange">
+            <svg viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path></svg>
+          </div>
+          <div>
+            <div class="fn-name">Webhook Trigger</div>
+            <div class="fn-desc">Webhook-triggered automation</div>
+          </div>
+        </div>
+
+        <!-- Summary node -->
+        <div class="fn" style="border-color:#6366f1; left:520px; top:180px;">
+          <div class="fn-ico ico-purple">
+            <svg viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+          </div>
+          <div>
+            <div class="fn-name">Summary</div>
+            <div class="fn-sub">format_message</div>
+            <div class="fn-desc">Summarize text or data using AI...</div>
+          </div>
+        </div>
+
+        <!-- Left branch: Slack/Im node -->
+        <div class="fn" style="left:290px; top:380px;">
+          <div class="fn-ico ico-bell">
+            <svg viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 01-3.46 0"></path></svg>
+          </div>
+          <div>
+            <div class="fn-name">Im</div>
+            <div class="fn-sub">send_slack</div>
+            <div class="fn-desc">Slack notification</div>
+          </div>
+        </div>
+        <button class="add-btn" style="left:332px; top:458px;">+ Add Action</button>
+
+        <!-- Center branch: Email node -->
+        <div class="fn" style="left:520px; top:380px;">
+          <div class="fn-ico ico-email">
+            <svg viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </div>
+          <div>
+            <div class="fn-name">Email</div>
+            <div class="fn-sub">send_email</div>
+            <div class="fn-desc">Sends an email to recipients.</div>
+          </div>
+        </div>
+        <button class="add-btn" style="left:563px; top:458px;">+ Add Action</button>
+
+        <!-- Right branch: Create Ticket node -->
+        <div class="fn" style="left:750px; top:380px;">
+          <div class="fn-ico ico-ticket">
+            <svg viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M2 9a3 3 0 110 6v2a2 2 0 002 2h16a2 2 0 002-2v-2a3 3 0 110-6V7a2 2 0 00-2-2H4a2 2 0 00-2 2v2z"></path></svg>
+          </div>
+          <div>
+            <div class="fn-name">Create</div>
+            <div class="fn-sub">create_ticket</div>
+            <div class="fn-desc">Ticket: [Inputs.source_name] Web...</div>
+          </div>
+        </div>
+        <button class="add-btn" style="left:793px; top:458px;">+ Add Action</button>
+      </div>
+
+      <!-- Bottom toolbar -->
+      <div class="cv-toolbar">
+        <button class="cv-tbtn">
+          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          Add Action
+        </button>
+        <button class="cv-tbtn">
+          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          Save
+        </button>
+        <button class="cv-tbtn">
+          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          Dry Run
+        </button>
+        <button class="cv-tbtn icon-only">
+          <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3.5"></circle><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path></svg>
+        </button>
+      </div>
+
+      <!-- Config panel (Part 2) -->
+      <div class="cfg-panel" id="cfgPanel">
+        <div class="cfg-header">
+          <div class="cfg-ttl">Trigger Configuration - Webhook</div>
+          <button class="cfg-x">&#10005;</button>
+        </div>
+        <div class="cfg-body">
+          <div class="cfg-section">
+            <div class="cfg-sec-ttl"><span class="cfg-sec-num">1</span>Webhook Configuration</div>
+            <div class="cfg-sec-desc">Configure webhook integration for this automation</div>
+            <div class="cfg-field">
+              <div class="cfg-label">Integration Name <span class="req">*</span></div>
+              <div class="cfg-sub-label">The unique identifier of the integration configuration</div>
+              <input class="cfg-input" type="text" placeholder="" readonly="">
+            </div>
+            <div class="cfg-field">
+              <div class="cfg-label">Filter Expression <span style="font-size:.72rem;font-weight:400;color:#9ca3af;">(Optional)</span></div>
+              <div class="cfg-sub-label">Use template syntax to conditionally trigger the webhook</div>
+              <textarea class="cfg-textarea" readonly="">{{ webhook_payload.action == "opened" }}</textarea>
+            </div>
+            <div class="cfg-info">
+              <div class="cfg-info-ttl">Webhook Filter Examples:</div>
+              <div class="cfg-info-item">Filter evaluates to "true" to trigger the automation, otherwise the webhook is ignored</div>
+              <div class="cfg-info-item">{{ webhook_payload.action == "opened" }} - Only when action is "opened"</div>
+              <div class="cfg-info-item">{{ webhook_payload.repository.name == "my-repo" }} - Filter by repository</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TITLE CARD ══ -->
+  <div id="titleCard">
+    <div class="tc-logo">
+      <svg height="36" viewbox="0 0 524 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="NudgeBee">
+        <path d="M60.358 62.5456C60.358 62.5456 58.624 92.0232 78.1312 113.698C78.1312 113.698 56.9384 118.739 49.0871 93.7572C41.9345 70.9987 60.358 62.5456 60.358 62.5456Z" fill="#FACF39"></path>
+        <path d="M84.4851 58.6588C84.4851 58.6588 82.9746 84.3382 99.9683 103.22C99.9683 103.22 81.5062 107.611 74.6665 85.8488C68.4355 66.0228 84.4851 58.6588 84.4851 58.6588Z" fill="#FACF39"></path>
+        <path d="M39.7666 81.1149C39.7666 81.1149 38.593 101.065 51.7954 115.735C51.7954 115.735 39.2241 116.51 33.8596 101.663C29.8624 90.5997 39.7666 81.1149 39.7666 81.1149Z" fill="#FACF39"></path>
+        <path d="M104.908 50.9415C104.908 50.9415 61.3422 -3.67879 31.4311 20.3802C1.52 44.4391 104.908 50.9415 104.908 50.9415Z" fill="#FACF39"></path>
+        <path d="M120.038 85.6727C127.498 85.6727 133.545 79.6254 133.545 72.1658C133.545 64.7061 127.498 58.6588 120.038 58.6588C112.579 58.6588 106.531 64.7061 106.531 72.1658C106.531 79.6254 112.579 85.6727 120.038 85.6727Z" fill="#FACF39"></path>
+        <path d="M183.277 48.66C187.897 48.66 191.63 50.13 194.477 53.07C197.324 55.9633 198.747 60.0233 198.747 65.25V88H188.947V66.58C188.947 63.5 188.177 61.1433 186.637 59.51C185.097 57.83 182.997 56.99 180.337 56.99C177.63 56.99 175.484 57.83 173.897 59.51C172.357 61.1433 171.587 63.5 171.587 66.58V88H161.787V49.22H171.587V54.05C172.894 52.37 174.55 51.0633 176.557 50.13C178.61 49.15 180.85 48.66 183.277 48.66ZM243.276 49.22V88H233.406V83.1C232.146 84.78 230.49 86.11 228.436 87.09C226.43 88.0233 224.236 88.49 221.856 88.49C218.823 88.49 216.14 87.86 213.806 86.6C211.473 85.2933 209.63 83.4033 208.276 80.93C206.97 78.41 206.316 75.4233 206.316 71.97V49.22H216.116V70.57C216.116 73.65 216.886 76.03 218.426 77.71C219.966 79.3433 222.066 80.16 224.726 80.16C227.433 80.16 229.556 79.3433 231.096 77.71C232.636 76.03 233.406 73.65 233.406 70.57V49.22H243.276ZM249.026 68.47C249.026 64.55 249.796 61.0733 251.336 58.04C252.922 55.0067 255.069 52.6733 257.776 51.04C260.482 49.4067 263.492 48.59 266.806 48.59C269.326 48.59 271.729 49.15 274.016 50.27C276.302 51.3433 278.122 52.79 279.476 54.61V36.2H289.416V88H279.476V82.26C278.262 84.1733 276.559 85.7133 274.366 86.88C272.172 88.0467 269.629 88.63 266.736 88.63C263.469 88.63 260.482 87.79 257.776 86.11C255.069 84.43 252.922 82.0733 251.336 79.04C249.796 75.96 249.026 72.4367 249.026 68.47ZM279.546 68.61C279.546 66.23 279.079 64.2 278.146 62.52C277.212 60.7933 275.952 59.4867 274.366 58.6C272.779 57.6667 271.076 57.2 269.256 57.2C267.436 57.2 265.756 57.6433 264.216 58.53C262.676 59.4167 261.416 60.7233 260.436 62.45C259.502 64.13 259.036 66.1367 259.036 68.47C259.036 70.8033 259.502 72.8567 260.436 74.63C261.416 76.3567 262.676 77.6867 264.216 78.62C265.802 79.5533 267.482 80.02 269.256 80.02C271.076 80.02 272.779 79.5767 274.366 78.69C275.952 77.7567 277.212 76.45 278.146 74.77C279.079 73.0433 279.546 70.99 279.546 68.61ZM312.777 48.59C315.67 48.59 318.214 49.1733 320.407 50.34C322.6 51.46 324.327 52.93 325.587 54.75V49.22H335.457V88.28C335.457 91.8733 334.734 95.07 333.287 97.87C331.84 100.717 329.67 102.957 326.777 104.59C323.884 106.27 320.384 107.11 316.277 107.11C310.77 107.11 306.244 105.827 302.697 103.26C299.197 100.693 297.214 97.1933 296.747 92.76H306.477C306.99 94.5333 308.087 95.9333 309.767 96.96C311.494 98.0333 313.57 98.57 315.997 98.57C318.844 98.57 321.154 97.7067 322.927 95.98C324.7 94.3 325.587 91.7333 325.587 88.28V82.26C324.327 84.08 322.577 85.5967 320.337 86.81C318.144 88.0233 315.624 88.63 312.777 88.63C309.51 88.63 306.524 87.79 303.817 86.11C301.11 84.43 298.964 82.0733 297.377 79.04C295.837 75.96 295.067 72.4367 295.067 68.47C295.067 64.55 295.837 61.0733 297.377 58.04C298.964 55.0067 301.087 52.6733 303.747 51.04C306.454 49.4067 309.464 48.59 312.777 48.59ZM325.587 68.61C325.587 66.23 325.12 64.2 324.187 62.52C323.254 60.7933 321.994 59.4867 320.407 58.6C318.82 57.6667 317.117 57.2 315.297 57.2C313.477 57.2 311.797 57.6433 310.257 58.53C308.717 59.4167 307.457 60.7233 306.477 62.45C305.544 64.13 305.077 66.1367 305.077 68.47C305.077 70.8033 305.544 72.8567 306.477 74.63C307.457 76.3567 308.717 77.6867 310.257 78.62C311.844 79.5533 313.524 80.02 315.297 80.02C317.117 80.02 318.82 79.5767 320.407 78.69C321.994 77.7567 323.254 76.45 324.187 74.77C325.12 73.0433 325.587 70.99 325.587 68.61ZM379.678 67.77C379.678 69.17 379.585 70.43 379.398 71.55H351.048C351.282 74.35 352.262 76.5433 353.988 78.13C355.715 79.7167 357.838 80.51 360.358 80.51C363.998 80.51 366.588 78.9467 368.128 75.82H378.698C377.578 79.5533 375.432 82.6333 372.258 85.06C369.085 87.44 365.188 88.63 360.568 88.63C356.835 88.63 353.475 87.8133 350.488 86.18C347.548 84.5 345.238 82.1433 343.558 79.11C341.925 76.0767 341.108 72.5767 341.108 68.61C341.108 64.5967 341.925 61.0733 343.558 58.04C345.192 55.0067 347.478 52.6733 350.418 51.04C353.358 49.4067 356.742 48.59 360.568 48.59C364.255 48.59 367.545 49.3833 370.438 50.97C373.378 52.5567 375.642 54.82 377.228 57.76C378.862 60.6533 379.678 63.99 379.678 67.77ZM369.528 64.97C369.482 62.45 368.572 60.4433 366.798 58.95C365.025 57.41 362.855 56.64 360.288 56.64C357.862 56.64 355.808 57.3867 354.128 58.88C352.495 60.3267 351.492 62.3567 351.118 64.97H369.528Z" fill="white"></path>
+        <path d="M395.232 54.89C396.492 53.0233 398.218 51.5067 400.412 50.34C402.652 49.1733 405.195 48.59 408.042 48.59C411.355 48.59 414.342 49.4067 417.002 51.04C419.708 52.6733 421.832 55.0067 423.372 58.04C424.958 61.0267 425.752 64.5033 425.752 68.47C425.752 72.4367 424.958 75.96 423.372 79.04C421.832 82.0733 419.708 84.43 417.002 86.11C414.342 87.79 411.355 88.63 408.042 88.63C405.148 88.63 402.605 88.07 400.412 86.95C398.265 85.7833 396.538 84.29 395.232 82.47V88H385.432V36.2H395.232V54.89ZM415.742 68.47C415.742 66.1367 415.252 64.13 414.272 62.45C413.338 60.7233 412.078 59.4167 410.492 58.53C408.952 57.6433 407.272 57.2 405.452 57.2C403.678 57.2 401.998 57.6667 400.412 58.6C398.872 59.4867 397.612 60.7933 396.632 62.52C395.698 64.2467 395.232 66.2767 395.232 68.61C395.232 70.9433 395.698 72.9733 396.632 74.7C397.612 76.4267 398.872 77.7567 400.412 78.69C401.998 79.5767 403.678 80.02 405.452 80.02C407.272 80.02 408.952 79.5533 410.492 78.62C412.078 77.6867 413.338 76.3567 414.272 74.63C415.252 72.9033 415.742 70.85 415.742 68.47ZM467.523 67.77C467.523 69.17 467.43 70.43 467.243 71.55H438.893C439.126 74.35 440.106 76.5433 441.833 78.13C443.56 79.7167 445.683 80.51 448.203 80.51C451.843 80.51 454.433 78.9467 455.973 75.82H466.543C465.423 79.5533 463.276 82.6333 460.103 85.06C456.93 87.44 453.033 88.63 448.413 88.63C444.68 88.63 441.32 87.8133 438.333 86.18C435.393 84.5 433.083 82.1433 431.403 79.11C429.77 76.0767 428.953 72.5767 428.953 68.61C428.953 64.5967 429.77 61.0733 431.403 58.04C433.036 55.0067 435.323 52.6733 438.263 51.04C441.203 49.4067 444.586 48.59 448.413 48.59C452.1 48.59 455.39 49.3833 458.283 50.97C461.223 52.5567 463.486 54.82 465.073 57.76C466.706 60.6533 467.523 63.99 467.523 67.77ZM457.373 64.97C457.326 62.45 456.416 60.4433 454.643 58.95C452.87 57.41 450.7 56.64 448.133 56.64C445.706 56.64 443.653 57.3867 441.973 58.88C440.34 60.3267 439.336 62.3567 438.963 64.97H457.373ZM509.326 67.77C509.326 69.17 509.233 70.43 509.046 71.55H480.696C480.929 74.35 481.909 76.5433 483.636 78.13C485.363 79.7167 487.486 80.51 490.006 80.51C493.646 80.51 496.236 78.9467 497.776 75.82H508.346C507.226 79.5533 505.079 82.6333 501.906 85.06C498.733 87.44 494.836 88.63 490.216 88.63C486.483 88.63 483.123 87.8133 480.136 86.18C477.196 84.5 474.886 82.1433 473.206 79.11C471.573 76.0767 470.756 72.5767 470.756 68.61C470.756 64.5967 471.573 61.0733 473.206 58.04C474.839 55.0067 477.126 52.6733 480.066 51.04C483.006 49.4067 486.389 48.59 490.216 48.59C493.903 48.59 497.193 49.3833 500.086 50.97C503.026 52.5567 505.289 54.82 506.876 57.76C508.509 60.6533 509.326 63.99 509.326 67.77ZM499.176 64.97C499.129 62.45 498.219 60.4433 496.446 58.95C494.673 57.41 492.503 56.64 489.936 56.64C487.509 56.64 485.456 57.3867 483.776 58.88C482.143 60.3267 481.139 62.3567 480.766 64.97H499.176Z" fill="white"></path>
+      </svg>
+    </div>
+    <div class="tc-headline" id="tcHeadline"></div>
+  </div>
+
+  <!-- Shared cursor and ripple -->
+  <div class="cursor" id="cursor" style="left:-40px;top:-40px;">
+    <svg width="22" height="26" viewbox="0 0 22 26" fill="none">
+      <path d="M2 2L2 20L7 15.5L10.5 23L13 22L9.5 14.5H16L2 2Z" fill="white" stroke="#1a2332" stroke-width="1.4" stroke-linejoin="round"></path>
+    </svg>
+  </div>
+  <div class="ripple" id="ripple"></div>
+
+</div><!-- /stage -->
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+
+  const stage      = $('stage');
+  const titleCard  = $('titleCard');
+  const tcHeadline = $('tcHeadline');
+
+  // Shared
+  const s1            = $('s1');
+  const modal1        = $('modal1');
+  const btnNew        = $('btnNew');
+  const cScratch      = $('cScratch');
+  const cTemplate     = $('cTemplate');
+  const cursor        = $('cursor');
+  const ripple        = $('ripple');
+
+  // Part 1
+  const s3            = $('s3');
+  const s4p1          = $('s4p1');
+  const tWebhook      = $('tWebhook');
+  const flowWrap      = $('flowWrap');
+  const btnAdd        = $('btnAdd');
+  const spPanel       = $('spPanel');
+  const spScroll      = $('spScroll');
+
+  // Part 2
+  const modal2        = $('modal2');
+  const s4p2          = $('s4p2');
+  const tcWebhookRelay = $('tcWebhookRelay');
+  const flowWrap2     = $('flowWrap2');
+  const nodeWebhook   = $('nodeWebhook');
+  const cfgPanel      = $('cfgPanel');
+
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  function show(el)  { el.classList.add('show'); }
+  function hide(el)  { el.classList.remove('show'); }
+
+async function move(x1,y1,x2,y2,ms) {
+    cursor.style.transition = 'none';
+    cursor.style.left = x1+'px'; cursor.style.top = y1+'px';
+    await wait(30);
+    cursor.style.transition = `left ${ms}ms cubic-bezier(0.22,0.68,0.35,1), top ${ms}ms cubic-bezier(0.22,0.68,0.35,1)`;
+    cursor.style.left = x2+'px'; cursor.style.top = y2+'px';
+    await wait(ms);
+  }
+
+  function click() {
+    const x = parseInt(cursor.style.left)||0;
+    const y = parseInt(cursor.style.top)||0;
+    ripple.style.left = x+'px'; ripple.style.top = y+'px';
+    ripple.classList.remove('go');
+    void ripple.offsetWidth;
+    ripple.classList.add('go');
+  }
+
+  function scrollTo(el, target, ms) {
+    const start = el.scrollTop;
+    const diff  = target - start;
+    const t0    = performance.now();
+    return new Promise(res => {
+      function step(now) {
+        const p = Math.min((now - t0) / ms, 1);
+        const e = p < .5 ? 2*p*p : -1+(4-2*p)*p;
+        el.scrollTop = start + diff * e;
+        if (p < 1) requestAnimationFrame(step); else res();
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  function resetAll() {
+    // Hide every screen and overlay from both parts
+    hide(s1); hide(s3); hide(s4p1); hide(s4p2);
+    hide(modal1); hide(modal2);
+    hide(flowWrap); hide(spPanel);
+    hide(flowWrap2); hide(cfgPanel);
+    // Strip all interactive states
+    btnNew.classList.remove('hov');
+    cScratch.classList.remove('hov','sel');
+    cTemplate.classList.remove('hov','sel');
+    tWebhook.classList.remove('hov','sel');
+    btnAdd.classList.remove('hov');
+    tcWebhookRelay.classList.remove('hov','sel');
+    nodeWebhook.classList.remove('active-node');
+    spScroll.scrollTop = 0;
+    var an1 = $('addedNodes1'); if (an1) an1.innerHTML = '';
+    // remove any injected sp-sub items from previous run
+    document.querySelectorAll('#wdsiTransform,#wdsiHTTP,#wdsiAI').forEach(function(el){ var p=el.closest('.sp-sub'); if(p) p.remove(); });
+    document.querySelectorAll('.sp-cat.exp').forEach(function(el){ el.classList.remove('exp'); });
+    // Park cursor off-screen
+    cursor.style.transition = 'none';
+    cursor.style.left = '-40px'; cursor.style.top = '-40px';
+  }
+
+  async function runPart1() {
+    // Screen 1 is already visible (shown by title card transition)
+    await wait(600);
+
+    // Get btnNew position via getBoundingClientRect
+    const stageRect = stage.getBoundingClientRect();
+    const btnRect   = btnNew.getBoundingClientRect();
+    const btnX = btnRect.left - stageRect.left + btnRect.width / 2;
+    const btnY = btnRect.top  - stageRect.top  + btnRect.height / 2;
+
+    await move(400, 500, btnX, btnY, 750);
+    await wait(350);
+    btnNew.classList.add('hov');
+    await wait(480);
+    click();
+    btnNew.classList.remove('hov');
+    await wait(200);
+
+    // Modal 1 opens
+    show(modal1);
+    await wait(750);
+
+    // Move to cScratch (card 1 - Make an Automation)
+    const cScratchRect = cScratch.getBoundingClientRect();
+    const cScratchX = cScratchRect.left - stageRect.left + cScratchRect.width / 2;
+    const cScratchY = cScratchRect.top  - stageRect.top  + cScratchRect.height / 2;
+
+    await move(btnX, btnY, cScratchX, cScratchY, 700);
+    await wait(300);
+    cScratch.classList.add('hov');
+    await wait(550);
+    click();
+    cScratch.classList.add('sel');
+    cScratch.classList.remove('hov');
+    await wait(350);
+
+    // Dismiss modal, go to trigger screen
+    hide(modal1);
+    hide(s1);
+    await wait(80);
+    show(s3);
+    await wait(700);
+
+    // Move to Webhook trigger option
+    const tWebhookRect = tWebhook.getBoundingClientRect();
+    const tWx = tWebhookRect.left - stageRect.left + tWebhookRect.width / 2;
+    const tWy = tWebhookRect.top  - stageRect.top  + tWebhookRect.height / 2;
+
+    await move(cScratchX, cScratchY, tWx, tWy, 750);
+    await wait(350);
+    tWebhook.classList.add('hov');
+    await wait(500);
+    click();
+    tWebhook.classList.add('sel');
+    tWebhook.classList.remove('hov');
+    await wait(400);
+
+    // Switch to canvas
+    hide(s3);
+    await wait(80);
+    show(s4p1);
+    await wait(500);
+    show(flowWrap);
+    await wait(750);
+
+    // ── Helper: inject a node into the building canvas ──
+    const addedNodes1 = $('addedNodes1');
+    function injectNode1(html) {
+      const w = document.createElement('div');
+      w.style.cssText = 'display:flex;flex-direction:column;align-items:center;';
+      w.innerHTML = `<div class="f-line"></div>${html}`;
+      const n = w.querySelector('.f-node');
+      if (n) n.classList.add('node-anim');
+      addedNodes1.appendChild(w);
+    }
+
+    // ─ NODE 1: resolve-inputs (Data / Transform) ─
+    let btnAddRect = btnAdd.getBoundingClientRect();
+    let addX = btnAddRect.left - stageRect.left + btnAddRect.width / 2;
+    let addY = btnAddRect.top  - stageRect.top  + btnAddRect.height / 2;
+
+    await move(tWx, tWy, addX, addY, 650);
+    await wait(300);
+    btnAdd.classList.add('hov');
+    await wait(450);
+    click();
+    btnAdd.classList.remove('hov');
+    await wait(200);
+    show(spPanel);
+    await wait(650);
+
+    // cursor to Data category in panel (live rect)
+    const dataCats = Array.from(spScroll.querySelectorAll('.sp-cat'));
+    const dataCat  = dataCats.find(el => el.querySelector('.sp-cname')?.textContent.trim() === 'Data');
+    if (dataCat) {
+      const dr = dataCat.getBoundingClientRect();
+      const dcx = dr.left - stageRect.left + dr.width / 2;
+      const dcy = dr.top  - stageRect.top  + dr.height / 2;
+      await move(addX, addY, dcx, dcy, 550);
+      await wait(300);
+      dataCat.classList.add('exp');
+      let dataSub = dataCat.nextElementSibling;
+      if (!dataSub || !dataSub.classList.contains('sp-sub')) {
+        dataSub = document.createElement('div');
+        dataSub.className = 'sp-sub';
+        dataSub.innerHTML = `<div class="sp-sub-item" id="wdsiTransform"><div class="sp-sico sico-a"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ca8a04" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div><div><div class="sp-sname">Transform</div><div class="sp-sdesc">Map and reshape data between steps.</div></div></div>`;
+        dataCat.insertAdjacentElement('afterend', dataSub);
+      }
+      click();
+      await wait(380);
+      const si = dataSub.querySelector('.sp-sub-item');
+      if (si) si.classList.add('hov-item');
+      await move(dcx, dcy, dcx, dcy + 50, 300);
+      await wait(500);
+      click();
+      if (si) si.classList.remove('hov-item');
+    }
+    await wait(220);
+    hide(spPanel);
+    spScroll.scrollTop = 0;
+    await wait(180);
+    injectNode1(`<div class="f-node transform"><div class="f-ico f-ico-blue"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" style="width:19px;height:19px;"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg></div><div><div class="f-name">resolve-inputs</div><div class="f-desc">Transform: ( $is_webhook := webhook != ...</div></div></div>`);
+    await wait(500);
+
+    // ─ NODE 2: get-issue-details (Integrations / HTTP) ─
+    btnAddRect = btnAdd.getBoundingClientRect();
+    addX = btnAddRect.left - stageRect.left + btnAddRect.width / 2;
+    addY = btnAddRect.top  - stageRect.top  + btnAddRect.height / 2;
+
+    await move(addX - 300, addY - 50, addX, addY, 600);
+    await wait(300);
+    btnAdd.classList.add('hov');
+    await wait(450);
+    click();
+    btnAdd.classList.remove('hov');
+    await wait(200);
+    show(spPanel);
+    await wait(650);
+
+    const integCats = Array.from(spScroll.querySelectorAll('.sp-cat'));
+    const integCat  = integCats.find(el => el.querySelector('.sp-cname')?.textContent.trim() === 'Integrations');
+    if (integCat) {
+      await scrollTo(spScroll, 200, 600);
+      await wait(300);
+      const ir = integCat.getBoundingClientRect();
+      const icx = ir.left - stageRect.left + ir.width / 2;
+      const icy = ir.top  - stageRect.top  + ir.height / 2;
+      await move(addX, addY, icx, icy, 500);
+      await wait(300);
+      integCat.classList.add('exp');
+      let integSub = integCat.nextElementSibling;
+      if (!integSub || !integSub.classList.contains('sp-sub')) {
+        integSub = document.createElement('div');
+        integSub.className = 'sp-sub';
+        integSub.innerHTML = `<div class="sp-sub-item" id="wdsiHTTP"><div class="sp-sico sico-a"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div><div><div class="sp-sname">HTTP Request</div><div class="sp-sdesc">Make HTTP requests to any external service.</div></div></div>`;
+        integCat.insertAdjacentElement('afterend', integSub);
+      }
+      click();
+      await wait(380);
+      const si2 = integSub.querySelector('.sp-sub-item');
+      if (si2) si2.classList.add('hov-item');
+      await move(icx, icy, icx, icy + 50, 300);
+      await wait(500);
+      click();
+      if (si2) si2.classList.remove('hov-item');
+    }
+    await wait(220);
+    hide(spPanel);
+    spScroll.scrollTop = 0;
+    await wait(180);
+    injectNode1(`<div class="f-node transform"><div class="f-ico f-ico-blue"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" style="width:19px;height:19px;"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div><div><div class="f-name">get-issue-details</div><div class="f-desc">HTTP: https://api.github.com/repos/{{Ta...</div></div></div>`);
+    await wait(500);
+
+    // ─ NODE 3: analyze-issue-with-ai (AI/LLM) ─
+    btnAddRect = btnAdd.getBoundingClientRect();
+    addX = btnAddRect.left - stageRect.left + btnAddRect.width / 2;
+    addY = btnAddRect.top  - stageRect.top  + btnAddRect.height / 2;
+
+    await move(addX - 300, addY - 50, addX, addY, 600);
+    await wait(300);
+    btnAdd.classList.add('hov');
+    await wait(450);
+    click();
+    btnAdd.classList.remove('hov');
+    await wait(200);
+    show(spPanel);
+    await wait(650);
+    spScroll.scrollTop = 0;
+
+    const aiCats = Array.from(spScroll.querySelectorAll('.sp-cat'));
+    const aiCat  = aiCats.find(el => el.querySelector('.sp-cname')?.textContent.trim() === 'AI/LLM');
+    if (aiCat) {
+      const ar = aiCat.getBoundingClientRect();
+      const acx = ar.left - stageRect.left + ar.width / 2;
+      const acy = ar.top  - stageRect.top  + ar.height / 2;
+      await move(addX, addY, acx, acy, 500);
+      await wait(300);
+      aiCat.classList.add('exp');
+      let aiSub = aiCat.nextElementSibling;
+      if (!aiSub || !aiSub.classList.contains('sp-sub')) {
+        aiSub = document.createElement('div');
+        aiSub.className = 'sp-sub';
+        aiSub.innerHTML = `<div class="sp-sub-item" id="wdsiAI"><div class="sp-sico" style="background:#f3e8ff;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div><div class="sp-sname">Investigate</div><div class="sp-sdesc">Ask AI to analyze and investigate a problem.</div></div></div>`;
+        aiCat.insertAdjacentElement('afterend', aiSub);
+      }
+      click();
+      await wait(380);
+      const si3 = aiSub.querySelector('.sp-sub-item');
+      if (si3) si3.classList.add('hov-item');
+      await move(acx, acy, acx, acy + 50, 300);
+      await wait(500);
+      click();
+      if (si3) si3.classList.remove('hov-item');
+    }
+    await wait(220);
+    hide(spPanel);
+    spScroll.scrollTop = 0;
+    await wait(180);
+    injectNode1(`<div class="f-node ai"><div class="f-ico f-ico-purple"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" style="width:19px;height:19px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div><div class="f-name">analyze-issue-with-ai</div><div class="f-desc">Ask AI to analyze and investigate a proble...</div></div></div>`);
+    await wait(1400);
+
+    // clean up injected nodes for next loop
+    addedNodes1.innerHTML = '';
+  }
+
+  async function runPart2() {
+    // Screen 1 is already visible (shown by title card transition)
+    await wait(600);
+
+    // Get btnNew fresh rect
+    const stageRect = stage.getBoundingClientRect();
+    const btnRect   = btnNew.getBoundingClientRect();
+    const btnX = btnRect.left - stageRect.left + btnRect.width / 2;
+    const btnY = btnRect.top  - stageRect.top  + btnRect.height / 2;
+
+    // Cursor enters from left-center
+    await move(300, 400, btnX, btnY, 750);
+    await wait(350);
+    btnNew.classList.add('hov');
+    await wait(480);
+    click();
+    btnNew.classList.remove('hov');
+    await wait(200);
+
+    // Modal 1 opens
+    show(modal1);
+    await wait(800);
+
+    // Move to cTemplate (card 2 - Start from Template)
+    const cTplRect = cTemplate.getBoundingClientRect();
+    const cTplX = cTplRect.left - stageRect.left + cTplRect.width / 2;
+    const cTplY = cTplRect.top  - stageRect.top  + cTplRect.height / 2;
+
+    await move(btnX, btnY, cTplX, cTplY, 700);
+    await wait(320);
+    cTemplate.classList.add('hov');
+    await wait(520);
+    click();
+    cTemplate.classList.add('sel');
+    cTemplate.classList.remove('hov');
+    await wait(350);
+
+    // Switch to template gallery
+    hide(modal1);
+    await wait(100);
+    show(modal2);
+    await wait(900);
+
+    // Move to Webhook Relay card
+    const tcRect = tcWebhookRelay.getBoundingClientRect();
+    const tcX = tcRect.left - stageRect.left + tcRect.width / 2;
+    const tcY = tcRect.top  - stageRect.top  + tcRect.height * 0.4;
+
+    await move(cTplX, cTplY, tcX, tcY, 700);
+    await wait(320);
+    tcWebhookRelay.classList.add('hov');
+    await wait(500);
+
+    // Move to "Use Template" button within card
+    const tcBtnY = tcRect.top - stageRect.top + tcRect.height - 22;
+    await move(tcX, tcY, tcX, tcBtnY, 350);
+    await wait(250);
+    click();
+    tcWebhookRelay.classList.add('sel');
+    await wait(400);
+
+    // Transition to canvas
+    hide(modal2);
+    hide(s1);
+    await wait(100);
+    show(s4p2);
+    await wait(500);
+    show(flowWrap2);
+    await wait(800);
+
+    // Click on Webhook node
+    const nodeRect = nodeWebhook.getBoundingClientRect();
+    const nodeX = nodeRect.left - stageRect.left + nodeRect.width / 2;
+    const nodeY = nodeRect.top  - stageRect.top  + nodeRect.height / 2;
+
+    await move(tcX, tcBtnY, 400, 350, 600);
+    await wait(400);
+    await move(400, 350, nodeX, nodeY, 650);
+    await wait(400);
+    nodeWebhook.classList.add('active-node');
+    await wait(300);
+    click();
+    await wait(400);
+
+    // Config panel slides in
+    show(cfgPanel);
+    await wait(700);
+
+    // Cursor drifts into config panel
+    await move(nodeX, nodeY, 900, 260, 500);
+    await wait(400);
+
+    // Cursor moves down to filter expression field
+    await move(900, 260, 900, 480, 600);
+    await wait(500);
+
+    // Hold on config panel info section
+    await move(900, 480, 900, 560, 400);
+    await wait(800);
+  }
+
+  async function fadeTo(opacity, ms) {
+    stage.style.transition = `opacity ${ms}ms ease`;
+    stage.style.opacity = opacity;
+    await wait(ms);
+  }
+
+  /* Show a title card, hold, then cross-fade into the demo */
+  async function showTitleCard(text, startFn) {
+    // Set text and fade in card
+    tcHeadline.textContent = text;
+    titleCard.style.transition = 'none';
+    titleCard.style.opacity = '0';
+    titleCard.classList.add('tc-show');
+    await wait(30);
+    titleCard.style.transition = 'opacity 0.5s ease';
+    titleCard.style.opacity = '1';
+    await wait(500); // fade-in duration
+    await wait(840); // hold duration
+    // Start the demo screen underneath while card fades out
+    startFn();
+    titleCard.style.transition = 'opacity 1.1s ease';
+    titleCard.style.opacity = '0';
+    await wait(1100);
+    titleCard.classList.remove('tc-show');
+  }
+
+  async function run() {
+    // Part 1 title card → then demo
+    resetAll();
+    await showTitleCard('Build from Scratch', () => show(s1));
+    await runPart1();
+
+    // Fade out between parts
+    await fadeTo('0', 400);
+    resetAll();
+    await wait(50);
+    await fadeTo('1', 300);
+    await wait(100);
+
+    // Part 2 title card → then demo
+    await showTitleCard('Start from Template', () => show(s1));
+    await runPart2();
+
+    // Fade out, loop back
+    await fadeTo('0', 400);
+    resetAll();
+    await wait(50);
+    await fadeTo('1', 300);
+    await wait(100);
+
+    run();
+  }
+
+  /* Start only when the parent page sends {cmd:'start'} via postMessage */
+  var started = false;
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.cmd === 'start' && !started) {
+      started = true;
+      run();
+    }
+  });
+})();
+</script>
+<script type="module" src="../../beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"ae92c8c5ff0f473d84f25a083059b35b","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
