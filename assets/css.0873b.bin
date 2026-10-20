@@ -1,0 +1,48 @@
+/* Satoshi */
+@font-face {
+  font-family: 'Satoshi';
+  src: url("../fonts/WNDVG7O66ENLOD43GS7FBUCC4KMT5OM2.0c27b.woff2") format('woff2'),
+       url("../fonts/WNDVG7O66ENLOD43GS7FBUCC4KMT5OM2.0c27b.woff") format('woff'),
+       url("../fonts/WNDVG7O66ENLOD43GS7FBUCC4KMT5OM2.0c27b.ttf") format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url("../fonts/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.47fc5.woff2") format('woff2'),
+       url("../fonts/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.47fc5.woff") format('woff'),
+       url("../fonts/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.47fc5.ttf") format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url("../fonts/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.d6bbe.woff2") format('woff2'),
+       url("../fonts/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.d6bbe.woff") format('woff'),
+       url("../fonts/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.d6bbe.ttf") format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url("../fonts/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.1d05f.woff2") format('woff2'),
+       url("../fonts/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.1d05f.woff") format('woff'),
+       url("../fonts/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.1d05f.ttf") format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url("../fonts/J64QX5IPOHK56I2KYUNBQ5M2XWZEYKYX.5e319.woff2") format('woff2'),
+       url("../fonts/J64QX5IPOHK56I2KYUNBQ5M2XWZEYKYX.5e319.woff") format('woff'),
+       url("../fonts/J64QX5IPOHK56I2KYUNBQ5M2XWZEYKYX.5e319.ttf") format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+

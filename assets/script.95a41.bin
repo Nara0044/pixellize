@@ -1,0 +1,89 @@
+
+        (function(w, d, n) {
+
+            function setCookie(name, value, days) {
+                var maxAge = days * 24 * 60 * 60;
+                d.cookie = name + '=' + encodeURIComponent(value) + '; max-age=' + maxAge + '; path=/; SameSite=Lax';
+            }
+
+            function getCookie(name) {
+                var match = d.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+                return match ? decodeURIComponent(match[1]) : null;
+            }
+
+            function linkInternal(toolOrigin, cookieName) {
+                if (!window.opener || window.name !== 'link-internal') return;
+            
+                function send() {
+                    window.opener.postMessage({ visitorId: getCookie(cookieName) }, toolOrigin);
+                    window.close();
+                }
+            
+                if (document.readyState === 'complete') send();
+                else window.addEventListener('load', send);
+            }
+
+            linkInternal('https://console.ceana.ai', '_ceana_temp_uid')
+
+            var script = document.currentScript;
+            var cookie_id = (function() {
+                var key = '_ceana_temp_uid';
+                var id = getCookie(key);
+                if (!id) {
+                    id = crypto.randomUUID();
+                }
+                setCookie(key, id, 90);
+                return id;
+            })();
+
+            function isInIframe() {
+                try {
+                    return window.self !== window.top;
+                } catch (e) {
+                    return true;
+                }
+            }
+
+            if (isInIframe()) {
+                const thisScript = document.getElementById('x-c-script')
+                if (window.parent.location.hostname === 'console.ceana.ai') {
+                    thisScript.textContent = "";
+                } else {
+                    thisScript.remove();
+                }
+                return;
+            }
+
+            function sendBeaconLog(cookie_id, timestamp, body) {
+                var params = new URLSearchParams({
+                    service_id: script.getAttribute('attr-pk'),
+                    cookie_id: cookie_id,
+                    document_referrer: d.referrer || d.referer || 'null',
+                    page_url: w.location.href,
+                    user_agent: n.userAgent,
+                    timestamp: timestamp
+                });
+                n.sendBeacon('/ceana-tracking/collect?' + params.toString(), JSON.stringify(body));
+            }
+
+            document.addEventListener('click', function (event) {
+                const el = event.target.closest('[attr-ceana-public-event-id]');
+                if (el) {
+                    handleEventClick('attr-ceana-public-event-id', el.getAttribute('attr-ceana-public-event-id'), el);
+                    return;
+                }
+            });
+
+            function handleEventClick(type, attrID, element) {
+                sendBeaconLog(cookie_id, 1792067749655, {
+                    attr_ceana_public_event_id: attrID,
+                    data_capture: document.body.innerHTML
+                });
+            }
+
+            sendBeaconLog(cookie_id, 1792067749655, {
+            });
+
+            // document.getElementById('x-c-script').remove();
+        })(window, document, navigator);
+    
